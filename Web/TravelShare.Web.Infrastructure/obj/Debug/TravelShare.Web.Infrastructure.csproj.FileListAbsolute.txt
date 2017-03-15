@@ -1,0 +1,7 @@
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\bin\Debug\TravelShare.Web.Infrastructure.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\bin\Debug\TravelShare.Web.Infrastructure.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\bin\Debug\AutoMapper.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\bin\Debug\AutoMapper.xml
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\obj\Debug\TravelShare.Web.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\obj\Debug\TravelShare.Web.Infrastructure.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Web\TravelShare.Web.Infrastructure\obj\Debug\TravelShare.Web.Infrastructure.pdb

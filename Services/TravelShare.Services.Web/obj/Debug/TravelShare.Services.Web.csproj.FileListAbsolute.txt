@@ -1,0 +1,5 @@
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Services\TravelShare.Services.Web\bin\Debug\TravelShare.Services.Web.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Services\TravelShare.Services.Web\bin\Debug\TravelShare.Services.Web.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Services\TravelShare.Services.Web\obj\Debug\TravelShare.Services.Web.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Services\TravelShare.Services.Web\obj\Debug\TravelShare.Services.Web.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Services\TravelShare.Services.Web\obj\Debug\TravelShare.Services.Web.pdb

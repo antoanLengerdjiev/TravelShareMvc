@@ -1,0 +1,10 @@
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\TravelShare.Data.Common.dll.config
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\TravelShare.Data.Common.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\obj\Debug\TravelShare.Data.Common.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\obj\Debug\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\Data\TravelShare.Data.Common\obj\Debug\TravelShare.Data.Common.pdb
