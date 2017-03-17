@@ -1,0 +1,5 @@
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Web\bin\Release\TravelShare.Services.Web.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Web\bin\Release\TravelShare.Services.Web.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Web\obj\Release\TravelShare.Services.Web.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Web\obj\Release\TravelShare.Services.Web.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Web\obj\Release\TravelShare.Services.Web.pdb

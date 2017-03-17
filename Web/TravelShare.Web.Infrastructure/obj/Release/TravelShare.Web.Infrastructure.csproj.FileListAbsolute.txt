@@ -1,0 +1,7 @@
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\bin\Release\TravelShare.Web.Infrastructure.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\bin\Release\TravelShare.Web.Infrastructure.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\bin\Release\AutoMapper.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\bin\Release\AutoMapper.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\obj\Release\TravelShare.Web.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\obj\Release\TravelShare.Web.Infrastructure.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web.Infrastructure\obj\Release\TravelShare.Web.Infrastructure.pdb

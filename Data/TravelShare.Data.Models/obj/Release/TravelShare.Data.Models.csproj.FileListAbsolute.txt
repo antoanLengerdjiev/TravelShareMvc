@@ -1,0 +1,16 @@
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\TravelShare.Data.Models.dll.config
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\TravelShare.Data.Models.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\TravelShare.Data.Models.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\EntityFramework.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\TravelShare.Data.Common.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\EntityFramework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Release\TravelShare.Data.Models.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Release\TravelShare.Data.Models.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Release\TravelShare.Data.Models.pdb

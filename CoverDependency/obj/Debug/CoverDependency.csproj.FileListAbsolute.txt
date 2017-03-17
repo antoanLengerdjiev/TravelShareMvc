@@ -1,0 +1,7 @@
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\bin\Debug\CoverDependency.dll
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\bin\Debug\CoverDependency.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\bin\Debug\nunit.framework.dll
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\bin\Debug\nunit.framework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\obj\Debug\CoverDependency.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\obj\Debug\CoverDependency.dll
+C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\obj\Debug\CoverDependency.pdb

@@ -1,0 +1,10 @@
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\TravelShare.Data.Common.dll.config
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\TravelShare.Data.Common.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\EntityFramework.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\EntityFramework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\obj\Release\TravelShare.Data.Common.csprojResolveAssemblyReference.cache
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\obj\Release\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\obj\Release\TravelShare.Data.Common.pdb
