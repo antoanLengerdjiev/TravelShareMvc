@@ -8,7 +8,11 @@
         [Test]
         public void Test()
         {
-            Assert.IsTrue(true);
+            //Arrange && Act
+            var homeController = new HomeController();
+
+            //Assert
+            Assert.IsNotNull(homeController);
         }
 
     }
