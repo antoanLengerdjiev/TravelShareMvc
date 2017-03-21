@@ -188,3 +188,4 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\obj\Debug\TravelShare.Web.Routes.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\obj\Debug\TravelShare.Web.Routes.Tests.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\obj\Debug\TravelShare.Web.Routes.Tests.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Bytes2you.Validation.dll

@@ -3,18 +3,19 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-
+    using Bytes2you.Validation;
+    using Contracts;
+    using Data.Models.Base;
     using TravelShare.Data.Common.Models;
 
     public class DbRepository<T> : IDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
-        public DbRepository(DbContext context)
+        public DbRepository(IApplicationDbContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", nameof(context));
-            }
+            Guard.WhenArgument<IApplicationDbContext>(context, "Database context cannot be null.")
+                 .IsNull()
+                 .Throw();
 
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
@@ -22,7 +23,7 @@
 
         private IDbSet<T> DbSet { get; }
 
-        private DbContext Context { get; }
+        private IApplicationDbContext Context { get; }
 
         public IQueryable<T> All()
         {
@@ -59,11 +60,6 @@
         public void HardDelete(T entity)
         {
             this.DbSet.Remove(entity);
-        }
-
-        public void Save()
-        {
-            this.Context.SaveChanges();
         }
 
         public void Dispose()

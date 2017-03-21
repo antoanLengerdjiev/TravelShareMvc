@@ -5,6 +5,7 @@
     using Common.Contracts;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Models;
+    using TravelShare.Data.Models.Base;
 
     public abstract class BaseDataService<T> : IBaseDataService<T>
         where T : class, IDeletableEntity, IAuditInfo
@@ -19,7 +20,6 @@
         public virtual void Add(T item)
         {
             this.Data.Add(item);
-            this.Data.Save();
         }
 
         public virtual void Delete(object id)
@@ -31,7 +31,6 @@
             }
 
             this.Data.Delete(entity);
-            this.Data.Save();
         }
 
         public virtual IQueryable<T> GetAll()
@@ -44,10 +43,7 @@
             return this.Data.GetById(id);
         }
 
-        public virtual void Save()
-        {
-            this.Data.Save();
-        }
+      
 
         public void Dispose()
         {

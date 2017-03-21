@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TravelShare.Data.Common.Models;
+    using TravelShare.Data.Models.Base;
 
     public interface IBaseDataWithCreatorService<T> : IBaseDataService<T>
         where T : class, IDeletableEntity, IAuditInfo, IEntityWithCreator

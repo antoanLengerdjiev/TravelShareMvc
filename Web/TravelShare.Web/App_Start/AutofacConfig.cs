@@ -11,7 +11,8 @@
 
     using Data;
     using Data.Common;
-
+    using Data.Common.Contracts;
+    using Data.Models;
     using Services.Web;
 
     public static class AutofacConfig
@@ -46,8 +47,11 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
+            //builder.Register(x => new ApplicationDbContext())
+            //    .As<DbContext>()
+            //    .InstancePerRequest();
             builder.Register(x => new ApplicationDbContext())
-                .As<DbContext>()
+                .As<IApplicationDbContext>()
                 .InstancePerRequest();
             builder.Register(x => new HttpCacheService())
                 .As<ICacheService>()
@@ -55,10 +59,29 @@
             builder.Register(x => new IdentifierProvider())
                 .As<IIdentifierProvider>()
                 .InstancePerRequest();
+            builder.Register(x => new TripRepository(x.Resolve<IApplicationDbContext>()))
+                .As<ITripRepository>()
+                .InstancePerRequest();
+
+            builder.Register(x => new NewsRepository(x.Resolve<IApplicationDbContext>()))
+                .As<INewsRepository>()
+                .InstancePerRequest();
+
+            builder.Register(x => new UserRepository(x.Resolve<IApplicationDbContext>()))
+                .As<IApplicationUserRepository>()
+                .InstancePerRequest();
+
+            builder.Register(x => new RatingRepository(x.Resolve<IApplicationDbContext>()))
+                .As<IRatingsRepository>()
+                .InstancePerRequest();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
+
+            builder.Register(x => new ApplicationData(x.Resolve<IApplicationDbContext>(), x.Resolve<IDbRepository<News>>(), x.Resolve<IDbRepository<ApplicationUser>>(), x.Resolve<IDbRepository<Trip>>(), x.Resolve<IDbRepository<Rating>>()))
+           .As<IApplicationData>()
+           .InstancePerRequest();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AssignableTo<BaseController>().PropertiesAutowired();

@@ -1,7 +1,7 @@
 ﻿namespace TravelShare.Data.Common
 {
     using System.Linq;
-
+    using Data.Models.Base;
     using TravelShare.Data.Common.Models;
 
     public interface IDbRepository<T>
@@ -18,8 +18,6 @@
         void Delete(T entity);
 
         void HardDelete(T entity);
-
-        void Save();
 
         void Dispose();
     }

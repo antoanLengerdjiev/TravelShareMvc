@@ -178,3 +178,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\obj\Debug\TravelShare.Web.Controllers.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\obj\Debug\TravelShare.Web.Controllers.Tests.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\obj\Debug\TravelShare.Web.Controllers.Tests.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Bytes2you.Validation.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.SqlServer.xml

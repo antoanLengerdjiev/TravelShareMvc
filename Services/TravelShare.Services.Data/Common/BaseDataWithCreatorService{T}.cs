@@ -7,6 +7,7 @@
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Models;
     using TravelShare.Data.Models;
+    using TravelShare.Data.Models.Base;
 
     public class BaseDataWithCreatorService<T> : BaseDataService<T>, IBaseDataWithCreatorService<T>
         where T : class, IDeletableEntity, IAuditInfo, IEntityWithCreator
@@ -42,7 +43,6 @@
             }
 
             this.Data.Delete(training);
-            this.Data.Save();
         }
     }
 }

@@ -21,8 +21,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\TravelShare.Data.Common.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\TravelShare.Data.Common.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\EntityFramework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml

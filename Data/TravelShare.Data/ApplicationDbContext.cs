@@ -3,18 +3,32 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-
+    using Common.Contracts;
     using Common.Models;
 
     using Microsoft.AspNet.Identity.EntityFramework;
-
+    using Models.Base;
     using TravelShare.Data.Models;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>,IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+        }
+
+        public IDbSet<News> News { get; set; }
+
+        public IDbSet<Trip> Trips { get; set; }
+
+        public IDbSet<Rating> Ratings { get; set; }
+
+        public DbContext DbContext
+        {
+            get
+            {
+                return this;
+            }
         }
 
         public static ApplicationDbContext Create()
@@ -47,6 +61,11 @@
                     entity.ModifiedOn = DateTime.UtcNow;
                 }
             }
+        }
+
+        IDbSet<T> IApplicationDbContext.Set<T>()
+        {
+            return base.Set<T>();
         }
     }
 }

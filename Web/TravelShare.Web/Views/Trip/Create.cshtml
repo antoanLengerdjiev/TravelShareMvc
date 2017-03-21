@@ -1,0 +1,88 @@
+﻿@model TravelShare.Web.ViewModels.Trips.TripCreateModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Create Trip";
+}
+
+   <div class="row">
+       <div class="col-md-8 col-md-offset-2" >
+           <div class="panel panel-default">
+               <div class="panel-heading text-center">@ViewBag.Title</div>
+               <div class="panel-body">
+                   <div class="col-md-12">
+                       <div id="map"></div>
+                   </div>
+                   <br/>
+                   <div class="col-md-12"></div>
+                   @using(Html.BeginForm("Create","Trip",FormMethod.Post,new { @class= "form-default" }))
+                   {
+                       <div class="col-md-6">
+                           <div class="form-group">
+                               <div class="col-md-12">
+                                   @Html.TextBoxFor(m => m.From,new { @class = "form-control", placeholder ="From" })
+                                   @Html.ValidationMessageFor(m => m.From)
+                               </div>
+                               <div class="col-md-12">
+                                   @Html.TextBoxFor(m => m.To, new { @class = "form-control", placeholder = "To" })
+                                   @Html.ValidationMessageFor(m => m.From)
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(m => m.DateAsString, new { @class = "form-control", placeholder = "Date",id= "datepicker" })
+                                    @Html.ValidationMessageFor(m => m.DateAsString)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(m => m.Slots, new { @class = "form-control", placeholder = "Slots", @type="number" })
+                                    @Html.ValidationMessageFor(m => m.Slots)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(m => m.Money, new { @class = "form-control", placeholder = "Money", @type="number" })
+                                    @Html.ValidationMessageFor(m => m.Money)
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(m => m.Description, new { @class ="form-control", row = 8, placeholder = "Description" })
+                                @Html.ValidationMessageFor(m => m.Description)
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary col-md-12" />
+                        </div>
+                    </div>
+                   }
+               </div>
+           </div>
+       </div>
+
+   </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/maps")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe4fYOMnSJGCrxb1LbuzGnX7L3q5hOk3o&libraries=places&callback=initMap">
+
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+}
+
+@section jqueryui{
+    @Styles.Render("~/Content/jqueryui")
+    }
+
+

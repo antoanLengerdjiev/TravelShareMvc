@@ -204,3 +204,4 @@ C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\Microsoft.Owin.
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelShare.Web.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelShare.Web.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelShare.Web.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\Bytes2you.Validation.dll
