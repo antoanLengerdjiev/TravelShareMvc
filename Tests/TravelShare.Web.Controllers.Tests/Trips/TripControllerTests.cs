@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using TestStack.FluentMVCTesting;
-using TravelShare.Data.Common;
-using TravelShare.Data.Common.Contracts;
-using TravelShare.Data.Models;
-using TravelShare.Web.Infrastructure.Mapping;
-using TravelShare.Web.ViewModels.Trips;
-using Microsoft.AspNet.Identity;
-using System.Web.Mvc;
-using System.Web;
-
-namespace TravelShare.Web.Controllers.Tests.Trips
+﻿namespace TravelShare.Web.Controllers.Tests.Trips
 {
+    using Moq;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
+    using TravelShare.Data.Common.Contracts;
+    using TravelShare.Data.Models;
+    using TravelShare.Web.Infrastructure.Mapping;
+    using TravelShare.Web.ViewModels.Trips;
+
     [TestFixture]
     public class TripControllerTests
     {
@@ -83,12 +73,6 @@ namespace TravelShare.Web.Controllers.Tests.Trips
         public void PostCreateAction_WhenInvoked_ShouldCallTripAddMethod()
         {
             // Arrange
-            //var controllerContext = new Mock<ControllerContext>();
-            //var principal = new Moq.Mock<IPrincipal>();
-            //principal.Setup(p => p.IsInRole("Administrator")).Returns(true);
-            //principal.SetupGet(x => x.Identity.Name).Returns("Pesho");
-            //controllerContext.SetupGet(x => x.HttpContext.User).Returns(principal.Object);
-
             var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
@@ -102,6 +86,25 @@ namespace TravelShare.Web.Controllers.Tests.Trips
             controller.Create(model);
             // Act & Assert
             mockedData.Verify(x => x.Trips.Add(It.IsAny<Trip>()), Times.Once);
+        }
+
+        [Test]
+        public void PostCreateAction_WhenInvoked_ShouldSetDriverId()
+        {
+            // Arrange
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var automap = new AutoMapperConfig();
+            automap.Execute(typeof(TripController).Assembly);
+
+            var mockedData = new Mock<IApplicationData>();
+            mockedData.Setup(x => x.Trips.Add(It.IsAny<Trip>())).Verifiable();
+            var controller = new TripController(mockedData.Object);
+
+            controller.GetUserId = () => "IdOfmyChoosing";
+
+            controller.Create(model);
+            // Act & Assert
+            Assert.AreSame(controller.GetUserId(), model.DriverId);
         }
 
         [Test]

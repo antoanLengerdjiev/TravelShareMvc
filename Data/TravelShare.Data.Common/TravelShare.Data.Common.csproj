@@ -60,18 +60,10 @@
     <Compile Include="ApplicationData.cs" />
     <Compile Include="Contracts\IApplicationData.cs" />
     <Compile Include="Contracts\IApplicationDbContext.cs" />
-    <Compile Include="Contracts\IApplicationUserRepository.cs" />
-    <Compile Include="Contracts\INewsRepository.cs" />
-    <Compile Include="Contracts\IRatingsRepository.cs" />
-    <Compile Include="Contracts\ITripRepository.cs" />
     <Compile Include="DbRepository{T}.cs" />
     <Compile Include="IDbRepository{T}.cs" />
     <Compile Include="Models\IEntityWithCreator.cs" />
-    <Compile Include="NewsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingRepository.cs" />
-    <Compile Include="TripRepository.cs" />
-    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

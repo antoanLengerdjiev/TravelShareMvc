@@ -7,8 +7,8 @@
     using System.Web.Mvc;
     using Data.Models;
     using Microsoft.AspNet.Identity;
-    using TravelShare.Web.Infrastructure.Mapping;
     using TravelShare.Data.Common.Contracts;
+    using Infrastructure.Mapping;
     using ViewModels.Trips;
 
     public class TripController : BaseController

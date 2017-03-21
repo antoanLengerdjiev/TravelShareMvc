@@ -19,7 +19,6 @@
         {
             var news = this.data.News.All();
 
-            var data = this.data;
             return this.View();
         }
     }

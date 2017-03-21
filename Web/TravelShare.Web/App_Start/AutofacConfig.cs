@@ -59,21 +59,6 @@
             builder.Register(x => new IdentifierProvider())
                 .As<IIdentifierProvider>()
                 .InstancePerRequest();
-            builder.Register(x => new TripRepository(x.Resolve<IApplicationDbContext>()))
-                .As<ITripRepository>()
-                .InstancePerRequest();
-
-            builder.Register(x => new NewsRepository(x.Resolve<IApplicationDbContext>()))
-                .As<INewsRepository>()
-                .InstancePerRequest();
-
-            builder.Register(x => new UserRepository(x.Resolve<IApplicationDbContext>()))
-                .As<IApplicationUserRepository>()
-                .InstancePerRequest();
-
-            builder.Register(x => new RatingRepository(x.Resolve<IApplicationDbContext>()))
-                .As<IRatingsRepository>()
-                .InstancePerRequest();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
