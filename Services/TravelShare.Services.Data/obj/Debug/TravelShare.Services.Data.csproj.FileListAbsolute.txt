@@ -35,3 +35,7 @@ C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\obj\
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\obj\Debug\TravelShare.Services.Data.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\obj\Debug\TravelShare.Services.Data.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Bytes2you.Validation.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Castle.Core.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Moq.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Castle.Core.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Moq.xml

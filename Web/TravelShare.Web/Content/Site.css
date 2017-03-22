@@ -22,8 +22,132 @@ select,
 textarea {
     max-width: 280px;
 }
+body {
+    color: #555;
+}
+
+a {
+    color: #555;
+}
+
+a:hover {
+    color: #555;
+}
+
+.panel-heading {
+    font-weight: bold;
+    color: #07829a;
+}
+
+.btn-primary {
+    background-color: #006ac3;
+}
+
+.btn-primary:hover {
+    background-color: #003588;
+}
+
+.glyphicon {
+    padding-right: 15px;
+}
+
+.fa {
+    padding: 0 15px;
+}
+
+.navbar {
+    font-size: 18px;
+    border-radius: 0px;
+    background-color: #003588;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #e5e5e5;
+}
+
+.site-name {
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.find-trip-container {
+    background-color: #00a0ef;
+    margin-bottom: 15px;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.find-header {
+    margin-left: 15px;
+}
+
+.form-group {
+    margin: 0 15px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+.btn-search {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.trip-item {
+    text-decoration: none;
+    border: 1px solid #999;
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    font-size: 18px;
+}
+
+.trip-item:hover {
+    background: lightgray;
+}
+
+.trip-date {
+    font-size: 25px;
+}
+
+.trip-from-to {
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.trip-from {
+    color: #006ac3;
+}
+
+.trip-to {
+    color: #5cad29;
+}
+
+.trip-price {
+    font-size: 30px;
+    color: #5cad29;
+    font-weight: bold;
+}
+
+.trip-seats {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.trip-passengers>ul>li {
+    list-style-type: none;
+    padding-left: none;
+}
+
 #map {
     height: 200px;
     width: 100%;
     margin-bottom: 10px;
+}
+
+.btn-login,
+.btn-create,
+.register {
+    margin: 15px 0;
 }

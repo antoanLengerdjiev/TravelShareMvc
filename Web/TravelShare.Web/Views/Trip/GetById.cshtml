@@ -1,0 +1,64 @@
+﻿@model TravelShare.Web.ViewModels.Trips.TripDetailedModel
+@{
+    ViewBag.Title = "Trip Details";
+}
+
+<div class="row container trip-item">
+    <div class="col-md-9">
+        <div class="trip-date">Date:
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            <span>@Model.Date.ToString("MMMM dd, yyyy")</span>
+        </div>
+        <div class="trip-from">
+            From:
+            <i class="fa fa-map-marker trip-from" aria-hidden="true"></i>
+            <span>@Model.From</span>
+        </div>
+        <div class="trip-from">
+            To:
+            <i class="fa fa-map-marker trip-to" aria-hidden="true"></i>
+            <span>@Model.To</span>
+        </div>
+        <div class="trip-price">
+            Price:
+            <span>@Model.Money</span>
+            <span>lv for passenger</span>  
+        </div>
+        <div class="trip-driver">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>@Model.Driver.UserName</span>
+        </div>
+        <div class="trip-description">
+            @Model.Description
+        </div>
+        <div class="trip-passengers">
+            Passengers:
+            @{ 
+                if (Model.Passenger.Count > 0)
+                {
+                    <ul>
+                        @foreach (var pass in Model.Passenger)
+                        {
+                            <li>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @pass.UserName
+                            </li>
+                        }
+                    </ul>
+                } else
+                {
+                    @:None
+                }
+            }
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="trip-seats">
+                @{
+                    var availableSlots = Model.Slots - Model.Passenger.Count;
+                    @availableSlots
+                } 
+                <span>available seats</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -226,7 +226,10 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Trips\TripAllModel.cs" />
     <Compile Include="ViewModels\Trips\TripCreateModel.cs" />
+    <Compile Include="ViewModels\Trips\TripDetailedModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -300,6 +303,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Trip\Create.cshtml" />
+    <Content Include="Views\Trip\All.cshtml" />
+    <Content Include="Views\Trip\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

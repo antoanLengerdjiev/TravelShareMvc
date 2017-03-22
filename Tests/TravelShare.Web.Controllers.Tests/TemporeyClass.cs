@@ -22,7 +22,7 @@
 
             var result = homeController.Index();
             mockData.Verify(x => x.News.All(), Times.Once);
-            //Assert.IsTrue(true);
+            // Assert.IsTrue(true);
         }
 
     }

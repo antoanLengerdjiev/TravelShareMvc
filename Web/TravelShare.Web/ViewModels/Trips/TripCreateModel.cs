@@ -16,7 +16,7 @@
         public string To { get; set; }
 
         [Required]
-        [RegularExpression("\\d{2}/\\d{2}/\\d{4}",ErrorMessage ="Trip date must be in mm/dd/yyyy format")]
+        [RegularExpression("\\d{2}/\\d{2}/\\d{4}", ErrorMessage ="Trip date must be in mm/dd/yyyy format")]
         [Display(Name ="Trip Date")]
         public string DateAsString { get; set; }
 

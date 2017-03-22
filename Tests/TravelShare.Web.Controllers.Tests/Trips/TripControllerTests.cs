@@ -1,5 +1,6 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.Trips
 {
+    using System.Linq;
     using Moq;
     using NUnit.Framework;
     using TestStack.FluentMVCTesting;
@@ -119,5 +120,52 @@
             controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();
         }
 
+        //[Test]
+        //public void ActionAll_ShouldReturnDefaultView()
+        //{
+        //    // Arrange
+        //    var mockedData = new Mock<IApplicationData>();
+        //    mockedData.Setup(x => x.Trips.All()).Verifiable();
+        //    mockedData.Setup(x => x.Trips.All().Count()).Returns(5).Verifiable();
+        //    var controller = new TripController(mockedData.Object);
+
+        //    // Act & Assert
+        //    controller.All(0);
+        //    controller.TempData["page"] = 0;
+        //    controller.TempData["pageCount"] = 0;
+        //    mockedData.Verify(x => x.Trips.All(), Times.Once);
+        //}
+
+            [Test]
+        public void ActionGetById_ShouldCallTripGetById()
+        {
+            // Arrange
+            var automap = new AutoMapperConfig();
+            automap.Execute(typeof(TripController).Assembly);
+            var mockedData = new Mock<IApplicationData>();
+            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
+            var controller = new TripController(mockedData.Object);
+
+            // Act
+            controller.GetById(It.IsAny<int>());
+
+            // Assert
+            mockedData.Verify(x => x.Trips.GetById(It.IsAny<int>()));
+        }
+
+        [Test]
+        public void ActionGetById_ShouldReturnDefaultView()
+        {
+
+            // Arrange
+            var automap = new AutoMapperConfig();
+            automap.Execute(typeof(TripController).Assembly);
+            var mockedData = new Mock<IApplicationData>();
+            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
+            var controller = new TripController(mockedData.Object);
+
+            // Act & Assert
+            controller.WithCallTo(x => x.GetById(It.IsAny<int>())).ShouldRenderDefaultView();
+        }
     }
 }

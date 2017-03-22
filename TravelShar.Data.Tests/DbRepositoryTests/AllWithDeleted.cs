@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using TravelShar.Data.Tests.Helper;
 using TravelShare.Data.Common;
 using TravelShare.Data.Common.Contracts;
 
@@ -31,5 +32,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             Assert.AreSame(mockedDbSet.Object, all);
 
         }
+
+        
     }
 }

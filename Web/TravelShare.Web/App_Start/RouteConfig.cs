@@ -12,6 +12,11 @@
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+                name: "All",
+                url: "{controller}/{action}/{page}",
+                defaults: new { controller = "Trip", action = "All", page = UrlParameter.Optional });
         }
     }
 }
