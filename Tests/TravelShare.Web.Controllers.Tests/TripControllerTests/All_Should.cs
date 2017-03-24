@@ -85,9 +85,8 @@
             automap.Execute(typeof(TripController).Assembly);
 
             var mockedTripService = new Mock<ITripService>();
-            
+
             var mockedData = new Mock<IApplicationData>();
-            //mockedData.Setup(x => x.Trips.All()).Verifiable();
 
             var controller = new TripController(mockedData.Object, mockedTripService.Object);
 

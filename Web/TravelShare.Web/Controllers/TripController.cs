@@ -50,10 +50,12 @@
             {
                 return this.View(model);
             }
-
-            model.DriverId = this.GetUserId();
+            var userId = this.GetUserId();
+            model.DriverId = userId;
             var trip = AutoMapperConfig.Configuration.CreateMapper().Map<Trip>(model);
             this.dataProvider.Trips.Add(trip);
+            var user = this.dataProvider.Users.GetById(userId);
+            user.Trips.Add(trip);
             this.dataProvider.SaveChanges();
            return this.RedirectToAction("Index", "Home");
         }
@@ -69,7 +71,15 @@
 
         public ActionResult GetById(int id)
         {
+
             var trip =this.dataProvider.Trips.GetById(id);
+            var doesShowJoinButton = false;
+            if (this.Request.IsAuthenticated)
+            {
+
+                doesShowJoinButton = !this.tripService.IsUserInTrip(this.GetUserId(),trip.DriverId, trip.Passenger.ToList());
+            }
+            this.ViewData["ShowJoinButton"] = doesShowJoinButton;
             var tripViewModel = AutoMapperConfig.Configuration.CreateMapper().Map<TripDetailedModel>(trip);
             return this.View(tripViewModel);
         }

@@ -12,5 +12,7 @@ namespace TravelShare.Services.Data.Common.Contracts
         int GetPagesCount(int number);
 
         IQueryable<Trip> GetPagedTrips(int page, int number);
+
+        bool IsUserInTrip(string userId,string driverId, IEnumerable<ApplicationUser> passengers);
     }
 }

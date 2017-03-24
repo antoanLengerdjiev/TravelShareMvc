@@ -58,6 +58,22 @@
                     @availableSlots
                 } 
                 <span>available seats</span>
+                @{
+                    if (User.Identity.IsAuthenticated && (bool)this.ViewData["ShowJoinButton"])
+                    {
+                        <div>
+                            @using (Ajax.BeginForm("JoinTrip", new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = "update-me"
+                            }))
+                            {
+                                <input class="btn btn-lg btn-primary btn-book-plase" type="submit" value="Book a place now" />
+                            }
+                        </div>
+                    }
+                }
             </div>
         </div>
     </div>

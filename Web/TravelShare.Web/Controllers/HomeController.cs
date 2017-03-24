@@ -24,7 +24,7 @@
         {
             var news = this.data.News.All();
 
-          //  var user = this.data.Users.GetById(this.User.Identity.GetUserId());
+          //var user = this.data.Users.GetById(this.User.Identity.GetUserId());
             //var trip = user.Trips;
             return this.View();
         }
