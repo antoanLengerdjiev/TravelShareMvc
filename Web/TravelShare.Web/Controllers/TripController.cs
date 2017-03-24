@@ -5,20 +5,33 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Bytes2you.Validation;
     using Data.Common.Contracts;
     using Data.Models;
     using Infrastructure.Mapping;
     using Microsoft.AspNet.Identity;
+    using Services.Data.Common.Contracts;
+    using ViewModels;
     using ViewModels.Trips;
 
     public class TripController : BaseController
     {
-        private readonly IApplicationData data;
+        private readonly IApplicationData dataProvider;
+        private readonly ITripService tripService;
         public Func<string> GetUserId;
 
-        public TripController(IApplicationData data)
+        public TripController(IApplicationData dataProvider, ITripService tripService)
         {
-            this.data = data;
+            Guard.WhenArgument<IApplicationData>(dataProvider, "Data provider cannot be null.")
+                .IsNull()
+                .Throw();
+
+            Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
+                .IsNull()
+                .Throw();
+
+            this.dataProvider = dataProvider;
+            this.tripService = tripService;
             this.GetUserId = () => this.User.Identity.GetUserId();
         }
 
@@ -40,22 +53,23 @@
 
             model.DriverId = this.GetUserId();
             var trip = AutoMapperConfig.Configuration.CreateMapper().Map<Trip>(model);
-            this.data.Trips.Add(trip);
-            this.data.SaveChanges();
+            this.dataProvider.Trips.Add(trip);
+            this.dataProvider.SaveChanges();
            return this.RedirectToAction("Index", "Home");
         }
 
         public ActionResult All(int page)
         {
             this.TempData["page"] = page;
-            this.TempData["pageCount"] = (this.data.Trips.All().Count() / 5) + 1;
-            var trips = this.data.Trips.All().OrderByDescending(x => x.Date).Skip(5 * page).Take(5).MapTo<TripAllModel>().ToList();
+            this.TempData["pageCount"] =this.tripService.GetPagesCount(5);
+            List<TripAllModel> trips = AutoMapperConfig.Configuration.CreateMapper().Map<IEnumerable<Trip>, IEnumerable<TripAllModel>>(this.tripService.GetPagedTrips(page, 5)).ToList();
+
             return this.View(trips);
         }
 
         public ActionResult GetById(int id)
         {
-            var trip =this.data.Trips.GetById(id);
+            var trip =this.dataProvider.Trips.GetById(id);
             var tripViewModel = AutoMapperConfig.Configuration.CreateMapper().Map<TripDetailedModel>(trip);
             return this.View(tripViewModel);
         }

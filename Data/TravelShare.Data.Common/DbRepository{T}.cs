@@ -37,6 +37,11 @@
 
         public T GetById(object id)
         {
+            if (id == null)
+            {
+                return null;
+            }
+
             var item = this.DbSet.Find(id);
             if (item.IsDeleted)
             {
@@ -48,17 +53,21 @@
 
         public void Add(T entity)
         {
+            Guard.WhenArgument<T>(entity, "Cannot Add null object.").IsNull().Throw();
+
             this.DbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
+            Guard.WhenArgument<T>(entity, "Cannot Delete null object.").IsNull().Throw();
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.UtcNow;
         }
 
         public void HardDelete(T entity)
         {
+            Guard.WhenArgument<T>(entity, "Cannot Hard Delete null object.").IsNull().Throw();
             this.DbSet.Remove(entity);
         }
 

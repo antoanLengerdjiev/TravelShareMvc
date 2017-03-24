@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using TravelShare.Data.Common;
@@ -22,16 +18,45 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var mockedDbset = new Mock<IDbSet<MockedModel>>();
             var mockedContext = new Mock<IApplicationDbContext>();
            
-            mockedContext.Setup(x => x.Set<MockedModel>().Remove(It.IsAny<MockedModel>())).Verifiable();
+            mockedContext.Setup(x => x.Set<MockedModel>().Remove(mockedModel)).Verifiable();
 
             var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
             
 
             // Act
-            dbRepository.HardDelete(It.IsAny<MockedModel>());
+            dbRepository.HardDelete(mockedModel);
 
             // Assert
-            mockedContext.Verify(x => x.Set<MockedModel>().Remove(It.IsAny<MockedModel>()), Times.Once);
+            mockedContext.Verify(x => x.Set<MockedModel>().Remove(mockedModel), Times.Once);
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullException_WhenPassedParameterIsNull()
+        {
+            // Arrange 
+            var mockedContext = new Mock<IApplicationDbContext>();
+
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => dbRepository.HardDelete(null));
+
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenPassedParameterIsNull()
+        {
+            // Arrange
+            var expectedMessage = "Cannot Hard Delete null object.";
+            var mockedContext = new Mock<IApplicationDbContext>();
+
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.HardDelete(null));
+
+            StringAssert.Contains(expectedMessage, exception.Message);
+
         }
     }
 }

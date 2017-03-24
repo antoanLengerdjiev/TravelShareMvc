@@ -29,5 +29,33 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Assert
             Assert.IsTrue(mockedModel.IsDeleted);
         }
+        [Test]
+        public void ShouldThrowArgumentNullException_WhenPassedParameterIsNull()
+        {
+            // Arrange 
+            var mockedContext = new Mock<IApplicationDbContext>();
+
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => dbRepository.Delete(null));
+
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenPassedParameterIsNull()
+        {
+            // Arrange
+            var expectedMessage = "Cannot Delete null object.";
+            var mockedContext = new Mock<IApplicationDbContext>();
+
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.Delete(null));
+
+            StringAssert.Contains(expectedMessage, exception.Message);
+
+        }
     }
 }

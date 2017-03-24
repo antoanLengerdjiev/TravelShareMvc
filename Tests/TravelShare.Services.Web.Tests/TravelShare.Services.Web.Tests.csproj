@@ -36,6 +36,14 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -45,6 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,18 +65,35 @@
   <ItemGroup>
     <Compile Include="IdentifierProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TripServiceTest.cs" />
+    <Compile Include="TripServiceTests\Constructor.cs" />
+    <Compile Include="TripServiceTests\GetPagedTrips_Should.cs" />
+    <Compile Include="TripServiceTests\GetPagesCount_Should.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\TravelShare.Data.Common\TravelShare.Data.Common.csproj">
+      <Project>{EDFE3C57-EF5B-4636-9ECC-D0BACA6B6379}</Project>
+      <Name>TravelShare.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\TravelShare.Data.Models\TravelShare.Data.Models.csproj">
       <Project>{048DF115-FAD9-4BD4-9BA0-D99DFD32A2B2}</Project>
       <Name>TravelShare.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TravelShare.Services.Data\TravelShare.Services.Data.csproj">
+      <Project>{90FE4C4D-122A-406D-8A40-79C561FB8184}</Project>
+      <Name>TravelShare.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\TravelShare.Services.Web\TravelShare.Services.Web.csproj">
       <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
       <Name>TravelShare.Services.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TravelShar.Data.Tests\TravelShar.Data.Tests.csproj">
+      <Project>{949929f2-dc1f-4631-9cda-6437ae02fe93}</Project>
+      <Name>TravelShar.Data.Tests</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

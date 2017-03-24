@@ -28,3 +28,13 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bi
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Web.Tests.dll.config
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShar.Data.Tests.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Data.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Data.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\Bytes2you.Validation.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Data.Common.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Data.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShar.Data.Tests.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\EntityFramework.SqlServer.xml

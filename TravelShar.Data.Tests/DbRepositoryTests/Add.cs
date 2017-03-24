@@ -19,15 +19,44 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Arrange 
             var mockedModel = new MockedModel();
             var mockedContext = new Mock<IApplicationDbContext>();
-            mockedContext.Setup(x => x.Set<MockedModel>().Add(It.IsAny<MockedModel>())).Verifiable();
+            mockedContext.Setup(x => x.Set<MockedModel>().Add(mockedModel)).Verifiable();
 
             var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
 
             // Act
-            dbRepository.Add(It.IsAny<MockedModel>());
+            dbRepository.Add(mockedModel);
 
             // Assert
-            mockedContext.Verify(x => x.Set<MockedModel>().Add(It.IsAny<MockedModel>()), Times.Once);
+            mockedContext.Verify(x => x.Set<MockedModel>().Add(mockedModel), Times.Once);
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullException_WhenPassedParameterIsNull()
+        {
+            // Arrange 
+            var mockedContext = new Mock<IApplicationDbContext>();
+           
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => dbRepository.Add(null));
+          
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenPassedParameterIsNull()
+        {
+            // Arrange
+            var expectedMessage = "Cannot Add null object.";
+            var mockedContext = new Mock<IApplicationDbContext>();
+
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act & Assert
+           var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.Add(null));
+
+            StringAssert.Contains(expectedMessage, exception.Message);
+
         }
     }
 }

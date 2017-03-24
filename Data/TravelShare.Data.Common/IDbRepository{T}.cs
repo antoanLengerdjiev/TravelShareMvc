@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using Data.Models.Base;
-    using TravelShare.Data.Common.Models;
 
     public interface IDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity

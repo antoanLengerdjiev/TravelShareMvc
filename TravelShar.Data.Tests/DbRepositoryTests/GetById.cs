@@ -80,5 +80,19 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Assert
             Assert.AreSame(null, entity);
         }
+
+        public void ShouldReturnNull_WhenIdIsNull()
+        {
+            //Arrange
+            var mockedContext = new Mock<IApplicationDbContext>();
+        
+            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+
+            // Act
+            var entity = dbRepository.GetById(null);
+
+            // Assert
+            Assert.AreSame(null, entity);
+        }
     }
 }

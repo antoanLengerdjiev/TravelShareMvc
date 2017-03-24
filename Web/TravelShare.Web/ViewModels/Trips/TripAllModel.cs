@@ -3,11 +3,31 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
     using TravelShare.Data.Models;
     using TravelShare.Web.Infrastructure.Mapping;
 
     public class TripAllModel : IMapFrom<Trip>
     {
+        public static Expression<Func<Trip, TripAllModel>> FromTrip
+        {
+            get
+            {
+                return trip => new TripAllModel
+                {
+                    Id = trip.Id,
+                    From = trip.From,
+                    To = trip.To,
+                    Money = trip.Money,
+                    Slots = trip.Slots,
+                    Date = trip.Date,
+                    Driver = new UserViewModel { UserName = trip.Driver.UserName },
+                    Passenger = trip.Passenger.Select(x => new UserViewModel { UserName = x.UserName }).ToList()
+                };
+            }
+        }
+
         public int Id { get; set; }
 
         public string From { get; set; }

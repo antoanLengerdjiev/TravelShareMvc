@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Bytes2you.Validation;
     using Data.Common.Contracts;
     using Data.Models;
     using Microsoft.AspNet.Identity;
@@ -12,6 +13,10 @@
 
         public HomeController(IApplicationData data)
         {
+            Guard.WhenArgument<IApplicationData>(data, "Data provider cannot be null.")
+                .IsNull()
+                .Throw();
+
             this.data = data;
         }
 
@@ -19,6 +24,8 @@
         {
             var news = this.data.News.All();
 
+          //  var user = this.data.Users.GetById(this.User.Identity.GetUserId());
+            //var trip = user.Trips;
             return this.View();
         }
     }

@@ -1,31 +1,41 @@
-﻿namespace TravelShare.Web.Controllers.Tests.Trips
+﻿namespace TravelShare.Web.Controllers.Tests.TripControllerTests
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Data.Common;
+    using Data.Common.Contracts;
+    using Data.Models;
+    using Infrastructure.Mapping;
     using Moq;
     using NUnit.Framework;
+    using Services.Data.Common.Contracts;
     using TestStack.FluentMVCTesting;
-    using TravelShare.Data.Common.Contracts;
-    using TravelShare.Data.Models;
-    using TravelShare.Web.Infrastructure.Mapping;
-    using TravelShare.Web.ViewModels.Trips;
+    using ViewModels.Trips;
 
     [TestFixture]
-    public class TripControllerTests
+    public class CreateHttpPost_Should
     {
         [Test]
-        public void PostCreateAction_MustCallDataSaveChange()
+        public void CallDataSaveChange()
         {
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
+
             var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 5, Money = 12, Description = "kef" };
 
             var tripToBeAdded = new Trip() { From = model.From, To = model.To, Money = model.Money, Slots = model.Slots, DriverId = model.DriverId, Description = model.Description, Date = model.Date };
 
+            var mockedTripService = new Mock<ITripService>();
+
             var mockedData = new Mock<IApplicationData>();
             mockedData.Setup(x => x.Trips.Add(tripToBeAdded)).Verifiable();
             mockedData.Setup(x => x.SaveChanges()).Verifiable();
-            var controller = new TripController(mockedData.Object);
+
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
             controller.GetUserId = () => "IdOfmyChoosing";
 
             // Act
@@ -36,18 +46,22 @@
         }
 
         [Test]
-        public void PostCreateAction_WhenModelStateIsValid_ShouldRedirectToHomeControllerIndex()
+        public void RedirectToHomeControllerIndex_WhenModelStateIsValid()
         {
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
+
             var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
 
             var tripToBeAdded = new Trip() { From = model.From, To = model.To, Money = model.Money, Slots = model.Slots, DriverId = model.DriverId, Description = model.Description, Date = model.Date };
 
+            var mockedTripService = new Mock<ITripService>();
+
             var mockedData = new Mock<IApplicationData>();
             mockedData.Setup(x => x.Trips.Add(tripToBeAdded)).Verifiable();
-            var controller = new TripController(mockedData.Object);
+
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
             controller.GetUserId = () => "IdOfmyChoosing";
 
             // Act & Assert
@@ -55,14 +69,15 @@
         }
 
         [Test]
-        public void PostCreateAction_WhenModelStateIsInvalid_ShouldReturnDefaultView()
+        public void ReturnDefaultView_WhenModelStateIsInvalid()
         {
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
+            var mockedTripService = new Mock<ITripService>();
             var mockedData = new Mock<IApplicationData>();
-            var controller = new TripController(mockedData.Object);
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
 
             // Act & Assert
             controller.ModelState.AddModelError("test", "test");
@@ -75,97 +90,48 @@
         {
             // Arrange
             var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
+            var mockedTripService = new Mock<ITripService>();
+
             var mockedData = new Mock<IApplicationData>();
             mockedData.Setup(x => x.Trips.Add(It.IsAny<Trip>())).Verifiable();
-            var controller = new TripController(mockedData.Object);
 
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
             controller.GetUserId = () => "IdOfmyChoosing";
 
+            // Act
             controller.Create(model);
-            // Act & Assert
+
+            // Assert
             mockedData.Verify(x => x.Trips.Add(It.IsAny<Trip>()), Times.Once);
         }
 
         [Test]
-        public void PostCreateAction_WhenInvoked_ShouldSetDriverId()
+        public void SetDriverIdToTheModel_WhenInvoked()
         {
             // Arrange
             var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
+
+            var mockedTripService = new Mock<ITripService>();
 
             var mockedData = new Mock<IApplicationData>();
             mockedData.Setup(x => x.Trips.Add(It.IsAny<Trip>())).Verifiable();
-            var controller = new TripController(mockedData.Object);
 
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
             controller.GetUserId = () => "IdOfmyChoosing";
 
+            // Act
             controller.Create(model);
-            // Act & Assert
+
+            // Assert
             Assert.AreSame(controller.GetUserId(), model.DriverId);
         }
 
-        [Test]
-        public void GetCreateAction_ShouldReturnDefaultView()
-        {
-            // Arrange
-            var mockedData = new Mock<IApplicationData>();
-
-            var controller = new TripController(mockedData.Object);
-
-            // Act & Assert
-            controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();
-        }
-
-        //[Test]
-        //public void ActionAll_ShouldReturnDefaultView()
-        //{
-        //    // Arrange
-        //    var mockedData = new Mock<IApplicationData>();
-        //    mockedData.Setup(x => x.Trips.All()).Verifiable();
-        //    mockedData.Setup(x => x.Trips.All().Count()).Returns(5).Verifiable();
-        //    var controller = new TripController(mockedData.Object);
-
-        //    // Act & Assert
-        //    controller.All(0);
-        //    controller.TempData["page"] = 0;
-        //    controller.TempData["pageCount"] = 0;
-        //    mockedData.Verify(x => x.Trips.All(), Times.Once);
-        //}
-
-            [Test]
-        public void ActionGetById_ShouldCallTripGetById()
-        {
-            // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
-            var controller = new TripController(mockedData.Object);
-
-            // Act
-            controller.GetById(It.IsAny<int>());
-
-            // Assert
-            mockedData.Verify(x => x.Trips.GetById(It.IsAny<int>()));
-        }
-
-        [Test]
-        public void ActionGetById_ShouldReturnDefaultView()
-        {
-
-            // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
-            var controller = new TripController(mockedData.Object);
-
-            // Act & Assert
-            controller.WithCallTo(x => x.GetById(It.IsAny<int>())).ShouldRenderDefaultView();
-        }
     }
 }

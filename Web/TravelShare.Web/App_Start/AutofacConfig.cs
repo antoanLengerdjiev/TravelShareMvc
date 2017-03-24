@@ -65,6 +65,9 @@
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
+            builder.Register(x => new TripService(x.Resolve<IDbRepository<Trip>>()))
+                .As<ITripService>()
+                .InstancePerRequest();
 
             builder.Register(x => new ApplicationData(x.Resolve<IApplicationDbContext>(), x.Resolve<IDbRepository<News>>(), x.Resolve<IDbRepository<ApplicationUser>>(), x.Resolve<IDbRepository<Trip>>(), x.Resolve<IDbRepository<Rating>>()))
            .As<IApplicationData>()
