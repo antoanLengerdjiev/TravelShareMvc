@@ -25,7 +25,8 @@
 
         public int GetPagesCount(int number)
         {
-            return (this.tripRepository.All().Count() / number) + 1;
+            var tripsCount = this.tripRepository.All().Count();
+            return tripsCount % number == 0 ? tripsCount / number : (tripsCount / number) + 1;
         }
 
         public IQueryable<Trip> GetPagedTrips(int page, int number)

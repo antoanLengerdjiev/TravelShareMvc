@@ -102,6 +102,8 @@
   <ItemGroup>
     <Compile Include="HomeControllerTests\Constructor.cs" />
     <Compile Include="HomeControllerTests\Index.cs" />
+    <Compile Include="ProfileControllerTests\Constructor.cs" />
+    <Compile Include="ProfileControllerTests\MyTrips_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TripControllerTests\All_Should.cs" />
     <Compile Include="TripControllerTests\Constructor.cs" />

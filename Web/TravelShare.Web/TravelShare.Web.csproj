@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -309,6 +310,7 @@
     <Content Include="Views\Trip\Create.cshtml" />
     <Content Include="Views\Trip\All.cshtml" />
     <Content Include="Views\Trip\GetById.cshtml" />
+    <Content Include="Views\Profile\MyTrips.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

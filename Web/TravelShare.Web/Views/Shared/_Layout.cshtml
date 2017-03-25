@@ -26,6 +26,7 @@
                     @if (this.Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Create Trip", "Create", "Trip")</li>
+                        <li>@Html.ActionLink("My Trip", "MyTrips", "Profile",new { page = 0 },null)</li>
                     }
                     <li>@Html.ActionLink("All Trips", "All", "Trip",new { page = 0},null)</li>
                 </ul>

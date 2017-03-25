@@ -76,9 +76,9 @@
             var doesShowJoinButton = false;
             if (this.Request.IsAuthenticated)
             {
-
                 doesShowJoinButton = !this.tripService.IsUserInTrip(this.GetUserId(),trip.DriverId, trip.Passenger.ToList());
             }
+
             this.ViewData["ShowJoinButton"] = doesShowJoinButton;
             var tripViewModel = AutoMapperConfig.Configuration.CreateMapper().Map<TripDetailedModel>(trip);
             return this.View(tripViewModel);

@@ -1,15 +1,11 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.TripControllerTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Data.Common.Contracts;
+    using Infrastructure.Mapping;
     using Moq;
     using NUnit.Framework;
-    using TravelShare.Data.Common.Contracts;
-    using TravelShare.Services.Data.Common.Contracts;
-    using TravelShare.Web.Infrastructure.Mapping;
+    using Services.Data.Common.Contracts;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class All_Should
@@ -95,6 +91,23 @@
 
             // Assert
             Assert.AreEqual(controller.TempData["page"], 5);
+        }
+
+        [Test]
+        public void ShouldRenderDefaultView()
+        {
+            // Arrange
+            var automap = new AutoMapperConfig();
+            automap.Execute(typeof(TripController).Assembly);
+
+            var mockedTripService = new Mock<ITripService>();
+
+            var mockedData = new Mock<IApplicationData>();
+
+            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+
+            // Act & Assert
+            controller.WithCallTo(x => x.All(5)).ShouldRenderDefaultView();
         }
     }
 }
