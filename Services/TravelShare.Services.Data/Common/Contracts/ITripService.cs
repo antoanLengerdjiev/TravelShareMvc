@@ -13,6 +13,8 @@ namespace TravelShare.Services.Data.Common.Contracts
 
         IQueryable<Trip> GetPagedTrips(int page, int number);
 
-        bool IsUserInTrip(string userId,string driverId, IEnumerable<ApplicationUser> passengers);
+        bool CanUserJoinTrip(string userId,string driverId, int slots ,IEnumerable<ApplicationUser> passengers);
+
+        IQueryable<Trip> SearchTrips(string from, string to, DateTime date);
     }
 }

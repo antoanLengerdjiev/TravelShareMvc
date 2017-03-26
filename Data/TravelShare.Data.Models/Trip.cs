@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using TravelShare.Data.Models.Base;
 
     public class Trip : BaseModel<int>
     {
         public Trip()
         {
-            this.Passenger = new HashSet<ApplicationUser>();
+            this.Passengers = new HashSet<ApplicationUser>();
         }
 
         [Required]
@@ -34,6 +35,7 @@
         [Range(0, int.MaxValue)]
         public decimal Money { get; set; }
 
-        public virtual ICollection<ApplicationUser> Passenger { get; set; }
+        //[InverseProperty("Trips")]
+        public virtual ICollection<ApplicationUser> Passengers { get; set; }
     }
 }

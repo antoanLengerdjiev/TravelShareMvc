@@ -105,11 +105,16 @@
     <Compile Include="ProfileControllerTests\Constructor.cs" />
     <Compile Include="ProfileControllerTests\MyTrips_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchControllerTests\Constructor.cs" />
+    <Compile Include="SearchControllerTests\FilteredTrips_Should.cs" />
+    <Compile Include="SearchControllerTests\Index_Should.cs" />
     <Compile Include="TripControllerTests\All_Should.cs" />
     <Compile Include="TripControllerTests\Constructor.cs" />
     <Compile Include="TripControllerTests\CreateHttpGet_Should.cs" />
     <Compile Include="TripControllerTests\CreateHttpPost_Should.cs" />
+    <Compile Include="TripControllerTests\DeleteTrip_Should.cs" />
     <Compile Include="TripControllerTests\GetById_Should.cs" />
+    <Compile Include="TripControllerTests\JoinTrip_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

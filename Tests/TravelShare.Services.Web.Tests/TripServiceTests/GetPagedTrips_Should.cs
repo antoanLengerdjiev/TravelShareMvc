@@ -75,6 +75,7 @@
             Assert.AreEqual(new List<Trip> { }, result);
         }
 
+        [Test]
         public void ReturnCorrectResultOfNotDeleteTripsOrderByDescinngDateAnd2Paged()
         {
             var firstTrip = new Trip() { Id = 16, IsDeleted = false, Date = new DateTime(1994, 1, 1) };

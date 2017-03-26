@@ -21,7 +21,7 @@
         {
             Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
 
-            return this.userRepository.GetById(userId).Trips.OrderByDescending(x => x.Date).Skip(page * number).Take(number).AsQueryable();
+            return this.userRepository.GetById(userId).Trips.Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number).AsQueryable();
         }
 
         public int MyTripsPageCount(string userId, int number)

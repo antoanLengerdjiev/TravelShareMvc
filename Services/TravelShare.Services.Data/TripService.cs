@@ -31,29 +31,42 @@
 
         public IQueryable<Trip> GetPagedTrips(int page, int number)
         {
-            return this.tripRepository.All().OrderByDescending(x => x.Date).Skip(page * number).Take(number);
+            return this.tripRepository.All().Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number);
         }
 
-        public bool IsUserInTrip(string userId, string driverId, IEnumerable<ApplicationUser> passengers)
+        public bool CanUserJoinTrip(string userId, string driverId, int slots, IEnumerable<ApplicationUser> passengers)
         {
             Guard.WhenArgument<string>(userId, "UserId cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(driverId, "DriverId cannot be null").IsNull().Throw();
             Guard.WhenArgument<IEnumerable<ApplicationUser>>(passengers, "Passenger cannot be null").IsNull().Throw();
 
-            if(driverId == userId)
+            if (driverId == userId)
             {
-                return true;
+                return false;
+            }
+
+            if(slots - passengers.Count() <= 0)
+            {
+                return false;
             }
 
             foreach (var pass in passengers)
             {
                 if (userId == pass.Id)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
+        }
+
+        public IQueryable<Trip> SearchTrips(string from, string to, DateTime date)
+        {
+            Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
+
+            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to);
         }
     }
 }

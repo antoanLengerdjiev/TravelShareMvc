@@ -18,6 +18,8 @@
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/maps").Include("~/Scripts/maps.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
+                      "~/Scripts/jquery.unobtrusive*"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

@@ -1,0 +1,62 @@
+﻿
+@model IList<TravelShare.Web.ViewModels.Trips.TripAllModel>
+
+
+
+<div class="row container">
+    @foreach (var trip in Model)
+    {
+        <div class="row trip-item container">
+            <a href="@Url.Action("GetById", "Trip",new { id = trip.Id })">
+                <div class="col-md-2">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>@trip.Driver.UserName</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-12 trip-date">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <span>@trip.Date.ToString("MMMM dd, yyyy")</span>
+                    </div>
+                    <div class="col-md-12 trip-from-to">
+                        <span>@trip.From</span>
+                        ->
+                        <span>@trip.To</span>
+                    </div>
+                    <div class="col-md-12">
+                        <i class="fa fa-map-marker trip-from" aria-hidden="true"></i>
+                        <span>@trip.From</span>
+                    </div>
+                    <div class="col-md-12">
+                        <i class="fa fa-map-marker trip-to" aria-hidden="true"></i>
+                        <span>@trip.To</span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="trip-price text-right">
+                        @trip.Money
+                        <span>lv</span>
+                    </div>
+
+
+                    <div class="trip-seats text-right">
+                        @{
+                            if (trip.Passengers != null)
+                            {
+                                var seats = trip.Slots - trip.Passengers.Count;
+                                @seats
+                            }
+                            else
+                            {
+                                @trip.Slots;
+                            }
+                        }
+
+
+                    </div>
+                    <div class="text-right">seats available</div>
+                </div>
+            </a>
+        </div>
+                            }
+</div>
+

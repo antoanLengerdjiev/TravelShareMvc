@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
 
@@ -27,6 +28,19 @@
 
             // Assert
             mockData.Verify(x => x.News.All(), Times.Once);
+        }
+
+        [Test]
+        public void RenderDefaultView()
+        {
+            // Arrange
+            var mockData = new Mock<IApplicationData>();
+            mockData.Setup(x => x.News.All()).Returns(new List<News>().AsQueryable).Verifiable();
+
+            var homeController = new HomeController(mockData.Object);
+
+            // Act
+            homeController.WithCallTo(x => x.Index()).ShouldRenderDefaultView();
         }
     }
 }

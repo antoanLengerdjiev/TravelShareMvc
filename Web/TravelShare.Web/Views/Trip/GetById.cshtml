@@ -1,11 +1,14 @@
 ﻿@model TravelShare.Web.ViewModels.Trips.TripDetailedModel
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Trip Details";
+    var currentUserId = User.Identity.GetUserId();
 }
 
 <div class="row container trip-item">
     <div class="col-md-9">
-        <div class="trip-date">Date:
+        <div class="trip-date">
+            Date:
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
             <span>@Model.Date.ToString("MMMM dd, yyyy")</span>
         </div>
@@ -22,7 +25,7 @@
         <div class="trip-price">
             Price:
             <span>@Model.Money</span>
-            <span>lv for passenger</span>  
+            <span>lv for passenger</span>
         </div>
         <div class="trip-driver">
             <i class="fa fa-user" aria-hidden="true"></i>
@@ -31,21 +34,22 @@
         <div class="trip-description">
             @Model.Description
         </div>
-        <div class="trip-passengers">
+        <div class="trip-passengers" id="passangersContainer">
             Passengers:
-            @{ 
-                if (Model.Passenger.Count > 0)
+            @{
+                if (Model.Passengers.Count > 0)
                 {
-                    <ul>
-                        @foreach (var pass in Model.Passenger)
+                    <ul id="passangersList">
+                        @foreach (var pass in Model.Passengers)
                         {
-                            <li>
+                            <li data-user="@pass.UserName">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                @pass.UserName
+                                <span>@pass.UserName</span>
                             </li>
                         }
                     </ul>
-                } else
+                }
+                else
                 {
                     @:None
                 }
@@ -54,27 +58,65 @@
         <div class="col-md-3 text-center">
             <div class="trip-seats">
                 @{
-                    var availableSlots = Model.Slots - Model.Passenger.Count;
-                    @availableSlots
-                } 
+                    var availableSlots = Model.Slots - Model.Passengers.Count;
+                    <span id="availableSlots">@availableSlots</span>
+                }
                 <span>available seats</span>
                 @{
                     if (User.Identity.IsAuthenticated && (bool)this.ViewData["ShowJoinButton"])
                     {
-                        <div>
-                            @using (Ajax.BeginForm("JoinTrip", new AjaxOptions
-                            {
-                                HttpMethod = "POST",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = "update-me"
-                            }))
-                            {
-                                <input class="btn btn-lg btn-primary btn-book-plase" type="submit" value="Book a place now" />
-                            }
-                        </div>
+                        @Html.HiddenFor(x => x.Id, new { id = "tripId" })
+
+                        <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now" />
+
                     }
+
+                    if (Model.DriverId == currentUserId)
+                    {
+                        using (Html.BeginForm("DeleteTrip", "Trip", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+                            @Html.HiddenFor(x => x.Id)
+                            <input class="btn btn-lg btn-danger btn-book-plase" type="submit" value="Delete this trip" />
+                            }
+                        }
                 }
             </div>
-        </div>
+        </div> 
     </div>
 </div>
+@section scripts{
+    <script>
+        $("#joinTrip").click(function () {
+            $.ajax({
+                url: "/Trip/JoinTrip",
+                data: { tripId: $("#tripId").val() },
+                success: function myfunction(data) {
+                    if (data.notFound == "True") {
+                        $("#joinTrip").text("Something Went Wrong");
+                        $("#joinTrip").attr('disabled', 'disabled');
+                    }
+                    if (data.alreadyIn == "True") {
+                        $("#joinTrip").hide();
+                        $("#leaveTrip").show();
+                    }
+                    console.log(data);
+                    $("#availableSlots").html(data.slots);
+                    var passangersList = $("#passangersList");
+                    if (passangersList.length === 0) {
+                        $("#passangersContainer").html('<ul id="passangersList"><li data-user=' + data.newPassangerName + '><i class="fa fa-user" aria-hidden="true"></i><span>' + data.newPassangerName + '</span></li></ul>')
+                    }
+                    else {
+                        passangersList.append('<li data-user=' + data.newPassangerName + '><i class="fa fa-user" aria-hidden="true"></i><span>' + data.newPassangerName + '</span></li>');
+                    }
+                    $("#joinTrip").hide();
+                    //$("#leaveTrip").show();
+                },
+                method: "POST"
+            });
+        });
+        
+    </script>
+
+}
+

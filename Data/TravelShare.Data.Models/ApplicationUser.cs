@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Base;
@@ -27,6 +28,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
+        [InverseProperty("Passengers")]
         public virtual ICollection<Trip> Trips { get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }

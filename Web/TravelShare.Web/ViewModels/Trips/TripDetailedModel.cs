@@ -25,6 +25,6 @@
 
         public UserViewModel Driver { get; set; }
 
-        public ICollection<UserViewModel> Passenger { get; set; }
+        public ICollection<UserViewModel> Passengers { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace TravelShare.Services.Web.Tests.UserServiceTests
     [TestFixture]
     public class Constructor
     {
+        [Test]
         public void ShouldThrowArgumentNullException_WhenNullParameterIsPassed()
         {
             // Arrange, Act & Assert

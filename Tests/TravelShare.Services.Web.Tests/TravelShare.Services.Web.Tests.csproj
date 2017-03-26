@@ -73,11 +73,11 @@
   <ItemGroup>
     <Compile Include="IdentifierProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TripServiceTest.cs" />
     <Compile Include="TripServiceTests\Constructor.cs" />
     <Compile Include="TripServiceTests\GetPagedTrips_Should.cs" />
     <Compile Include="TripServiceTests\GetPagesCount_Should.cs" />
-    <Compile Include="TripServiceTests\IsUserInTrip_Should.cs" />
+    <Compile Include="TripServiceTests\CanUserJoinTrip_Should.cs" />
+    <Compile Include="TripServiceTests\SearchTrips_Should.cs" />
     <Compile Include="UserServiceTests\Constructor.cs" />
     <Compile Include="UserServiceTests\MyTripsPageCount_Should.cs" />
     <Compile Include="UserServiceTests\MyTrips_Should.cs" />

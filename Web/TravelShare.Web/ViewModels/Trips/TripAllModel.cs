@@ -23,7 +23,7 @@
                     Slots = trip.Slots,
                     Date = trip.Date,
                     Driver = new UserViewModel { UserName = trip.Driver.UserName },
-                    Passenger = trip.Passenger.Select(x => new UserViewModel { UserName = x.UserName }).ToList()
+                    Passengers = trip.Passengers.Select(x => new UserViewModel { UserName = x.UserName }).ToList()
                 };
             }
         }
@@ -42,6 +42,6 @@
 
         public UserViewModel Driver { get; set; }
 
-        public ICollection<UserViewModel> Passenger { get; set; }
+        public ICollection<UserViewModel> Passengers { get; set; }
     }
 }

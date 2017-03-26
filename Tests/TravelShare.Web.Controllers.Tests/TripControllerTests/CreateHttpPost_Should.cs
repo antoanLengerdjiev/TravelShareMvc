@@ -25,7 +25,7 @@
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 5, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 5, Money = 12, Description = "kef" };
 
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
 
@@ -55,7 +55,7 @@
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 2, Money = 12, Description = "kef" };
 
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
 
@@ -71,7 +71,7 @@
             controller.GetUserId = () => "IdOfmyChoosing";
 
             // Act & Assert
-            controller.WithCallTo(x => x.Create(model)).ShouldRedirectTo<HomeController>(x => new HomeController(mockedData.Object).Index());
+            controller.WithCallTo(x => x.Create(model)).ShouldRedirectTo<TripController>(x => new TripController(mockedData.Object,mockedTripService.Object).GetById(tripToBeAdded.Id));
         }
 
         [Test]
@@ -95,7 +95,7 @@
         public void PostCreateAction_WhenInvoked_ShouldCallTripAddMethod()
         {
             // Arrange
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 2, Money = 12, Description = "kef" };
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
 
             var automap = new AutoMapperConfig();
@@ -120,7 +120,7 @@
         public void SetDriverIdToTheModel_WhenInvoked()
         {
             // Arrange
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 2, Money = 12, Description = "kef" };
 
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
             var automap = new AutoMapperConfig();
@@ -145,7 +145,7 @@
         public void PostCreateAction_WhenInvoked_ShouldCallUserGetById()
         {
             // Arrange
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 2, Money = 12, Description = "kef" };
 
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
 
@@ -172,7 +172,7 @@
         public void AddTripToTheUser()
         {
             // Arrange
-            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", DateAsString = "01/01/2001", Slots = 2, Money = 12, Description = "kef" };
+            var model = new TripCreateModel() { DriverId = "Id", From = "Sofia", To = "burgas", Date = DateTime.Parse("01/01/2001"), Slots = 2, Money = 12, Description = "kef" };
 
             var user = new ApplicationUser() { Id = "IdOfmyChoosing", Trips = new List<Trip>() };
 

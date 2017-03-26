@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201703192028360_addNewPropertiesToTrip.Designer.cs">
       <DependentUpon>201703192028360_addNewPropertiesToTrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703252335579_passengers.cs" />
+    <Compile Include="Migrations\201703252335579_passengers.Designer.cs">
+      <DependentUpon>201703252335579_passengers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703260854102_connectingTripToPassengers.cs" />
+    <Compile Include="Migrations\201703260854102_connectingTripToPassengers.Designer.cs">
+      <DependentUpon>201703260854102_connectingTripToPassengers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703192028360_addNewPropertiesToTrip.resx">
       <DependentUpon>201703192028360_addNewPropertiesToTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703252335579_passengers.resx">
+      <DependentUpon>201703252335579_passengers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703260854102_connectingTripToPassengers.resx">
+      <DependentUpon>201703260854102_connectingTripToPassengers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

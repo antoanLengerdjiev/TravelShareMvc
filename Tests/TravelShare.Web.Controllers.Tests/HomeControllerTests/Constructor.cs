@@ -1,9 +1,9 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.HomeControllerTests
 {
     using System;
+    using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
-    using Data.Common.Contracts;
 
     [TestFixture]
     public class Constructor

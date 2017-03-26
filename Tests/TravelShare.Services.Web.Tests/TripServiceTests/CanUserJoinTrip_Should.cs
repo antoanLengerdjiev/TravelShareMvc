@@ -12,10 +12,54 @@
     using TravelShare.Data.Models;
 
     [TestFixture]
-    public class IsUserInTrip_Should
+    public class CanUserJoinTrip_Should
     {
         [Test]
-        public void ReturnTrue_WhenDriveIdEquelsUserId()
+        public void ReturnTrue_WhenThereIsSlotsAndUserIsNotPassengerOrDriver()
+        {
+            // Arrange
+            var userId = "UserId";
+            var driverId = "DriverId";
+            var passenger1 = new ApplicationUser() { Id = "randonId" };
+            var passenger2 = new ApplicationUser() { Id = "AnotherId" };
+            var passenger3 = new ApplicationUser() { Id = "RandonId" };
+            var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
+
+            var mockRepository = new Mock<IDbRepository<Trip>>();
+
+            var service = new TripService(mockRepository.Object);
+
+            // Act
+            var result = service.CanUserJoinTrip(userId, driverId, 4, passengers);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void ReturnFalse_WhenThereIsNotSlots()
+        {
+            // Arrange
+            var userId = "UserId";
+            var driverId = "DriverId";
+            var passenger1 = new ApplicationUser() { Id = "randonId" };
+            var passenger2 = new ApplicationUser() { Id = "AnotherId" };
+            var passenger3 = new ApplicationUser() { Id = "RandonId" };
+            var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
+
+            var mockRepository = new Mock<IDbRepository<Trip>>();
+
+            var service = new TripService(mockRepository.Object);
+
+            // Act
+            var result = service.CanUserJoinTrip(userId, driverId, 3, passengers);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void ReturnFalse_WhenDriveIdEquelsUserId()
         {
             // Arrange
             var userId = "UserId";
@@ -27,14 +71,14 @@
             var service = new TripService(mockRepository.Object);
 
             // Act
-            var result = service.IsUserInTrip(userId, driverId, passengers);
+            var result = service.CanUserJoinTrip(userId, driverId, 1,passengers);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
-        public void ReturnTrue_WhenUserIsInPassengers()
+        public void ReturnFalse_WhenUserIsInPassengers()
         {
             // Arrange
             var userId = "UserId";
@@ -49,10 +93,10 @@
             var service = new TripService(mockRepository.Object);
 
             // Act
-            var result = service.IsUserInTrip(userId, driverId, passengers);
+            var result = service.CanUserJoinTrip(userId, driverId,5,passengers);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -70,7 +114,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(null, driverId, passengers));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId,5, passengers));
         }
 
         [Test]
@@ -89,7 +133,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            var exception =Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(null, driverId, passengers));
+            var exception =Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 6,passengers));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -109,7 +153,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(userId, null, passengers));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null,5 ,passengers));
         }
 
         [Test]
@@ -128,7 +172,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(userId, null, passengers));
+            var exception = Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null, 5,passengers));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -145,7 +189,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(userId, driverId, null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, driverId,9, null));
         }
 
         [Test]
@@ -161,7 +205,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(userId, driverId, null));
+            var exception = Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, driverId,7, null));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -177,7 +221,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(userId, null, null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null, 5,null));
         }
 
         [Test]
@@ -194,7 +238,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(null, null, passengers));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, null, 5,passengers));
         }
 
         [Test]
@@ -208,7 +252,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(null, driverId, null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 5,null));
         }
 
         [Test]
@@ -220,7 +264,7 @@
             var service = new TripService(mockRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.IsUserInTrip(null, null, null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, null, 5,null));
         }
     }
 }

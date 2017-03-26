@@ -28,6 +28,7 @@
             this.GetUserId = () => this.User.Identity.GetUserId();
         }
 
+        [HttpGet]
         public ActionResult MyTrips(int page)
         {
             var userId = this.GetUserId();

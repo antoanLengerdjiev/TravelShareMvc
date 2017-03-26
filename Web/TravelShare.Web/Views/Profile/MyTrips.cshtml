@@ -44,9 +44,9 @@
 
                     <div class="trip-seats text-right">
                         @{
-                            if (trip.Passenger != null)
+                            if (trip.Passengers != null)
                             {
-                                var seats = trip.Slots - trip.Passenger.Count;
+                                var seats = trip.Slots - trip.Passengers.Count;
                                 @seats
                             }
                             else

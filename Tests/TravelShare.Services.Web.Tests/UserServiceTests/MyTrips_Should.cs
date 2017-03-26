@@ -104,7 +104,6 @@
             Assert.Throws<ArgumentNullException>(() => service.MyTrips(null, 0, 1));
         }
 
-
         [Test]
         public void ThrowsArgumentNullExceptionWithCorrectMessage_WhenUserIdParameterIsNull()
         {
