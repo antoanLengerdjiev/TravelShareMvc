@@ -26,7 +26,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             mockedContext.Setup(c => c.Set<MockedModel>())
                 .Returns(mockedDbSet.Object);
 
-            var efRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var efRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             var entity = efRepository.GetById(id);
@@ -49,7 +49,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             mockedContext.Setup(c => c.Set<MockedModel>())
                 .Returns(mockedDbSet.Object);
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             var entity = dbRepository.GetById(id);
@@ -72,7 +72,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             mockedContext.Setup(c => c.Set<MockedModel>())
                 .Returns(mockedDbSet.Object);
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             var entity = dbRepository.GetById(id);
@@ -86,7 +86,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             //Arrange
             var mockedContext = new Mock<IApplicationDbContext>();
         
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             var entity = dbRepository.GetById(null);

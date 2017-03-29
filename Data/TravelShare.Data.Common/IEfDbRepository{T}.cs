@@ -3,7 +3,7 @@
     using System.Linq;
     using Data.Models.Base;
 
-    public interface IDbRepository<T>
+    public interface IEfDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
         IQueryable<T> All();

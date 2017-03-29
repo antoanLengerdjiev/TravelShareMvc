@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Bytes2you.Validation;
     using TravelShare.Data.Common;
@@ -9,19 +10,19 @@
 
     public class UserService : IUserService
     {
-        private readonly IDbRepository<ApplicationUser> userRepository;
+        private readonly IEfDbRepository<ApplicationUser> userRepository;
 
-        public UserService(IDbRepository<ApplicationUser> userRepository)
+        public UserService(IEfDbRepository<ApplicationUser> userRepository)
         {
-            Guard.WhenArgument<IDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.").IsNull().Throw();
             this.userRepository = userRepository;
         }
 
-        public IQueryable<Trip> MyTrips(string userId, int page, int number)
+        public IEnumerable<Trip> MyTrips(string userId, int page, int number)
         {
             Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
 
-            return this.userRepository.GetById(userId).Trips.Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number).AsQueryable();
+            return this.userRepository.GetById(userId).Trips.ToList().Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number).AsQueryable();
         }
 
         public int MyTripsPageCount(string userId, int number)

@@ -9,7 +9,7 @@ namespace TravelShare.Services.Data.Common.Contracts
 {
     public interface IUserService
     {
-        IQueryable<Trip> MyTrips(string userId, int page, int number);
+        IEnumerable<Trip> MyTrips(string userId, int page, int number);
 
         int MyTripsPageCount(string userId, int number);
     }

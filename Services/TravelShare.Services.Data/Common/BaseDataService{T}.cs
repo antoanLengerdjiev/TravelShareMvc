@@ -10,12 +10,12 @@
     public abstract class BaseDataService<T> : IBaseDataService<T>
         where T : class, IDeletableEntity, IAuditInfo
     {
-        public BaseDataService(IDbRepository<T> dataSet)
+        public BaseDataService(IEfDbRepository<T> dataSet)
         {
             this.Data = dataSet;
         }
 
-        protected IDbRepository<T> Data { get; set; }
+        protected IEfDbRepository<T> Data { get; set; }
 
         public virtual void Add(T item)
         {

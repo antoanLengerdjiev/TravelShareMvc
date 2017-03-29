@@ -25,7 +25,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -47,7 +47,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -66,7 +66,7 @@
             var driverId = userId;
             var passengers = new List<ApplicationUser>();
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -88,7 +88,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() {passenger1,passenger2,passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -109,7 +109,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -128,7 +128,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -148,7 +148,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -167,7 +167,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -184,7 +184,7 @@
             var userId = "UserId";
             var driverId = "DriverId";
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -200,7 +200,7 @@
             var userId = "UserId";
             var driverId = "DriverId";
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -216,7 +216,7 @@
             // Arrange
             var userId = "UserId";
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -233,7 +233,7 @@
             var passenger3 = new ApplicationUser() { Id = "RandonId" };
             var passengers = new List<ApplicationUser>() { passenger1, passenger2, passenger3 };
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -247,7 +247,7 @@
             // Arrange
             var driverId = "DriverId";
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 
@@ -259,7 +259,7 @@
         public void ThorwArgumentNullException_WhenAllParametersAreNull()
         {
             // Arrange
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
 
             var service = new TripService(mockRepository.Object);
 

@@ -12,11 +12,11 @@
 
     public class TripService : ITripService
     {
-        private readonly IDbRepository<Trip> tripRepository;
+        private readonly IEfDbRepository<Trip> tripRepository;
 
-        public TripService(IDbRepository<Trip> tripRepository)
+        public TripService(IEfDbRepository<Trip> tripRepository)
         {
-            Guard.WhenArgument<IDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
                 .IsNull()
                 .Throw();
 
@@ -29,9 +29,9 @@
             return tripsCount % number == 0 ? tripsCount / number : (tripsCount / number) + 1;
         }
 
-        public IQueryable<Trip> GetPagedTrips(int page, int number)
+        public IEnumerable<Trip> GetPagedTrips(int page, int number)
         {
-            return this.tripRepository.All().Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number);
+            return this.tripRepository.All().ToList().OrderByDescending(x => x.Date).Skip(page * number).Take(number);
         }
 
         public bool CanUserJoinTrip(string userId, string driverId, int slots, IEnumerable<ApplicationUser> passengers)
@@ -45,7 +45,7 @@
                 return false;
             }
 
-            if(slots - passengers.Count() <= 0)
+            if (slots - passengers.Count() <= 0)
             {
                 return false;
             }
@@ -61,12 +61,12 @@
             return true;
         }
 
-        public IQueryable<Trip> SearchTrips(string from, string to, DateTime date)
+        public IEnumerable<Trip> SearchTrips(string from, string to, DateTime date)
         {
             Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
-            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to);
+            return this.tripRepository.All().ToList().Where(x => x.Date == date && x.From == from && x.To == to);
         }
     }
 }

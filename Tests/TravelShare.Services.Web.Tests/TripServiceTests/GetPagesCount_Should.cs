@@ -33,7 +33,7 @@
             mockedContext.Setup(s => s.Set<Trip>())
               .Returns(mockedDbSet);
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
 
             var tripService = new TripService(mockRepository.Object);
@@ -66,7 +66,7 @@
             mockedContext.Setup(s => s.Set<Trip>())
               .Returns(mockedDbSet);
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
 
             var tripService = new TripService(mockRepository.Object);
@@ -98,7 +98,7 @@
             mockedContext.Setup(s => s.Set<Trip>())
               .Returns(mockedDbSet);
 
-            var mockRepository = new Mock<IDbRepository<Trip>>();
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
 
             var tripService = new TripService(mockRepository.Object);

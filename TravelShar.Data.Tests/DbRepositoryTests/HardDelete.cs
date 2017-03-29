@@ -20,7 +20,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
            
             mockedContext.Setup(x => x.Set<MockedModel>().Remove(mockedModel)).Verifiable();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
             
 
             // Act
@@ -36,7 +36,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Arrange 
             var mockedContext = new Mock<IApplicationDbContext>();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => dbRepository.HardDelete(null));
@@ -50,7 +50,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var expectedMessage = "Cannot Hard Delete null object.";
             var mockedContext = new Mock<IApplicationDbContext>();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.HardDelete(null));

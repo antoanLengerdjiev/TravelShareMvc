@@ -18,10 +18,10 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
         public void ShouldThrowArgumentNullException_WhenNullContextIsPassed()
         {
             // Arrange
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
@@ -36,10 +36,10 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             // Arrange
             var expectedExMessage = "Database context cannot be null.";
 
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() =>
@@ -58,9 +58,9 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             var expectedExMessage = "News repository cannot be null.";
 
             var mockApplicationDbContext = new Mock<IApplicationDbContext>();
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() =>
@@ -79,9 +79,9 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             var expectedExMessage = "User repository cannot be null.";
 
             var mockApplicationDbContext = new Mock<IApplicationDbContext>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() =>
@@ -100,9 +100,9 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             var expectedExMessage = "Trip repository cannot be null.";
 
             var mockApplicationDbContext = new Mock<IApplicationDbContext>();
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() =>
@@ -121,9 +121,9 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             var expectedExMessage = "Rating repository cannot be null.";
 
             var mockApplicationDbContext = new Mock<IApplicationDbContext>();
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
 
             // Act
             var exception = Assert.Throws<ArgumentNullException>(() =>

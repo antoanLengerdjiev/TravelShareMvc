@@ -33,7 +33,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
               .Returns(mockedDbSet);
 
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             var all = dbRepository.All();

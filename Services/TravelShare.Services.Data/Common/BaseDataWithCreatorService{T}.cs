@@ -12,13 +12,13 @@
     public class BaseDataWithCreatorService<T> : BaseDataService<T>, IBaseDataWithCreatorService<T>
         where T : class, IDeletableEntity, IAuditInfo, IEntityWithCreator
     {
-        public BaseDataWithCreatorService(IDbRepository<T> dataSet, IDbRepository<ApplicationUser> users)
+        public BaseDataWithCreatorService(IEfDbRepository<T> dataSet, IEfDbRepository<ApplicationUser> users)
             : base(dataSet)
         {
             this.Users = users;
         }
 
-        protected IDbRepository<ApplicationUser> Users { get; set; }
+        protected IEfDbRepository<ApplicationUser> Users { get; set; }
 
         public IQueryable<T> GetAllByUser(string userId)
         {

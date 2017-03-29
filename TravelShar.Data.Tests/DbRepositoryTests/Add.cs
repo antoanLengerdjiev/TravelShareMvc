@@ -21,7 +21,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var mockedContext = new Mock<IApplicationDbContext>();
             mockedContext.Setup(x => x.Set<MockedModel>().Add(mockedModel)).Verifiable();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             dbRepository.Add(mockedModel);
@@ -36,7 +36,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Arrange 
             var mockedContext = new Mock<IApplicationDbContext>();
            
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => dbRepository.Add(null));
@@ -50,7 +50,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var expectedMessage = "Cannot Add null object.";
             var mockedContext = new Mock<IApplicationDbContext>();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
            var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.Add(null));

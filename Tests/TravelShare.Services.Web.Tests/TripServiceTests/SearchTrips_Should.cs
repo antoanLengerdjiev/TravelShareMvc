@@ -17,7 +17,7 @@
         {
             // Arrange
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act & Assert
@@ -30,7 +30,7 @@
             // Arrange
             var expectedMessage = "From cannot be null";
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act & Assert
@@ -45,7 +45,7 @@
         {
             // Arrange
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act & Assert
@@ -58,7 +58,7 @@
             // Arrange
             var expectedMessage = "To cannot be null";
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act & Assert
@@ -72,7 +72,7 @@
         {
             // Arrange
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act & Assert
@@ -84,7 +84,7 @@
         {
             // Arrange
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
 
             // Act
@@ -95,11 +95,11 @@
         }
 
         [Test]
-        public void ReturnInstanceOfIQueribleTrip()
+        public void ReturnInstanceOfIEnumerableITrip()
         {
             // Arrange
             var date = new DateTime(1994, 1, 1);
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var tripService = new TripService(mockTripRepository.Object);
             mockTripRepository.Setup(x => x.All()).Returns(new List<Trip>() { }.AsQueryable);
 
@@ -107,7 +107,7 @@
             var result = tripService.SearchTrips("Sofia", "Burgars", date);
 
             // Assert
-            Assert.IsInstanceOf<IQueryable<Trip>>(result);
+            Assert.IsInstanceOf<IEnumerable<Trip>>(result);
         }
     }
 }

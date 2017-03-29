@@ -35,7 +35,7 @@ namespace TravelShare.Services.Web.Tests.UserServiceTests
         public void ShouldNotThrow_WhenValidArgumentsArePassed()
         {
             // Arrange
-            var mockedUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockedUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
             // Act and Assert
             Assert.DoesNotThrow(() =>

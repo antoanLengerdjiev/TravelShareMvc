@@ -49,9 +49,6 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            //builder.Register(x => new ApplicationDbContext())
-            //    .As<DbContext>()
-            //    .InstancePerRequest();
             builder.Register(x => new ApplicationDbContext())
                 .As<IApplicationDbContext>()
                 .InstancePerRequest();
@@ -62,19 +59,19 @@
                 .As<IIdentifierProvider>()
                 .InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(DbRepository<>))
-                .As(typeof(IDbRepository<>))
+            builder.RegisterGeneric(typeof(EfDbRepository<>))
+                .As(typeof(IEfDbRepository<>))
                 .InstancePerRequest();
 
-            builder.Register(x => new TripService(x.Resolve<IDbRepository<Trip>>()))
+            builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>()))
                 .As<ITripService>()
                 .InstancePerRequest();
 
-            builder.Register(x => new UserService(x.Resolve<IDbRepository<ApplicationUser>>()))
+            builder.Register(x => new UserService(x.Resolve<IEfDbRepository<ApplicationUser>>()))
                 .As<IUserService>()
                 .InstancePerRequest();
 
-            builder.Register(x => new ApplicationData(x.Resolve<IApplicationDbContext>(), x.Resolve<IDbRepository<News>>(), x.Resolve<IDbRepository<ApplicationUser>>(), x.Resolve<IDbRepository<Trip>>(), x.Resolve<IDbRepository<Rating>>()))
+            builder.Register(x => new ApplicationData(x.Resolve<IApplicationDbContext>(), x.Resolve<IEfDbRepository<News>>(), x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IEfDbRepository<Rating>>()))
            .As<IApplicationData>()
            .InstancePerRequest();
 

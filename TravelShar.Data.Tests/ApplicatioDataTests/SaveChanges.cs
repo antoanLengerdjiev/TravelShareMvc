@@ -21,10 +21,10 @@ namespace TravelShar.Data.Tests.ApplicatioDataTests
             var mockApplicationDbContext = new Mock<IApplicationDbContext>();
             mockApplicationDbContext.Setup(x => x.SaveChanges()).Verifiable();
 
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
-            var mockTripRepository = new Mock<IDbRepository<Trip>>();
-            var mockNewsRepository = new Mock<IDbRepository<News>>();
-            var mockRatingRepository = new Mock<IDbRepository<Rating>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockNewsRepository = new Mock<IEfDbRepository<News>>();
+            var mockRatingRepository = new Mock<IEfDbRepository<Rating>>();
 
             var data = new ApplicationData(mockApplicationDbContext.Object, mockNewsRepository.Object, mockUserRepository.Object, mockTripRepository.Object, mockRatingRepository.Object);
 

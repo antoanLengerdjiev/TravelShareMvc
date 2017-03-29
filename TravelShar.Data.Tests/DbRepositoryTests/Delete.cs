@@ -21,7 +21,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var mockedContext = new Mock<IApplicationDbContext>();
            
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             dbRepository.Delete(mockedModel);
@@ -35,7 +35,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             // Arrange 
             var mockedContext = new Mock<IApplicationDbContext>();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => dbRepository.Delete(null));
@@ -49,7 +49,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var expectedMessage = "Cannot Delete null object.";
             var mockedContext = new Mock<IApplicationDbContext>();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => dbRepository.Delete(null));

@@ -8,10 +8,10 @@
     using Data.Models.Base;
     using TravelShare.Data.Common.Models;
 
-    public class DbRepository<T> : IDbRepository<T>
+    public class EfDbRepository<T> : IEfDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
-        public DbRepository(IApplicationDbContext context)
+        public EfDbRepository(IApplicationDbContext context)
         {
             Guard.WhenArgument<IApplicationDbContext>(context, "Database context cannot be null.")
                  .IsNull()

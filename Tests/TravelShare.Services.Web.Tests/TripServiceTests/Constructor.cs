@@ -40,7 +40,7 @@
         public void ShouldNotThrow_WhenValidArgumentsArePassed()
         {
             // Arrange
-            var mockedTripRepository = new Mock<IDbRepository<Trip>>();
+            var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
 
 
             // Act and Assert

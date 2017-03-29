@@ -10,13 +10,13 @@ namespace TravelShare.Data.Common.Contracts
 {
     public interface IApplicationData : IDisposable
     {
-        IDbRepository<ApplicationUser> Users { get; }
+        IEfDbRepository<ApplicationUser> Users { get; }
 
-        IDbRepository<Trip> Trips { get; }
+        IEfDbRepository<Trip> Trips { get; }
 
-        IDbRepository<News> News { get; }
+        IEfDbRepository<News> News { get; }
 
-        IDbRepository<Rating> Rating { get; }
+        IEfDbRepository<Rating> Rating { get; }
 
 
         int SaveChanges();

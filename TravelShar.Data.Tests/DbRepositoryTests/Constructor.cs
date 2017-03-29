@@ -17,7 +17,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
         public void ShouldThrowArgumentNullException_WhenNullContextIsPassed()
         {
             // Arrange, Act and Assert
-            Assert.Throws<ArgumentNullException>(() => new DbRepository<MockedModel>(null));
+            Assert.Throws<ArgumentNullException>(() => new EfDbRepository<MockedModel>(null));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
-            new DbRepository<MockedModel>(null));
+            new EfDbRepository<MockedModel>(null));
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
 
@@ -39,7 +39,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var mockedContext = new Mock<IApplicationDbContext>();
 
             // Act
-            var genericRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var genericRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Asert
             mockedContext.Verify(c => c.Set<MockedModel>(), Times.Once);

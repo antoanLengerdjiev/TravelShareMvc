@@ -60,8 +60,8 @@
     <Compile Include="ApplicationData.cs" />
     <Compile Include="Contracts\IApplicationData.cs" />
     <Compile Include="Contracts\IApplicationDbContext.cs" />
-    <Compile Include="DbRepository{T}.cs" />
-    <Compile Include="IDbRepository{T}.cs" />
+    <Compile Include="EfDbRepository{T}.cs" />
+    <Compile Include="IEfDbRepository{T}.cs" />
     <Compile Include="Models\IEntityWithCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

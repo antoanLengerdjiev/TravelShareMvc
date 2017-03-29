@@ -20,7 +20,7 @@ namespace TravelShar.Data.Tests.DbRepositoryTests
             var mockedContext = new Mock<IApplicationDbContext>();
             mockedContext.Setup(x => x.Dispose()).Verifiable();
 
-            var dbRepository = new DbRepository<MockedModel>(mockedContext.Object);
+            var dbRepository = new EfDbRepository<MockedModel>(mockedContext.Object);
 
             // Act
             dbRepository.Dispose();

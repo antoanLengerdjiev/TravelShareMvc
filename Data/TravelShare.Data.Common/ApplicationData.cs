@@ -11,30 +11,30 @@
     public class ApplicationData : IApplicationData
     {
         private readonly IApplicationDbContext context;
-        private readonly IDbRepository<News> newsRepository;
-        private readonly IDbRepository<ApplicationUser> userRepository;
-        private readonly IDbRepository<Trip> tripRepository;
-        private readonly IDbRepository<Rating> ratingsRepository;
+        private readonly IEfDbRepository<News> newsRepository;
+        private readonly IEfDbRepository<ApplicationUser> userRepository;
+        private readonly IEfDbRepository<Trip> tripRepository;
+        private readonly IEfDbRepository<Rating> ratingsRepository;
 
-        public ApplicationData(IApplicationDbContext context, IDbRepository<News> newsRepository, IDbRepository<ApplicationUser> userRepository, IDbRepository<Trip> tripRepository, IDbRepository<Rating> ratingsRepository)
+        public ApplicationData(IApplicationDbContext context, IEfDbRepository<News> newsRepository, IEfDbRepository<ApplicationUser> userRepository, IEfDbRepository<Trip> tripRepository, IEfDbRepository<Rating> ratingsRepository)
         {
             Guard.WhenArgument<IApplicationDbContext>(context, "Database context cannot be null.")
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IDbRepository<News>>(newsRepository, "News repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<News>>(newsRepository, "News repository cannot be null.")
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.")
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IDbRepository<Rating>>(ratingsRepository, "Rating repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<Rating>>(ratingsRepository, "Rating repository cannot be null.")
                 .IsNull()
                 .Throw();
 
@@ -53,7 +53,7 @@
             }
         }
 
-        public IDbRepository<News> News
+        public IEfDbRepository<News> News
         {
             get
             {
@@ -61,7 +61,7 @@
             }
         }
 
-        public IDbRepository<Rating> Rating
+        public IEfDbRepository<Rating> Rating
         {
             get
             {
@@ -69,7 +69,7 @@
             }
         }
 
-        public IDbRepository<Trip> Trips
+        public IEfDbRepository<Trip> Trips
         {
             get
             {
@@ -77,7 +77,7 @@
             }
         }
 
-        public IDbRepository<ApplicationUser> Users
+        public IEfDbRepository<ApplicationUser> Users
         {
             get
             {

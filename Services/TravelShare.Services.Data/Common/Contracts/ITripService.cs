@@ -11,10 +11,10 @@ namespace TravelShare.Services.Data.Common.Contracts
     {
         int GetPagesCount(int number);
 
-        IQueryable<Trip> GetPagedTrips(int page, int number);
+        IEnumerable<Trip> GetPagedTrips(int page, int number);
 
         bool CanUserJoinTrip(string userId,string driverId, int slots ,IEnumerable<ApplicationUser> passengers);
 
-        IQueryable<Trip> SearchTrips(string from, string to, DateTime date);
+        IEnumerable<Trip> SearchTrips(string from, string to, DateTime date);
     }
 }

@@ -26,7 +26,7 @@
                 secondTrip,
             };
             var user = new ApplicationUser() { Id = "pesho", Trips = list };
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById("pesho")).Returns(user);
 
             var service = new UserService(mockUserRepository.Object);
@@ -52,7 +52,7 @@
                 secondTrip,
             };
             var user = new ApplicationUser() { Id = "pesho", Trips = list };
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById("pesho")).Returns(user);
 
             var service = new UserService(mockUserRepository.Object);
@@ -78,7 +78,7 @@
                 secondTrip,
             };
             var user = new ApplicationUser() { Id = "pesho", Trips = list };
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById("pesho")).Returns(user);
 
             var service = new UserService(mockUserRepository.Object);
@@ -96,7 +96,7 @@
         public void ThrowsArgumentNullException_WhenUserIdParameterIsNull()
         {
             // Arrange
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
             var service = new UserService(mockUserRepository.Object);
 
@@ -109,7 +109,7 @@
         {
             // Arrange
             var expectedMessage = "User Id cannot be null";
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
             var service = new UserService(mockUserRepository.Object);
 
@@ -135,7 +135,7 @@
                 secondTrip,
             };
             var user = new ApplicationUser() { Id = userId, Trips = list };
-            var mockUserRepository = new Mock<IDbRepository<ApplicationUser>>();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
 
             var service = new UserService(mockUserRepository.Object);
