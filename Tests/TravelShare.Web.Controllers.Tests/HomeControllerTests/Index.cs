@@ -14,32 +14,15 @@
     [TestFixture]
     public class Index
     {
-        [Test]
-        public void ShouldCallDataProviderNewsAllMethod()
-        {
-            // Arrange
-            var mockData = new Mock<IApplicationData>();
-            mockData.Setup(x => x.News.All()).Returns(new List<News>().AsQueryable).Verifiable();
-
-            var homeController = new HomeController(mockData.Object);
-
-            // Act
-            var result = homeController.Index();
-
-            // Assert
-            mockData.Verify(x => x.News.All(), Times.Once);
-        }
 
         [Test]
         public void RenderDefaultView()
         {
             // Arrange
-            var mockData = new Mock<IApplicationData>();
-            mockData.Setup(x => x.News.All()).Returns(new List<News>().AsQueryable).Verifiable();
 
-            var homeController = new HomeController(mockData.Object);
+            var homeController = new HomeController();
 
-            // Act
+            // Act & Assert
             homeController.WithCallTo(x => x.Index()).ShouldRenderDefaultView();
         }
     }

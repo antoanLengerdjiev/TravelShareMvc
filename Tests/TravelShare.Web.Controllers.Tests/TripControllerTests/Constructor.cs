@@ -10,31 +10,29 @@
     public class Constructor
     {
         [Test]
-        public void ShouldThrowArgumentNullException_WhenNullApplicationDataProviderIsPassed()
+        public void ShouldThrowArgumentNullException_WhenNullUserServicerIsPassed()
         {
             // Arrange
             var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    null,
-               mockedTripService.Object));
+               mockedTripService.Object, null));
         }
 
         [Test]
-        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullApplicationDateProviderIsPassed()
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullUserServiceIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Data provider cannot be null.";
+            var expectedExMessage = "User Service cannot ben null.";
             var mockedTripService = new Mock<ITripService>();
-
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
                new TripController(
-                   null,
-              mockedTripService.Object));
+              mockedTripService.Object, null));
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
 
@@ -42,13 +40,12 @@
         public void ShouldThrowArgumentNullException_WhenNullTripServiceIsPassed()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IApplicationData>();
+            var mockedUserService = new Mock<IUserService>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    mockedDataProvider.Object,
-                    null));
+                    null, mockedUserService.Object));
         }
 
         [Test]
@@ -56,13 +53,12 @@
         {
             // Arrange
             var expectedExMessage = "Trip Service cannot ben null.";
-            var mockedDataProvider = new Mock<IApplicationData>();
+            var mockedUserService = new Mock<IUserService>();
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    mockedDataProvider.Object,
-                    null));
+                    null, mockedUserService.Object));
 
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
@@ -83,14 +79,13 @@
         public void ShouldNotThrow_WhenValidArgumentsArePassed()
         {
             // Arrange
-            var mockedDataProvider = new Mock<IApplicationData>();
+            var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
 
             // Act and Assert
             Assert.DoesNotThrow(() =>
                 new TripController(
-                    mockedDataProvider.Object,
-                    mockedTripService.Object));
+                    mockedTripService.Object,mockedUserService.Object));
         }
 
     }

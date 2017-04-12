@@ -9,6 +9,16 @@ namespace TravelShare.Services.Data.Common.Contracts
 {
     public interface ITripService
     {
+        Trip GetById(int id);
+
+        void Create(Trip trip);
+
+        void JoinTrip(ApplicationUser user, Trip trip);
+
+        void LeaveTrip(ApplicationUser user, Trip trip);
+
+        void DeleteTrip(string userId, Trip trip);
+
         int GetPagesCount(int number);
 
         IEnumerable<Trip> GetPagedTrips(int page, int number);

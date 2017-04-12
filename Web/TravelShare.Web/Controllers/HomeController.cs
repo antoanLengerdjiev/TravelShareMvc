@@ -9,21 +9,12 @@
 
     public class HomeController : BaseController
     {
-        private readonly IApplicationData data;
-
-        public HomeController(IApplicationData data)
+        public HomeController()
         {
-            Guard.WhenArgument<IApplicationData>(data, "Data provider cannot be null.")
-                .IsNull()
-                .Throw();
-
-            this.data = data;
         }
 
         public ActionResult Index()
         {
-            var news = this.data.News.All();
-
             return this.View();
         }
     }

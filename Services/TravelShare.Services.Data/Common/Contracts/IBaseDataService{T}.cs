@@ -14,7 +14,5 @@
         IQueryable<T> GetAll();
 
         T GetById(object id);
-
-        void Dispose();
     }
 }

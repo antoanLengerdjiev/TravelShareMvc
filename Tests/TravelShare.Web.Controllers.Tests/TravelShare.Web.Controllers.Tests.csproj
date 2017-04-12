@@ -115,6 +115,7 @@
     <Compile Include="TripControllerTests\DeleteTrip_Should.cs" />
     <Compile Include="TripControllerTests\GetById_Should.cs" />
     <Compile Include="TripControllerTests\JoinTrip_Should.cs" />
+    <Compile Include="TripControllerTests\LeaveTrip_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

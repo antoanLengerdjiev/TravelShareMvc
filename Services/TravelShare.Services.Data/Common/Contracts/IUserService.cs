@@ -9,6 +9,8 @@ namespace TravelShare.Services.Data.Common.Contracts
 {
     public interface IUserService
     {
+        ApplicationUser GetById(string id);
+
         IEnumerable<Trip> MyTrips(string userId, int page, int number);
 
         int MyTripsPageCount(string userId, int number);

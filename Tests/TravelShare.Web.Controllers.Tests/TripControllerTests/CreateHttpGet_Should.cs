@@ -18,9 +18,9 @@
         public void ReturnDefaultView()
         {
             // Arrange
-            var mockedData = new Mock<IApplicationData>();
+            var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();

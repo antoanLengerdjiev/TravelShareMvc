@@ -10,7 +10,7 @@
     using Models.Base;
     using TravelShare.Data.Models;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>,IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext, IApplicationDbContextSaveChanges
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

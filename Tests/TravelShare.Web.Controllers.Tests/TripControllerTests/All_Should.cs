@@ -19,10 +19,9 @@
 
             var mockedTripService = new Mock<ITripService>();
 
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.All()).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -39,11 +38,9 @@
             automap.Execute(typeof(TripController).Assembly);
 
             var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
 
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.All()).Verifiable();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -61,10 +58,9 @@
 
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetPagesCount(It.IsAny<int>())).Returns(5).Verifiable();
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.All()).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -81,10 +77,9 @@
             automap.Execute(typeof(TripController).Assembly);
 
             var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
 
-            var mockedData = new Mock<IApplicationData>();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act
             controller.All(5);
@@ -101,10 +96,9 @@
             automap.Execute(typeof(TripController).Assembly);
 
             var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
 
-            var mockedData = new Mock<IApplicationData>();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.All(5)).ShouldRenderDefaultView();

@@ -63,11 +63,21 @@
                 }
                 <span>available seats</span>
                 @{
-                    if (User.Identity.IsAuthenticated && (bool)this.ViewData["ShowJoinButton"])
+                    if (User.Identity.IsAuthenticated)
                     {
                         @Html.HiddenFor(x => x.Id, new { id = "tripId" })
+                        @Html.AntiForgeryToken()
+                        if (!Model.IsUserIn && Model.Slots - Model.Passengers.Count > 0 && Model.DriverId != currentUserId)
+                        {
+                            <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now" />
+                            <input class="btn btn-lg btn-warning btn-book-plase" id="leaveTrip" type="submit" value="Leave trip" style="display:none" />
+                        }
+                        if (Model.IsUserIn)
+                        {
+                            <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now"  style="display:none" />
+                            <input class="btn btn-lg btn-warning btn-book-plase" id="leaveTrip" type="submit" value="Leave trip" />
+                        }
 
-                        <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now" />
 
                     }
 
@@ -87,10 +97,16 @@
 </div>
 @section scripts{
     <script>
+        function gettoken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
         $("#joinTrip").click(function () {
+           
             $.ajax({
                 url: "/Trip/JoinTrip",
-                data: { tripId: $("#tripId").val() },
+                data: { tripId: $("#tripId").val(),  __RequestVerificationToken:gettoken() },
                 success: function myfunction(data) {
                     if (data.notFound == "True") {
                         $("#joinTrip").text("Something Went Wrong");
@@ -110,7 +126,39 @@
                         passangersList.append('<li data-user=' + data.newPassangerName + '><i class="fa fa-user" aria-hidden="true"></i><span>' + data.newPassangerName + '</span></li>');
                     }
                     $("#joinTrip").hide();
-                    //$("#leaveTrip").show();
+                    $("#leaveTrip").show();
+                },
+                method: "POST"
+            });
+        });
+
+        $("#leaveTrip").click(function () {
+            $.ajax({
+                url: "/Trip/LeaveTrip",
+                data: { tripId: $("#tripId").val(), __RequestVerificationToken: gettoken() },
+                success: function myfunction(data) {
+                    if (data.notFound == "True") {
+                        $("#joinTrip").text("Something Went Wrong");
+                        $("#joinTrip").attr('disabled', 'disabled');
+                    }
+                    if (data.notIn == "True") {
+                        $("#joinTrip").show();
+                        $("#leaveTrip").hide();
+                    }
+                    console.log(data);
+                    var $userLi;
+                    $('li[data-user]').each(function (index, element) {
+                        if ($(element).data("user") == data.removedPassangerName) {
+                            $userLi = $(element);
+                        }
+                    });
+                    if ($userLi.length > 0) {
+                        $userLi.remove();
+                        $("#availableSlots").html(data.slots);
+                    }
+
+                    $("#joinTrip").show();
+                    $("#leaveTrip").hide();
                 },
                 method: "POST"
             });

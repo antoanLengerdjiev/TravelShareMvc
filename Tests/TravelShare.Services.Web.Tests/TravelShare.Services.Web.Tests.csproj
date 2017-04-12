@@ -74,9 +74,13 @@
     <Compile Include="IdentifierProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TripServiceTests\Constructor.cs" />
+    <Compile Include="TripServiceTests\Create_Should.cs" />
+    <Compile Include="TripServiceTests\DeleteTrip_Should.cs" />
+    <Compile Include="TripServiceTests\GetById_Should.cs" />
     <Compile Include="TripServiceTests\GetPagedTrips_Should.cs" />
     <Compile Include="TripServiceTests\GetPagesCount_Should.cs" />
     <Compile Include="TripServiceTests\CanUserJoinTrip_Should.cs" />
+    <Compile Include="TripServiceTests\JoinTrip_Should.cs" />
     <Compile Include="TripServiceTests\SearchTrips_Should.cs" />
     <Compile Include="UserServiceTests\Constructor.cs" />
     <Compile Include="UserServiceTests\MyTripsPageCount_Should.cs" />

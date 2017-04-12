@@ -70,10 +70,5 @@
             Guard.WhenArgument<T>(entity, "Cannot Hard Delete null object.").IsNull().Throw();
             this.DbSet.Remove(entity);
         }
-
-        public void Dispose()
-        {
-            this.Context.Dispose();
-        }
     }
 }

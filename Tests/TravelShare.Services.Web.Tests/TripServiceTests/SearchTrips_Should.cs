@@ -6,6 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
     using TravelShare.Services.Data;
 
@@ -18,7 +19,10 @@
             // Arrange
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date));
@@ -31,7 +35,10 @@
             var expectedMessage = "From cannot be null";
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date));
@@ -46,7 +53,10 @@
             // Arrange
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date));
@@ -59,7 +69,10 @@
             var expectedMessage = "To cannot be null";
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date));
@@ -73,7 +86,10 @@
             // Arrange
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, null, date));
@@ -85,7 +101,10 @@
             // Arrange
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
             tripService.SearchTrips("Sofia", "Burgars", date);
@@ -100,8 +119,11 @@
             // Arrange
             var date = new DateTime(1994, 1, 1);
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
-            var tripService = new TripService(mockTripRepository.Object);
             mockTripRepository.Setup(x => x.All()).Returns(new List<Trip>() { }.AsQueryable);
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
             var result = tripService.SearchTrips("Sofia", "Burgars", date);

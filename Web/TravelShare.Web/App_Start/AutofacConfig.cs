@@ -51,7 +51,9 @@
         {
             builder.Register(x => new ApplicationDbContext())
                 .As<IApplicationDbContext>()
+                .As<IApplicationDbContextSaveChanges>()
                 .InstancePerRequest();
+
             builder.Register(x => new HttpCacheService())
                 .As<ICacheService>()
                 .InstancePerRequest();
@@ -63,17 +65,13 @@
                 .As(typeof(IEfDbRepository<>))
                 .InstancePerRequest();
 
-            builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>()))
+            builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IApplicationDbContextSaveChanges>(), x.Resolve<IEfDbRepository<ApplicationUser>>()))
                 .As<ITripService>()
                 .InstancePerRequest();
 
-            builder.Register(x => new UserService(x.Resolve<IEfDbRepository<ApplicationUser>>()))
+            builder.Register(x => new UserService(x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<IApplicationDbContextSaveChanges>()))
                 .As<IUserService>()
                 .InstancePerRequest();
-
-            builder.Register(x => new ApplicationData(x.Resolve<IApplicationDbContext>(), x.Resolve<IEfDbRepository<News>>(), x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IEfDbRepository<Rating>>()))
-           .As<IApplicationData>()
-           .InstancePerRequest();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AssignableTo<BaseController>().PropertiesAutowired();

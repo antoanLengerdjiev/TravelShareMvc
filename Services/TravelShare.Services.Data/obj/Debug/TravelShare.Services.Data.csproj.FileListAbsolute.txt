@@ -28,8 +28,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\TravelShare.Data.Models.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\TravelShare.Common.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\TravelShare.Services.Web.pdb
-C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\EntityFramework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\obj\Debug\TravelShare.Services.Data.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\obj\Debug\TravelShare.Services.Data.dll

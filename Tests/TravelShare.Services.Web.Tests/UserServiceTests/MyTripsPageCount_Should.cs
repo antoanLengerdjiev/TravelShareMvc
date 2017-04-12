@@ -5,6 +5,7 @@
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
     using TravelShare.Services.Data;
 
@@ -28,8 +29,8 @@
             var user = new ApplicationUser() { Id = userId, Trips = list };
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
-
-            var service = new UserService(mockUserRepository.Object);
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
             var result = service.MyTripsPageCount(userId, 1);
@@ -56,7 +57,8 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
 
-            var service = new UserService(mockUserRepository.Object);
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
             var result = service.MyTripsPageCount(userId, 3);
@@ -83,7 +85,8 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
 
-            var service = new UserService(mockUserRepository.Object);
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
             var result = service.MyTripsPageCount(userId, 2);
@@ -98,7 +101,8 @@
             // Arrange
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
-            var service = new UserService(mockUserRepository.Object);
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.MyTripsPageCount(null, 3));
@@ -111,7 +115,8 @@
             var expectedMessage = "User Id cannot be null";
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
-            var service = new UserService(mockUserRepository.Object);
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => service.MyTripsPageCount(null, 3));

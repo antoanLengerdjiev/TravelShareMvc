@@ -35,8 +35,10 @@
 
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
-            var tripService = new TripService(mockRepository.Object);
+            var tripService = new TripService(mockRepository.Object,mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
             var result = tripService.GetPagedTrips(0, 2).ToList();
@@ -66,8 +68,10 @@
 
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
-            var tripService = new TripService(mockRepository.Object);
+            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
             var result = tripService.GetPagedTrips(0, 2).ToList();
@@ -96,8 +100,10 @@
 
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
-            var tripService = new TripService(mockRepository.Object);
+            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
             var result = tripService.GetPagedTrips(1, 1).ToList();

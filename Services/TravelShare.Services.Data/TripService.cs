@@ -7,20 +7,33 @@
     using System.Threading.Tasks;
     using Bytes2you.Validation;
     using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
     using TravelShare.Services.Data.Common.Contracts;
 
     public class TripService : ITripService
     {
         private readonly IEfDbRepository<Trip> tripRepository;
+        private readonly IEfDbRepository<ApplicationUser> userRepository;
+        private readonly IApplicationDbContextSaveChanges dbSaveChanges;
 
-        public TripService(IEfDbRepository<Trip> tripRepository)
+        public TripService(IEfDbRepository<Trip> tripRepository, IApplicationDbContextSaveChanges dbSaveChanges, IEfDbRepository<ApplicationUser> userRepository)
         {
             Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
                 .IsNull()
                 .Throw();
 
+            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.")
+                .IsNull()
+                .Throw();
+
+            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
+                .IsNull()
+                .Throw();
+
             this.tripRepository = tripRepository;
+            this.userRepository = userRepository;
+            this.dbSaveChanges = dbSaveChanges;
         }
 
         public int GetPagesCount(int number)
@@ -67,6 +80,40 @@
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
             return this.tripRepository.All().ToList().Where(x => x.Date == date && x.From == from && x.To == to);
+        }
+
+        public Trip GetById(int id)
+        {
+            return this.tripRepository.GetById(id);
+        }
+
+        public void DeleteTrip(string userId, Trip trip)
+        {
+            var user = this.userRepository.GetById(userId);
+            user.Trips.Remove(trip);
+            trip.Passengers.Remove(user);
+            this.tripRepository.Delete(trip);
+            this.dbSaveChanges.SaveChanges();
+        }
+
+        public void Create(Trip trip)
+        {
+            this.tripRepository.Add(trip);
+            this.dbSaveChanges.SaveChanges();
+        }
+
+        public void JoinTrip(ApplicationUser user, Trip trip)
+        {
+            user.Trips.Add(trip);
+            trip.Passengers.Add(user);
+            this.dbSaveChanges.SaveChanges();
+        }
+
+        public void LeaveTrip(ApplicationUser user, Trip trip)
+        {
+            user.Trips.Remove(trip);
+            trip.Passengers.Remove(user);
+            this.dbSaveChanges.SaveChanges();
         }
     }
 }

@@ -70,14 +70,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicatioDataTests\Constructor.cs" />
-    <Compile Include="ApplicatioDataTests\SaveChanges.cs" />
     <Compile Include="DbRepositoryTests\Add.cs" />
     <Compile Include="DbRepositoryTests\All.cs" />
     <Compile Include="DbRepositoryTests\AllWithDeleted.cs" />
     <Compile Include="DbRepositoryTests\Constructor.cs" />
     <Compile Include="DbRepositoryTests\Delete.cs" />
-    <Compile Include="DbRepositoryTests\Dispose.cs" />
     <Compile Include="DbRepositoryTests\GetById.cs" />
     <Compile Include="DbRepositoryTests\HardDelete.cs" />
     <Compile Include="Helper\QueryableDbSetMock.cs" />

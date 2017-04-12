@@ -20,13 +20,13 @@
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
-
-            var mockedData = new Mock<IApplicationData>();
+            var trip = new Trip { Passengers = new List<ApplicationUser>() };
+            var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
-            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
+            mockedTripService.Setup(x => x.GetById(It.IsAny<int>())).Returns(trip).Verifiable();
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
             var mock = new Mock<ControllerContext>();
 
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
@@ -36,22 +36,22 @@
             controller.GetById(It.IsAny<int>());
 
             // Assert
-            mockedData.Verify(x => x.Trips.GetById(It.IsAny<int>()));
+            mockedTripService.Verify(x => x.GetById(It.IsAny<int>()));
         }
 
         [Test]
         public void ReturnDefaultView()
         {
-
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
-            var mockedTripService = new Mock<ITripService>();
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(It.IsAny<int>())).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(It.IsAny<int>())).Verifiable();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
@@ -68,15 +68,15 @@
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
-            var mockedTripService = new Mock<ITripService>();
-            var mockedData = new Mock<IApplicationData>();
-
             var driver = new ApplicationUser { UserName = "Pesho" };
             var passenger = new ApplicationUser { UserName = "Gosho" };
             var trip = new Trip() { From = "Sofia", To = "Plovdiv", Driver = driver,Date = new System.DateTime (1994,1,1),Money = 4, Slots = 5,Passengers = new List<ApplicationUser> { passenger },Description = "Kef be" };
+            var mockedUserService = new Mock<IUserService>();
 
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns(trip);
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(5)).Returns(trip).Verifiable();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
@@ -106,11 +106,13 @@
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
-            var mockedTripService = new Mock<ITripService>();
-            var mockedData = new Mock<IApplicationData>();
+            var mockedUserService = new Mock<IUserService>();
 
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns((Trip)null);
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(5)).Returns((Trip)null).Verifiable();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+
             var mock = new Mock<ControllerContext>();
 
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(false);
@@ -122,127 +124,77 @@
                 .ShouldRenderDefaultView();
         }
 
+
         [Test]
-        public void CallIsUserInMethod_WhenIsAutheticatedIsTrue()
+        public void IsUserInIsTrue_WhenUserIsPassenger()
         {
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
+            var userId = "IdOfmyChoosing";
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
-            var passenger = new ApplicationUser { UserName = "Gosho" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv",DriverId=driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
+            var passenger = new ApplicationUser { UserName = "Gosho", Id = userId };
+            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
 
             var passengers = new List<ApplicationUser>();
             var mockedTripService = new Mock<ITripService>();
-            mockedTripService.Setup(x => x.CanUserJoinTrip("IdOfmyChoosing", "DriverId", 5,passengers)).Returns(true);
-            var mockedData = new Mock<IApplicationData>();
+            mockedTripService.Setup(x => x.GetById(5)).Returns(trip).Verifiable();
 
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns(trip);
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedUserService = new Mock<IUserService>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+
             var mock = new Mock<ControllerContext>();
-
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
+
             controller.ControllerContext = mock.Object;
-            controller.GetUserId = () => "IdOfmyChoosing";
+            controller.GetUserId = () => userId;
 
             // Act
             controller.GetById(5);
 
             // Assert
-            mockedTripService.Verify(x => x.CanUserJoinTrip("IdOfmyChoosing", "DriverId", 5,It.IsNotNull<IEnumerable<ApplicationUser>>()), Times.Once);
+            controller.WithCallTo(x => x.GetById(5)).ShouldRenderDefaultView().WithModel<TripDetailedModel>(model =>
+            {
+                Assert.IsTrue(model.IsUserIn);
+            });
         }
 
         [Test]
-        public void SetupViewDataShowJoinButtonToFalse_WhenIsAutheticatedIsTrueAndCanJoinTripIsFalse()
+        public void IsUserInIsFalse_WhenUserIsNotPassenger()
         {
             // Arrange
             var automap = new AutoMapperConfig();
             automap.Execute(typeof(TripController).Assembly);
 
+            var userId = "IdOfmyChoosing";
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
-            var passenger = new ApplicationUser { UserName = "Gosho" };
+            var passenger = new ApplicationUser { UserName = "Gosho", Id = "AnotherUser" };
             var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
 
             var passengers = new List<ApplicationUser>();
             var mockedTripService = new Mock<ITripService>();
-            mockedTripService.Setup(x => x.CanUserJoinTrip("IdOfmyChoosing", "DriverId", 5, passengers)).Returns(false);
-            var mockedData = new Mock<IApplicationData>();
+            mockedTripService.Setup(x => x.GetById(5)).Returns(trip).Verifiable();
 
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns(trip);
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedUserService = new Mock<IUserService>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+
             var mock = new Mock<ControllerContext>();
             mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
+
             controller.ControllerContext = mock.Object;
-            controller.GetUserId = () => "IdOfmyChoosing";
-
-
-            controller.GetById(5);
-
-            // Act & Assert
-            Assert.IsFalse((bool)controller.ViewData["ShowJoinButton"]);
-        }
-
-        [Test]
-        public void SetupViewDataShowJoinButtonToTrue_WhenIsAutheticatedIsTrueAndCanJoinTripIsTrue()
-        {
-            // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
-            var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
-            var passenger = new ApplicationUser { UserName = "Gosho" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
-
-            var passengers = new List<ApplicationUser>();
-            var mockedTripService = new Mock<ITripService>();
-            mockedTripService.Setup(x => x.CanUserJoinTrip("IdOfmyChoosing", "DriverId", 5, passengers)).Returns(true).Verifiable();
-            var mockedData = new Mock<IApplicationData>();
-
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns(trip).Verifiable();
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
-            var mock = new Mock<ControllerContext>();
-            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true).Verifiable();
-            controller.ControllerContext = mock.Object;
-            controller.GetUserId = () => "IdOfmyChoosing";
+            controller.GetUserId = () => userId;
 
             // Act
             controller.GetById(5);
 
             // Assert
-            Assert.IsFalse((bool)controller.ViewData["ShowJoinButton"]);
-        }
-
-        [Test]
-        public void CalledGetUserIdOnce_WhenIsAutheticatedIsTrue()
-        {
-            // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
-            var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
-            var passenger = new ApplicationUser { UserName = "Gosho" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
-
-            var passengers = new List<ApplicationUser>();
-            var mockedTripService = new Mock<ITripService>();
-            mockedTripService.Setup(x => x.CanUserJoinTrip("IdOfmyChoosing", "DriverId", 5, passengers)).Returns(false);
-            var mockedData = new Mock<IApplicationData>();
-
-            mockedData.Setup(m => m.Trips.GetById(5)).Returns(trip);
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
-
-            var mock = new Mock<ControllerContext>();
-            mock.SetupGet(x => x.HttpContext.Request.IsAuthenticated).Returns(true);
-
-            controller.ControllerContext = mock.Object;
-            controller.GetUserId = () => "IdOfmyChoosing";
-
-            // Act 
-            controller.GetById(5);
-
-            // Assert
-            mockedTripService.Verify(x => x.CanUserJoinTrip(controller.GetUserId(), "DriverId", 5,It.IsNotNull<IEnumerable<ApplicationUser>>()), Times.Once);
+            controller.WithCallTo(x => x.GetById(5)).ShouldRenderDefaultView().WithModel<TripDetailedModel>(model =>
+            {
+                Assert.IsFalse(model.IsUserIn);
+            });
         }
     }
 }

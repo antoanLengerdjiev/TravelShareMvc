@@ -43,11 +43,5 @@
             return this.Data.GetById(id);
         }
 
-
-
-        public void Dispose()
-        {
-            this.Data.Dispose();
-        }
     }
 }

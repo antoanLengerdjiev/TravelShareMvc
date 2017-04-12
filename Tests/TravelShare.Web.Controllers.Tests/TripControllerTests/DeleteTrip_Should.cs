@@ -15,8 +15,9 @@
     [TestFixture]
     public class DeleteTrip_Should
     {
+
         [Test]
-        public void CallGetByIdFromDataProviderUsers()
+        public void CallGetByIdFromTripService()
         {
             // Arrange
             var userId = "userId";
@@ -24,43 +25,16 @@
             var user = new ApplicationUser() { Id = userId };
             var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
             var mockedTripService = new Mock<ITripService>();
-
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var mockedUserService = new Mock<IUserService>();
+            mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
             controller.GetUserId = () => userId;
 
             // Act
             controller.DeleteTrip(tripId);
 
             // Assert
-            mockedData.Verify(x => x.Users.GetById(userId), Times.Once);
-        }
-
-        [Test]
-        public void CallGetByIdFromDataProviderTrips()
-        {
-            // Arrange
-            var userId = "userId";
-            var tripId = 5;
-            var user = new ApplicationUser() { Id = userId };
-            var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
-            var mockedTripService = new Mock<ITripService>();
-
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
-            controller.GetUserId = () => userId;
-
-            // Act
-            controller.DeleteTrip(tripId);
-
-            // Assert
-            mockedData.Verify(x => x.Trips.GetById(tripId), Times.Once);
+            mockedTripService.Verify(x => x.GetById(tripId), Times.Once);
         }
 
         [Test]
@@ -72,12 +46,11 @@
             var user = new ApplicationUser() { Id = userId };
             var trip = new Trip() { Id = tripId, DriverId = "AnotherUserId" };
             var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
             controller.GetUserId = () => userId;
 
             // Act & Assert
@@ -85,7 +58,7 @@
         }
 
         [Test]
-        public void CallDeleteFromDataProviderTrips()
+        public void CallDeleteFromTripService()
         {
             // Arrange
             var userId = "userId";
@@ -93,45 +66,18 @@
             var user = new ApplicationUser() { Id = userId };
             var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
             var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
 
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
-            mockedData.Setup(x => x.Trips.Delete(trip)).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
             controller.GetUserId = () => userId;
 
             // Act
             controller.DeleteTrip(tripId);
 
             // Assert
-            mockedData.Verify(x => x.Trips.Delete(trip), Times.Once);
-        }
-
-        [Test]
-        public void CallSaveChangesFromDataProviderTrips()
-        {
-            // Arrange
-            var userId = "userId";
-            var tripId = 5;
-            var user = new ApplicationUser() { Id = userId };
-            var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
-            var mockedTripService = new Mock<ITripService>();
-
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
-            mockedData.Setup(x => x.Trips.Delete(trip)).Verifiable();
-
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
-            controller.GetUserId = () => userId;
-
-            // Act
-            controller.DeleteTrip(tripId);
-
-            // Assert
-            mockedData.Verify(x => x.SaveChanges(), Times.Once);
+            mockedTripService.Verify(x => x.DeleteTrip(userId, trip), Times.Once);
         }
 
         [Test]
@@ -143,13 +89,11 @@
             var user = new ApplicationUser() { Id = userId };
             var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
             var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
+            mockedTripService.Setup(x => x.DeleteTrip(userId, trip)).Verifiable();
+            var mockedUserService = new Mock<IUserService>();
 
-            var mockedData = new Mock<IApplicationData>();
-            mockedData.Setup(x => x.Trips.GetById(tripId)).Returns(trip).Verifiable();
-            mockedData.Setup(x => x.Users.GetById(userId)).Returns(user).Verifiable();
-            mockedData.Setup(x => x.Trips.Delete(trip)).Verifiable();
-            mockedData.Setup(x => x.SaveChanges()).Verifiable();
-            var controller = new TripController(mockedData.Object, mockedTripService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
             controller.GetUserId = () => userId;
 
             // Act && Assert

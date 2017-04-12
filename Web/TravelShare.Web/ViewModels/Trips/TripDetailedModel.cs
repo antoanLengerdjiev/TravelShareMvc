@@ -26,5 +26,7 @@
         public UserViewModel Driver { get; set; }
 
         public ICollection<UserViewModel> Passengers { get; set; }
+
+        public bool IsUserIn { get; set; }
     }
 }

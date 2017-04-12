@@ -57,9 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationData.cs" />
-    <Compile Include="Contracts\IApplicationData.cs" />
     <Compile Include="Contracts\IApplicationDbContext.cs" />
+    <Compile Include="Contracts\IApplicationDbContextSaveChanges.cs" />
     <Compile Include="EfDbRepository{T}.cs" />
     <Compile Include="IEfDbRepository{T}.cs" />
     <Compile Include="Models\IEntityWithCreator.cs" />

@@ -25,6 +25,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Debug\TravelShare.Data.Models.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Debug\TravelShare.Data.Models.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Debug\TravelShare.Data.Models.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\obj\Debug\TravelShare.Data.Models.csprojResolveAssemblyReference.cache

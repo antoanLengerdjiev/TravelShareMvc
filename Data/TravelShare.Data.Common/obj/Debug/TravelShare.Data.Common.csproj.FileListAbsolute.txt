@@ -20,6 +20,4 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\TravelShare.Data.Models.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\Bytes2you.Validation.dll
