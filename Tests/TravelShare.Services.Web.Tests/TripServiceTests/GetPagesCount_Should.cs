@@ -19,11 +19,11 @@
         {
 
             // Arrange
-            var pesho = new Trip() { Id = 16, IsDeleted = false, Date = DateTime.Now };
+            var pesho = new Trip() { Id = 16, IsDeleted = false, Date = new DateTime(1994, 1, 1) };
             var list = new List<Trip>()
             {
                 pesho,
-                new Trip() { Id = 15, IsDeleted = true, Date = DateTime.Now },
+                new Trip() { Id = 15, IsDeleted = true, Date = new DateTime(1994, 1, 1) },
                 pesho
             };
 
@@ -82,11 +82,9 @@
             Assert.AreEqual(2, result);
         }
 
-
         [Test]
         public void CallsTripRepositoryMethodAll()
         {
-
             // Arrange
             var pesho = new Trip() { Id = 16, IsDeleted = false, Date = DateTime.Now };
             var list = new List<Trip>()
@@ -114,6 +112,32 @@
 
             // Assert
             mockRepository.Verify(x => x.All(), Times.Once);
+        }
+
+        [Test]
+        public void ReturnZeroPages_WhenThereIsNoTrips()
+        {
+            // Arrange
+            var list = new List<Trip>();
+
+            var mockedDbSet = QueryableDbSetMock.GetQueryableMockDbSet<Trip>(list);
+
+            var mockedContext = new Mock<IApplicationDbContext>();
+            mockedContext.Setup(s => s.Set<Trip>())
+              .Returns(mockedDbSet);
+
+            var mockRepository = new Mock<IEfDbRepository<Trip>>();
+            mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+
+            // Act
+            var result = tripService.GetPagesCount(2);
+
+            // Assert
+            Assert.AreEqual(0, result);
         }
     }
 }

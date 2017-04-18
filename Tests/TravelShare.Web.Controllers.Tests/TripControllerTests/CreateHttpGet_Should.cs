@@ -10,6 +10,7 @@
     using TestStack.FluentMVCTesting;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Services.Data.Common.Contracts;
+    using TravelShareMvc.Providers.Contracts;
 
     [TestFixture]
     public class CreateHttpGet_Should
@@ -20,7 +21,9 @@
             // Arrange
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();

@@ -139,7 +139,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\AutoMapper.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.Owin.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.Owin.Security.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Data.dll
@@ -181,3 +180,7 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Bytes2you.Validation.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.Providers.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.IdentityConfig.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.Providers.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.IdentityConfig.pdb

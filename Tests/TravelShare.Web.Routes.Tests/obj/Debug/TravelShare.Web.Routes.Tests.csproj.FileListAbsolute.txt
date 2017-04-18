@@ -191,3 +191,7 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\obj\
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Bytes2you.Validation.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShare.Services.Data.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShare.Services.Data.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.Providers.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.IdentityConfig.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.Providers.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.IdentityConfig.pdb

@@ -39,6 +39,11 @@
         public int GetPagesCount(int number)
         {
             var tripsCount = this.tripRepository.All().Count();
+            if (tripsCount == 0)
+            {
+                return tripsCount;
+            }
+
             return tripsCount % number == 0 ? tripsCount / number : (tripsCount / number) + 1;
         }
 

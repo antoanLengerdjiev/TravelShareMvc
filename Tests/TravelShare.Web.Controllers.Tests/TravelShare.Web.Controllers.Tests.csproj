@@ -48,6 +48,7 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -100,6 +101,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountControllerTests\Constructor.cs" />
+    <Compile Include="AccountControllerTests\LoginGet_Should.cs" />
+    <Compile Include="AccountControllerTests\LoginPost_Should.cs" />
+    <Compile Include="AccountControllerTests\LogOff_Should.cs" />
+    <Compile Include="AccountControllerTests\RegisterGet_Should.cs" />
+    <Compile Include="AccountControllerTests\RegisterPost_Should.cs" />
     <Compile Include="HomeControllerTests\Constructor.cs" />
     <Compile Include="HomeControllerTests\Index.cs" />
     <Compile Include="ProfileControllerTests\Constructor.cs" />
@@ -131,6 +138,10 @@
     <ProjectReference Include="..\..\Data\TravelShare.Data.Models\TravelShare.Data.Models.csproj">
       <Project>{048df115-fad9-4bd4-9ba0-d99dfd32a2b2}</Project>
       <Name>TravelShare.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Providers\TravelShareMvc.Providers\TravelShareMvc.Providers.csproj">
+      <Project>{f4fa40f1-30ec-4190-a6d1-006ccde4a263}</Project>
+      <Name>TravelShareMvc.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\TravelShare.Services.Data\TravelShare.Services.Data.csproj">
       <Project>{90fe4c4d-122a-406d-8a40-79c561fb8184}</Project>

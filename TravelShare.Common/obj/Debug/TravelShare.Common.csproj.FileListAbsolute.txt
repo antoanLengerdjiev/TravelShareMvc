@@ -5,6 +5,5 @@ C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRen
 C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRenamer\bin\Debug\Source\TravelShare.Common\obj\Debug\TravelShare.Common.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\bin\Debug\TravelShare.Common.dll
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\bin\Debug\TravelShare.Common.pdb
-C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.dll
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.pdb

@@ -6,6 +6,7 @@
     using NUnit.Framework;
     using Services.Data.Common.Contracts;
     using TestStack.FluentMVCTesting;
+    using TravelShareMvc.Providers.Contracts;
 
     [TestFixture]
     public class All_Should
@@ -21,7 +22,9 @@
 
             var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -39,8 +42,9 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -59,8 +63,9 @@
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetPagesCount(It.IsAny<int>())).Returns(5).Verifiable();
             var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -78,8 +83,9 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.All(5);
@@ -97,8 +103,9 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.All(5)).ShouldRenderDefaultView();

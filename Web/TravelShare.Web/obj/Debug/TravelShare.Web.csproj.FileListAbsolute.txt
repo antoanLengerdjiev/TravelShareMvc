@@ -205,3 +205,7 @@ C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelSha
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelShare.Web.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\obj\Debug\TravelShare.Web.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\Bytes2you.Validation.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\TravelShareMvc.IdentityConfig.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\TravelShareMvc.Providers.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\TravelShareMvc.IdentityConfig.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\TravelShareMvc.Providers.pdb

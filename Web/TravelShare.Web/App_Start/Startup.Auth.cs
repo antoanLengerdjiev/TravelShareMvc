@@ -2,15 +2,17 @@
 {
     using System;
 
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin;
-    using Microsoft.Owin.Security.Cookies;
+
 
     using TravelShare.Data;
     using TravelShare.Data.Models;
 
     using Owin;
+    using TravelShareMvc.IdentityConfig;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.Owin;
+    using Microsoft.AspNet.Identity.Owin;
 
     public partial class Startup
     {

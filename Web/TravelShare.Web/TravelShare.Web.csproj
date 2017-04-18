@@ -192,8 +192,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ApplicationSignInManager.cs" />
-    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
@@ -206,7 +204,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -279,7 +276,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\maps.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -348,6 +347,14 @@
     <ProjectReference Include="..\..\Data\TravelShare.Data\TravelShare.Data.csproj">
       <Project>{7c950cdc-9587-4b65-a204-988efed17948}</Project>
       <Name>TravelShare.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IdentityConfig\TravelShareMvc.IdentityConfig\TravelShareMvc.IdentityConfig.csproj">
+      <Project>{d7eed929-49cd-4a9e-a8ab-33aff811c581}</Project>
+      <Name>TravelShareMvc.IdentityConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Providers\TravelShareMvc.Providers\TravelShareMvc.Providers.csproj">
+      <Project>{f4fa40f1-30ec-4190-a6d1-006ccde4a263}</Project>
+      <Name>TravelShareMvc.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TravelShare.Common\TravelShare.Common.csproj">
       <Project>{701F322F-AA01-4DDC-90B6-6935981C1E73}</Project>

@@ -11,6 +11,7 @@
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
     using TravelShare.Services.Data.Common.Contracts;
+    using TravelShareMvc.Providers.Contracts;
 
     [TestFixture]
     public class DeleteTrip_Should
@@ -27,8 +28,10 @@
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip);
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
-            controller.GetUserId = () => userId;
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -48,10 +51,10 @@
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
             var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
-
-            controller.GetUserId = () => userId;
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<ErrorController>(x => new ErrorController().Forbidden());
@@ -70,8 +73,10 @@
 
             var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
-            controller.GetUserId = () => userId;
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -88,16 +93,44 @@
             var tripId = 5;
             var user = new ApplicationUser() { Id = userId };
             var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
+
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
             mockedTripService.Setup(x => x.DeleteTrip(userId, trip)).Verifiable();
+
             var mockedUserService = new Mock<IUserService>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object);
-            controller.GetUserId = () => userId;
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
 
             // Act && Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<TripController>(x => x.Create());
+        }
+
+        [Test]
+        public void CallCurrentUserIdFromAuthProvider()
+        {
+            // Arrange
+            var userId = "userId";
+            var tripId = 5;
+            var user = new ApplicationUser() { Id = userId };
+            var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
+            var mockedTripService = new Mock<ITripService>();
+            mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
+
+            var mockedUserService = new Mock<IUserService>();
+
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+
+            // Act
+            controller.DeleteTrip(tripId);
+
+            // Assert
+            mockAuthProvider.Verify(x => x.CurrentUserId, Times.Once);
         }
     }
 }

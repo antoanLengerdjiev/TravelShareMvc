@@ -39,6 +39,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoverDependency", "CoverDep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelShar.Data.Tests", "TravelShar.Data.Tests\TravelShar.Data.Tests.csproj", "{949929F2-DC1F-4631-9CDA-6437AE02FE93}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{157DF084-6033-443D-89E4-09B1FF9E8B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelShareMvc.Providers", "Providers\TravelShareMvc.Providers\TravelShareMvc.Providers.csproj", "{F4FA40F1-30EC-4190-A6D1-006CCDE4A263}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityConfig", "IdentityConfig", "{E7FBF8F0-13A7-4244-988F-2C902DD6509E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelShareMvc.IdentityConfig", "IdentityConfig\TravelShareMvc.IdentityConfig\TravelShareMvc.IdentityConfig.csproj", "{D7EED929-49CD-4A9E-A8AB-33AFF811C581}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +105,14 @@ Global
 		{949929F2-DC1F-4631-9CDA-6437AE02FE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{949929F2-DC1F-4631-9CDA-6437AE02FE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{949929F2-DC1F-4631-9CDA-6437AE02FE93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FA40F1-30EC-4190-A6D1-006CCDE4A263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FA40F1-30EC-4190-A6D1-006CCDE4A263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FA40F1-30EC-4190-A6D1-006CCDE4A263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FA40F1-30EC-4190-A6D1-006CCDE4A263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7EED929-49CD-4A9E-A8AB-33AFF811C581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7EED929-49CD-4A9E-A8AB-33AFF811C581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7EED929-49CD-4A9E-A8AB-33AFF811C581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7EED929-49CD-4A9E-A8AB-33AFF811C581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,5 +130,7 @@ Global
 		{7C55353F-CB74-4E8E-B272-42DA1C9C2194} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 		{049FFEA4-9C0E-4E0F-B79C-021119C3AEAB} = {1F946F53-ADE0-4AEE-8EA6-782BCE772591}
 		{949929F2-DC1F-4631-9CDA-6437AE02FE93} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
+		{F4FA40F1-30EC-4190-A6D1-006CCDE4A263} = {157DF084-6033-443D-89E4-09B1FF9E8B84}
+		{D7EED929-49CD-4A9E-A8AB-33AFF811C581} = {E7FBF8F0-13A7-4244-988F-2C902DD6509E}
 	EndGlobalSection
 EndGlobal

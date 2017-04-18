@@ -16,6 +16,8 @@
     using Services.Data;
     using Services.Data.Common.Contracts;
     using Services.Web;
+    using TravelShareMvc.Providers;
+    using TravelShareMvc.Providers.Contracts;
 
     public static class AutofacConfig
     {
@@ -71,6 +73,11 @@
 
             builder.Register(x => new UserService(x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<IApplicationDbContextSaveChanges>()))
                 .As<IUserService>()
+                .InstancePerRequest();
+
+            builder.Register(x => new HttpContextProvider()).As<IHttpContextProvider>().InstancePerRequest();
+
+            builder.Register(x => new AuthenticationProvider(x.Resolve<IHttpContextProvider>())).As<IAuthenticationProvider>()
                 .InstancePerRequest();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

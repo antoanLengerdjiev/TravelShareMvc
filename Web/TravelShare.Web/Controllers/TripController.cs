@@ -11,6 +11,7 @@
     using Infrastructure.Mapping;
     using Microsoft.AspNet.Identity;
     using Services.Data.Common.Contracts;
+    using TravelShareMvc.Providers.Contracts;
     using ViewModels;
     using ViewModels.Trips;
 
@@ -18,11 +19,10 @@
     {
             private readonly ITripService tripService;
             private readonly IUserService userService;
-            public Func<string> GetUserId;
+            private readonly IAuthenticationProvider authenticationProvider;
 
-            public TripController(ITripService tripService, IUserService userService)
+            public TripController(ITripService tripService, IUserService userService, IAuthenticationProvider authenticationProvider)
             {
-
                 Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
                     .IsNull()
                     .Throw();
@@ -31,9 +31,13 @@
                     .IsNull()
                     .Throw();
 
+                Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+                    .IsNull()
+                    .Throw();
+
                 this.tripService = tripService;
                 this.userService = userService;
-                this.GetUserId = () => this.User.Identity.GetUserId();
+                this.authenticationProvider = authenticationProvider;
             }
 
         [Authorize]
@@ -53,7 +57,7 @@
                 return this.View(model);
             }
 
-            var userId = this.GetUserId();
+            var userId = this.authenticationProvider.CurrentUserId;
             model.DriverId = userId;
             var trip = AutoMapperConfig.Configuration.CreateMapper().Map<Trip>(model);
             this.tripService.Create(trip);
@@ -74,9 +78,9 @@
         {
             var trip = this.tripService.GetById(id);
             var tripViewModel = AutoMapperConfig.Configuration.CreateMapper().Map<TripDetailedModel>(trip);
-            if (this.Request.IsAuthenticated)
+            if (this.authenticationProvider.IsAuthenticated)
             {
-                var userId = this.GetUserId();
+                var userId = this.authenticationProvider.CurrentUserId;
                 tripViewModel.IsUserIn = trip.Passengers.Select(x => x.Id).ToList().Contains(userId);
             }
 
@@ -88,7 +92,8 @@
         [ValidateAntiForgeryToken]
         public JsonResult JoinTrip(int tripId)
         {
-            var user = this.userService.GetById(this.GetUserId());
+            var userId = this.authenticationProvider.CurrentUserId;
+            var user = this.userService.GetById(userId);
             var trip = this.tripService.GetById(tripId);
             if (trip == null || user == null)
             {
@@ -110,7 +115,8 @@
         [ValidateAntiForgeryToken]
         public JsonResult LeaveTrip(int tripId)
         {
-            var user = this.userService.GetById(this.GetUserId());
+            var userId = this.authenticationProvider.CurrentUserId;
+            var user = this.userService.GetById(userId);
             var trip = this.tripService.GetById(tripId);
             if (trip == null || user == null)
             {
@@ -132,7 +138,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteTrip(int id)
         {
-            var userId = this.GetUserId();
+            var userId = this.authenticationProvider.CurrentUserId;
             var trip = this.tripService.GetById(id);
 
             if (trip.DriverId != userId)

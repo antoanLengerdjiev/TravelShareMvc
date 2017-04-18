@@ -10,28 +10,33 @@
     using Infrastructure.Mapping;
     using Microsoft.AspNet.Identity;
     using TravelShare.Services.Data.Common.Contracts;
+    using TravelShareMvc.Providers.Contracts;
     using ViewModels.Trips;
 
     [Authorize]
     public class ProfileController : BaseController
     {
         private readonly IUserService userService;
-        public Func<string> GetUserId;
+        private readonly IAuthenticationProvider authenticationProvider;
 
-        public ProfileController(IUserService userService)
+        public ProfileController(IUserService userService, IAuthenticationProvider authenticationProvider)
         {
             Guard.WhenArgument<IUserService>(userService, "User Service cannot ben null.")
                 .IsNull()
                 .Throw();
 
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+                .IsNull()
+                .Throw();
+
             this.userService = userService;
-            this.GetUserId = () => this.User.Identity.GetUserId();
+            this.authenticationProvider = authenticationProvider;
         }
 
         [HttpGet]
         public ActionResult MyTrips(int page)
         {
-            var userId = this.GetUserId();
+            var userId = this.authenticationProvider.CurrentUserId;
             var trips = AutoMapperConfig.Configuration.CreateMapper().Map<IEnumerable<Trip>, IEnumerable<TripAllModel>>(this.userService.MyTrips(userId, page, 5)).ToList();
             var pageCount = this.userService.MyTripsPageCount(userId, 5);
             this.TempData["page"] = page;

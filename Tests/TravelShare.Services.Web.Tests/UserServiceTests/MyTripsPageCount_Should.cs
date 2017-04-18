@@ -123,5 +123,26 @@
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
+
+        [Test]
+        public void Return0Pages_WhenParameterAreValidAndThereIsNoUsersTrips()
+        {
+            // Arrange
+            string userId = "RandomId";
+
+            var list = new List<Trip>();
+            var user = new ApplicationUser() { Id = userId, Trips = list };
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
+
+            var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
+
+            // Act
+            var result = service.MyTripsPageCount(userId, 3);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
     }
 }
