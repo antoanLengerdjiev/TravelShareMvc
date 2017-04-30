@@ -4,9 +4,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
     using Data.Models;
-    using Infrastructure.Mapping;
+    using Mappings;
 
-    public class TripCreateModel : IMapTo<Trip>
+    public class TripCreateModel : IMapFrom<Trip>
     {
 
         [Required]

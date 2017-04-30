@@ -46,3 +46,4 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelS
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\bin\Debug\Bytes2you.Validation.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.passengers.resources
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.connectingTripToPassengers.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.newPropsforUser.resources

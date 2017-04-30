@@ -11,8 +11,38 @@
     using TravelShare.Services.Data;
 
     [TestFixture]
-    public class MyTrips_Should
+    public class MyTripsAsPassenger_Should
     {
+
+        [Test]
+        public void ThorwArgumentNullException_WhenParameterUserIdIsNull()
+        {
+            // Arrange
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var userService = new UserService(mockUserRepository.Object, mockSaveChanges.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => userService.MyTripsAsPassenger(null, 0,1));
+        }
+
+        [Test]
+        public void ThorwArgumentNullExceptionWithCorrectMessage_WhenParameterUserIdIsNull()
+        {
+            // Arrange
+            var expectedMessage = "User Id cannot be null";
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var userService = new UserService(mockUserRepository.Object, mockSaveChanges.Object);
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => userService.MyTripsAsPassenger(null, 0, 1));
+
+            StringAssert.Contains(expectedMessage, exception.Message);
+        }
+
         [Test]
         public void ReturnCorrecResultOftFirstPageWithSecondTrip()
         {
@@ -34,7 +64,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTrips("pesho", 0, 1);
+            var result = service.MyTripsAsPassenger("pesho", 0, 1);
 
             // Assert
             Assert.AreEqual(secondTrip, result.FirstOrDefault());
@@ -61,7 +91,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTrips("pesho", 1, 1);
+            var result = service.MyTripsAsPassenger("pesho", 1, 1);
 
             // Assert
             Assert.AreEqual(firstTrip, result.FirstOrDefault());
@@ -88,8 +118,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTrips("pesho", 0, 2);
-
+            var result = service.MyTripsAsPassenger("pesho", 0, 2);
 
             // Assert
             Assert.AreEqual(secondTrip, result.FirstOrDefault());
@@ -106,7 +135,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.MyTrips(null, 0, 1));
+            Assert.Throws<ArgumentNullException>(() => service.MyTripsAsPassenger(null, 0, 1));
         }
 
         [Test]
@@ -120,7 +149,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => service.MyTrips(null, 0, 1));
+            var exception = Assert.Throws<ArgumentNullException>(() => service.MyTripsAsPassenger(null, 0, 1));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -148,7 +177,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTrips(userId, 0, 1);
+            var result = service.MyTripsAsPassenger(userId, 0, 1);
 
             // Assert
             mockUserRepository.Verify(x => x.GetById(userId), Times.Once);

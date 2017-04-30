@@ -45,7 +45,7 @@ namespace TravelShareMvc.Providers
 
             if (result.Succeeded)
             {
-                //manager.AddToRole(user.Id, "User");
+                manager.AddToRole(user.Id, "User");
             }
 
             return result;
@@ -60,8 +60,12 @@ namespace TravelShareMvc.Providers
         public void ChangeUserRole(string userId, string role)
         {
             var manager = this.httpContextProvider.GetCurrentUserManager<ApplicationUserManager>();
-
-            manager.RemoveFromRoles(userId, "Administrator", "Moderator", "User");
+            var roles = this.httpContextProvider.GetCurrentUserManager<ApplicationUserManager>()
+                .GetRoles(userId);
+            foreach (var item in roles)
+            {
+                manager.RemoveFromRole(userId, item);
+            }
 
             manager.AddToRole(userId, role);
         }

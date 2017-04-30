@@ -5,6 +5,16 @@
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(30, ErrorMessage = "FirstNameValidation", MinimumLength = 2)]
+        [Display(Name = "FirstName")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "LastNameValidation", MinimumLength = 2)]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

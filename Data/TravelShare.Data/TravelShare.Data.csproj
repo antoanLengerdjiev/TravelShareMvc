@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201703260854102_connectingTripToPassengers.Designer.cs">
       <DependentUpon>201703260854102_connectingTripToPassengers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704281523107_newPropsforUser.cs" />
+    <Compile Include="Migrations\201704281523107_newPropsforUser.Designer.cs">
+      <DependentUpon>201704281523107_newPropsforUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703260854102_connectingTripToPassengers.resx">
       <DependentUpon>201703260854102_connectingTripToPassengers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704281523107_newPropsforUser.resx">
+      <DependentUpon>201704281523107_newPropsforUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

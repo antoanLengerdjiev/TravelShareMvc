@@ -137,7 +137,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\AutoMapper.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.Owin.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.Owin.Security.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.dll

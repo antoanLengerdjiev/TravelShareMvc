@@ -2,6 +2,7 @@
 {
     using Data.Common.Contracts;
     using Infrastructure.Mapping;
+    using Mappings;
     using Moq;
     using NUnit.Framework;
     using Services.Data.Common.Contracts;
@@ -15,8 +16,6 @@
         public void CallGetPagedTripsFromTripService_WhenInvoked()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
 
             var mockedTripService = new Mock<ITripService>();
 
@@ -24,7 +23,8 @@
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockImapperProvider = new Mock<IMapperProvider>();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object,mockImapperProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -37,14 +37,12 @@
         public void CallGetPagesCountFromTripService_WhenInvoked()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockImapperProvider = new Mock<IMapperProvider>();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -57,15 +55,12 @@
         public void ShouldSetTempDataToGetPagesCountFromTripService_WhenInvoked()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetPagesCount(It.IsAny<int>())).Returns(5).Verifiable();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockImapperProvider = new Mock<IMapperProvider>();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
 
             // Act
             controller.All(It.IsAny<int>());
@@ -84,8 +79,8 @@
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockImapperProvider = new Mock<IMapperProvider>();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
 
             // Act
             controller.All(5);
@@ -104,8 +99,8 @@
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockImapperProvider = new Mock<IMapperProvider>();
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.All(5)).ShouldRenderDefaultView();

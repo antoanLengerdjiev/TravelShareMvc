@@ -25,6 +25,12 @@ namespace TravelShare.Services.Data.Common.Contracts
 
         bool CanUserJoinTrip(string userId,string driverId, int slots ,IEnumerable<ApplicationUser> passengers);
 
-        IEnumerable<Trip> SearchTrips(string from, string to, DateTime date);
+        IEnumerable<Trip> SearchTrips(string from, string to, DateTime date, int page, int perPage);
+
+        int SearchTripCount(string from, string to, DateTime date, int perPage);
+
+        IEnumerable<Trip> MyTripsAsDriver(string userId, int page, int perPage);
+
+        int MyTripsAsDriverPageCount(string userId, int perPage);
     }
 }

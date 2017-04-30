@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Data.Models;
+    using Mappings;
     using Moq;
     using NUnit.Framework;
     using Services.Data.Common.Contracts;
@@ -10,6 +11,7 @@
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Web.Infrastructure.Mapping;
     using TravelShareMvc.Providers.Contracts;
+    using ViewModels;
     using ViewModels.Trips;
 
     [TestFixture]
@@ -20,8 +22,6 @@
         public void CallIsRequestAuthenticatedFromAuthService()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
             var trip = new Trip { Passengers = new List<ApplicationUser>() };
             var mockedUserService = new Mock<IUserService>();
 
@@ -29,7 +29,9 @@
             mockedTripService.Setup(x => x.GetById(It.IsAny<int>())).Returns(trip).Verifiable();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.GetById(It.IsAny<int>());
@@ -42,9 +44,8 @@
         public void CallCurrendUserIdFromAuthService_WhenRequestIsAuthenticated()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
             var trip = new Trip { Passengers = new List<ApplicationUser>() };
+            var tripModel = new TripDetailedModel { Passengers = new List<UserViewModel>() };
             var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
@@ -52,7 +53,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(true);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+            mockMapperProvider.Setup(m => m.Map<TripDetailedModel>(It.IsAny<Trip>())).Returns(tripModel);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.GetById(It.IsAny<int>());
@@ -65,9 +68,9 @@
         public void CallTripGetByIdMethod()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
             var trip = new Trip { Passengers = new List<ApplicationUser>() };
+            var tripModel = new TripDetailedModel { Passengers = new List<UserViewModel>() };
+
             var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
@@ -75,7 +78,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(true);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+            mockMapperProvider.Setup(m => m.Map<TripDetailedModel>(It.IsAny<Trip>())).Returns(tripModel);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.GetById(It.IsAny<int>());
@@ -88,9 +93,6 @@
         public void ReturnDefaultView()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
@@ -99,7 +101,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(false);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.GetById(It.IsAny<int>())).ShouldRenderDefaultView();
@@ -109,12 +113,10 @@
         public void ReturnViewWithModelWithCorrectProperties_WhenThereIsAModelWithThePassedId()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
+            var tripModel = new TripDetailedModel {Driver = new UserViewModel {UserName ="Pesho" }, Passengers = new List<UserViewModel>() { new UserViewModel { UserName = "Gosho" } }, From = "Sofia", To = "Plovdiv", Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Description = "Kef be" };
             var driver = new ApplicationUser { UserName = "Pesho" };
             var passenger = new ApplicationUser { UserName = "Gosho" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", Driver = driver,Date = new System.DateTime (1994,1,1),Money = 4, Slots = 5,Passengers = new List<ApplicationUser> { passenger },Description = "Kef be" };
+            var trip = new Trip() { From = "Sofia", To = "Plovdiv", Driver = driver,Date = new System.DateTime (1994, 1, 1),Money = 4, Slots = 5,Passengers = new List<ApplicationUser> { passenger },Description = "Kef be" };
             var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
@@ -122,7 +124,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(false);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+            mockMapperProvider.Setup(m => m.Map<TripDetailedModel>(It.IsAny<Trip>())).Returns(tripModel);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller
@@ -145,9 +149,6 @@
         public void ReturnViewWithEmptyModel_WhenThereNoModelWithThePassedId()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedUserService = new Mock<IUserService>();
 
             var mockedTripService = new Mock<ITripService>();
@@ -155,7 +156,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(false);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller
@@ -163,18 +166,20 @@
                 .ShouldRenderDefaultView();
         }
 
-
         [Test]
         public void IsUserInIsTrue_WhenUserIsPassenger()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var userId = "IdOfmyChoosing";
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
+            var driverView = new UserViewModel { UserName = "Pesho", Id = "DriverId" };
+
             var passenger = new ApplicationUser { UserName = "Gosho", Id = userId };
+            var passengerView = new UserViewModel() { UserName = "Gosho", Id = userId };
+
             var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
+
+            var tripModel = new TripDetailedModel() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
 
             var passengers = new List<ApplicationUser>();
             var mockedTripService = new Mock<ITripService>();
@@ -185,7 +190,9 @@
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(true);
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+            mockMapperProvider.Setup(m => m.Map<TripDetailedModel>(It.IsAny<Trip>())).Returns(tripModel);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.GetById(5);
@@ -205,11 +212,15 @@
             automap.Execute(typeof(TripController).Assembly);
 
             var userId = "IdOfmyChoosing";
-            var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
-            var passenger = new ApplicationUser { UserName = "Gosho", Id = "AnotherUser" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
 
-            var passengers = new List<ApplicationUser>();
+            var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
+            var driverView = new UserViewModel { UserName = "Pesho", Id = "DriverId" };
+
+            var passenger = new ApplicationUser { UserName = "Gosho", Id = "AnotherUser" };
+            var passengerView = new UserViewModel() { UserName = "Gosho", Id = "AnotherUser" };
+            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
+            var tripModel = new TripDetailedModel() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
+
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetById(5)).Returns(trip).Verifiable();
 
@@ -218,7 +229,9 @@
             mockAuthProvider.Setup(x => x.IsAuthenticated).Returns(true);
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+            mockMapperProvider.Setup(m => m.Map<TripDetailedModel>(It.IsAny<Trip>())).Returns(tripModel);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.GetById(5);

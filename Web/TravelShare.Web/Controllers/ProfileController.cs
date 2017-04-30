@@ -1,14 +1,10 @@
 ﻿namespace TravelShare.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using Bytes2you.Validation;
-    using Data.Models;
-    using Infrastructure.Mapping;
-    using Microsoft.AspNet.Identity;
+    using Mappings;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
     using ViewModels.Trips;
@@ -18,10 +14,16 @@
     {
         private readonly IUserService userService;
         private readonly IAuthenticationProvider authenticationProvider;
+        private readonly IMapperProvider mapper;
+        private readonly ITripService tripService;
 
-        public ProfileController(IUserService userService, IAuthenticationProvider authenticationProvider)
+        public ProfileController(IUserService userService, ITripService tripService, IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
         {
             Guard.WhenArgument<IUserService>(userService, "User Service cannot ben null.")
+                .IsNull()
+                .Throw();
+
+            Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
                 .IsNull()
                 .Throw();
 
@@ -29,16 +31,34 @@
                 .IsNull()
                 .Throw();
 
+            Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+               .IsNull()
+               .Throw();
+
             this.userService = userService;
+            this.tripService = tripService;
             this.authenticationProvider = authenticationProvider;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult MyTrips(int page)
+        public ActionResult MyTripsAsPassenger(int page)
         {
             var userId = this.authenticationProvider.CurrentUserId;
-            var trips = AutoMapperConfig.Configuration.CreateMapper().Map<IEnumerable<Trip>, IEnumerable<TripAllModel>>(this.userService.MyTrips(userId, page, 5)).ToList();
-            var pageCount = this.userService.MyTripsPageCount(userId, 5);
+            var trips =this.mapper.Map<IEnumerable<TripAllModel>>(this.userService.MyTripsAsPassenger(userId, page, 5)).ToList();
+            var pageCount = this.userService.MyTripsAsPassengerPageCount(userId, 5);
+            this.TempData["page"] = page;
+            this.TempData["pageCount"] = pageCount;
+
+            return this.View(trips);
+        }
+
+        [HttpGet]
+        public ActionResult MyTripsAsDriver(int page)
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+            var trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.MyTripsAsDriver(userId, page, 5)).ToList();
+            var pageCount = this.tripService.MyTripsAsDriverPageCount(userId, 5);
             this.TempData["page"] = page;
             this.TempData["pageCount"] = pageCount;
 

@@ -1,0 +1,64 @@
+﻿@using TravelShare.Web.Areas.Administration.Models;
+@model UsersViewModel
+<div class="col-sm-12 users-list-head">
+    <div class="col-sm-5 u-name">
+        Name
+    </div>
+    <div class="col-sm-5 u-email">
+        Email
+    </div>
+</div>
+@if (Model.UsersCount == 0)
+{
+    <h2 class="empty-users-list">UsersNotFound</h2>
+}
+else
+{
+    foreach (var user in Model.Users)
+    {
+        <div class="col-sm-12 user-list-item">
+            
+                @if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName))
+                {
+                    <div class="col-sm-5 u-name">
+                        Unknown
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-5 u-name">
+                        @user.FirstName @user.LastName
+                    </div>
+                }
+
+            <div class="col-sm-5 u-email">
+                @user.Email
+            </div>
+            <div class="col-sm-2 u-details">
+                @Html.ActionLink("Details", "userProfile", new { id = @user.Id })
+            </div>
+        </div>
+    }
+    <div>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.Pages; i++)
+                {
+                <li class=@(i == Model.Page ? "active" : "")>
+                    @Ajax.ActionLink(i.ToString(), "SearchUsers",
+                new
+                {
+                    SearchWord = Model.SearchModel.SearchWord,
+                    SortBy = Model.SearchModel.SortBy,
+                    Page = i
+                },
+                new AjaxOptions()
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "search-results",
+                    InsertionMode = InsertionMode.Replace
+                })
+                </li>
+            }
+        </ul>
+    </div>
+}

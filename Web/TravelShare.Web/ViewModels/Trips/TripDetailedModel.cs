@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Data.Models;
-    using Infrastructure.Mapping;
+    using Mappings;
 
     public class TripDetailedModel : IMapFrom<Trip>
     {

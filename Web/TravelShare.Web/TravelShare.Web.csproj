@@ -58,8 +58,8 @@
       <HintPath>..\..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
@@ -193,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\EmailService.cs" />
@@ -200,6 +201,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\SearchModel.cs" />
+    <Compile Include="Areas\Administration\Models\SingleUserViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -208,9 +215,15 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TripController.cs" />
+    <Compile Include="Custom\Attributes\SecurityAttribute.cs" />
+    <Compile Include="Custom\Results\TransferResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappings\IHaveCustomMappings.cs" />
+    <Compile Include="Mappings\IMapFrom.cs" />
+    <Compile Include="Mappings\IMapperProvider.cs" />
+    <Compile Include="Mappings\MapperProvider.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -231,6 +244,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchTripModel.cs" />
+    <Compile Include="ViewModels\Search\SearchTripResultModel.cs" />
     <Compile Include="ViewModels\Trips\TripAllModel.cs" />
     <Compile Include="ViewModels\Trips\TripCreateModel.cs" />
     <Compile Include="ViewModels\Trips\TripDetailedModel.cs" />
@@ -255,6 +269,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\UserManagement\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\UsersPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\UserProfile.cshtml" />
     <None Include="Properties\PublishProfiles\fiesystem.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -314,14 +333,19 @@
     <Content Include="Views\Trip\Create.cshtml" />
     <Content Include="Views\Trip\All.cshtml" />
     <Content Include="Views\Trip\GetById.cshtml" />
-    <Content Include="Views\Profile\MyTrips.cshtml" />
+    <Content Include="Views\Profile\MyTripsAsDriver.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\_FilteredTripsPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TripAllModel.cshtml" />
+    <Content Include="Views\Shared\_AdministrationPartial.cshtml" />
+    <Content Include="Views\Profile\MyTripsAsPassenger.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

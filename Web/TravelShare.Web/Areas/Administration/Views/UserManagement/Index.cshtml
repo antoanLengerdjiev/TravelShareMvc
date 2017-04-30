@@ -1,0 +1,50 @@
+﻿<div class="row">
+    <div class="users-management-container">
+        @using (Ajax.BeginForm("SearchUsers", null,
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "search-results",
+                InsertionMode = InsertionMode.Replace
+            },
+            new { id = "search-form" }))
+        {
+            <div class="search-header">
+                <div class="col-sm-3">
+                    <input type="text" name="SearchWord" class="form-control" />
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary btn-block" type="submit">Search</button>
+                </div>
+                <div class="col-sm-offset-5 col-sm-2">
+                    @Html.DropDownList("SortBy", new List<SelectListItem>()
+                    {
+                        new SelectListItem() { Text = "Name", Value="name" },
+                        new SelectListItem() { Text = "Email", Value="email" }
+                    }, new
+                    {
+                        id = "sort-options",
+                        @class = "form-control"
+                    })
+                </div>
+            </div>
+        }
+        <div id="search-results" class="col-sm-12">
+            @Html.Action("SearchUsers")     
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#sort-options').change(function (e) {
+                $('#search-form').submit();
+            });
+        });
+    </script>
+}
+

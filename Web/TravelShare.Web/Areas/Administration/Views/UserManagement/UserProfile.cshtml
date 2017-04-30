@@ -1,0 +1,42 @@
+﻿@using TravelShare.Web.Areas.Administration.Models;
+@model UserViewModel
+
+<div class="col-sm-12 user-list-item">
+    @if (string.IsNullOrEmpty(Model.FirstName) || string.IsNullOrEmpty(Model.LastName))
+    {
+        <div class="col-sm-5 u-name">
+            Unknown
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-5 u-name">
+            @Model.FirstName @Model.LastName
+        </div>
+    }
+    <div class="col-sm-5 u-email">
+        @Model.Email
+    </div>
+    <div class="col-sm-2 u-details">
+        @Model.Role
+    </div>
+</div>
+
+<div class="row change-role-container">
+    @using (Html.BeginForm("updateStatus", "userManagement", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-offset-8 col-md-2">
+            @Html.HiddenFor(m => m.Id)
+            @Html.DropDownListFor(m => m.Role, new List<SelectListItem>() {
+                new SelectListItem() { Text = "User", Value = "User" },
+                new SelectListItem() { Text = "Moderator", Value = "Moderator" },
+                new SelectListItem() { Text = "Administrator", Value = "Administrator" }
+            }, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Change" class="btn btn-primary btn-block" />
+        </div>
+    }
+</div>
+

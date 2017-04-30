@@ -79,12 +79,12 @@
             return true;
         }
 
-        public IEnumerable<Trip> SearchTrips(string from, string to, DateTime date)
+        public IEnumerable<Trip> SearchTrips(string from, string to, DateTime date, int page, int perPage)
         {
             Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
-            return this.tripRepository.All().ToList().Where(x => x.Date == date && x.From == from && x.To == to);
+            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).OrderBy(x => x.CreatedOn).Skip(page *perPage).Take(perPage).ToList();
         }
 
         public Trip GetById(int id)
@@ -119,6 +119,42 @@
             user.Trips.Remove(trip);
             trip.Passengers.Remove(user);
             this.dbSaveChanges.SaveChanges();
+        }
+
+        public int SearchTripCount(string from, string to, DateTime date, int perPage)
+        {
+            Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
+
+            var tripsCount = this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).Count();
+
+            if (perPage >= tripsCount)
+            {
+                return 0;
+            }
+
+           return (int)Math.Ceiling((double)tripsCount / perPage);
+        }
+
+        public IEnumerable<Trip> MyTripsAsDriver(string userId, int page, int perPage)
+        {
+            Guard.WhenArgument<string>(userId, "User ID cannot be null.").IsNull().Throw();
+
+            return this.tripRepository.All().Where(x => x.DriverId == userId).OrderByDescending(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
+        }
+
+        public int MyTripsAsDriverPageCount(string userId, int perPage)
+        {
+            Guard.WhenArgument<string>(userId, "User ID cannot be null.").IsNull().Throw();
+
+            var tripsCount = this.tripRepository.All().Where(x => x.DriverId == userId).Count();
+
+            if (perPage >= tripsCount)
+            {
+                return 0;
+            }
+
+            return (int)Math.Ceiling((double)tripsCount / perPage);
         }
     }
 }

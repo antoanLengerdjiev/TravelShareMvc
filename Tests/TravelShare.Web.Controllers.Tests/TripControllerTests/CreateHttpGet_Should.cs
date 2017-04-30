@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Mappings;
     using Moq;
     using NUnit.Framework;
     using TestStack.FluentMVCTesting;
@@ -22,8 +23,9 @@
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();

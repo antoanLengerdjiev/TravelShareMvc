@@ -1,0 +1,54 @@
+﻿@model TravelShare.Web.ViewModels.Trips.TripAllModel
+
+<div class="row trip-item container">
+    <a href="@Url.Action("GetById", "Trip",new { id = Model.Id })">
+        <div class="col-md-2">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>@Model.Driver.UserName</span>
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12 trip-date">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                <span>@Model.Date.ToString("MMMM dd, yyyy")</span>
+            </div>
+            <div class="col-md-12 trip-from-to">
+                <span>@Model.From</span>
+                ->
+                <span>@Model.To</span>
+            </div>
+            <div class="col-md-12">
+                <i class="fa fa-map-marker trip-from" aria-hidden="true"></i>
+                <span>@Model.From</span>
+            </div>
+            <div class="col-md-12">
+                <i class="fa fa-map-marker trip-to" aria-hidden="true"></i>
+                <span>@Model.To</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="trip-price text-right">
+                @Model.Money
+                <span>lv</span>
+            </div>
+
+
+            <div class="trip-seats text-right">
+                @{
+                    if (Model.Passengers != null)
+                    {
+                        var seats = Model.Slots - Model.Passengers.Count;
+                        @seats
+                    }
+                    else
+                    {
+                        @Model.Slots;
+                    }
+                }
+
+
+            </div>
+            <div class="text-right">seats available</div>
+        </div>
+    </a>
+</div>
+

@@ -10,8 +10,37 @@
     using TravelShare.Services.Data;
 
     [TestFixture]
-    public class MyTripsPageCount_Should
+    public class MyTripsAsPassengerPageCount_Should
     {
+        [Test]
+        public void ThorwArgumentNullException_WhenParameterUserIdIsNull()
+        {
+            // Arrange
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var userService = new UserService(mockUserRepository.Object, mockSaveChanges.Object);
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => userService.MyTripsAsPassengerPageCount(null, 1));
+        }
+
+        [Test]
+        public void ThorwArgumentNullExceptionWithCorrectMessage_WhenParameterUserIdIsNull()
+        {
+            // Arrange
+            var expectedMessage = "User Id cannot be null";
+            var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+            var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+
+            var userService = new UserService(mockUserRepository.Object, mockSaveChanges.Object);
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => userService.MyTripsAsPassengerPageCount(null, 1));
+
+            StringAssert.Contains(expectedMessage, exception.Message);
+        }
+
         [Test]
         public void CallUserRepositoryMethodGetById_WhenParameterAreValid()
         {
@@ -33,7 +62,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTripsPageCount(userId, 1);
+            var result = service.MyTripsAsPassengerPageCount(userId, 1);
 
             // Assert
             mockUserRepository.Verify(x => x.GetById(userId), Times.Once);
@@ -61,7 +90,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTripsPageCount(userId, 3);
+            var result = service.MyTripsAsPassengerPageCount(userId, 3);
 
             // Assert
             Assert.AreEqual(1, result);
@@ -89,7 +118,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTripsPageCount(userId, 2);
+            var result = service.MyTripsAsPassengerPageCount(userId, 2);
 
             // Assert
             Assert.AreEqual(2, result);
@@ -105,7 +134,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.MyTripsPageCount(null, 3));
+            Assert.Throws<ArgumentNullException>(() => service.MyTripsAsPassengerPageCount(null, 3));
         }
 
         [Test]
@@ -119,7 +148,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => service.MyTripsPageCount(null, 3));
+            var exception = Assert.Throws<ArgumentNullException>(() => service.MyTripsAsPassengerPageCount(null, 3));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -139,7 +168,7 @@
             var service = new UserService(mockUserRepository.Object, dbSaveChanges.Object);
 
             // Act
-            var result = service.MyTripsPageCount(userId, 3);
+            var result = service.MyTripsAsPassengerPageCount(userId, 3);
 
             // Assert
             Assert.AreEqual(0, result);

@@ -11,8 +11,12 @@ namespace TravelShare.Services.Data.Common.Contracts
     {
         ApplicationUser GetById(string id);
 
-        IEnumerable<Trip> MyTrips(string userId, int page, int number);
+        IEnumerable<Trip> MyTripsAsPassenger(string userId, int page, int number);
 
-        int MyTripsPageCount(string userId, int number);
+        int MyTripsAsPassengerPageCount(string userId, int number);
+
+        IEnumerable<ApplicationUser> SearchUsersByUsername(string searchPattern, string sortBy, int page, int perPage);
+
+        int UsersPageCountBySearchPattern(string searchPattern, int perPage);
     }
 }

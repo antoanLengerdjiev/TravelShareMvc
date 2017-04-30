@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Mappings;
     using Moq;
     using NUnit.Framework;
     using TestStack.FluentMVCTesting;
@@ -31,7 +32,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -53,8 +56,9 @@
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+            var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<ErrorController>(x => new ErrorController().Forbidden());
@@ -75,8 +79,9 @@
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+            var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -102,8 +107,9 @@
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
+            var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act && Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<TripController>(x => x.Create());
@@ -124,7 +130,9 @@
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);

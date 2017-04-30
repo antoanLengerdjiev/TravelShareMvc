@@ -13,6 +13,7 @@
     using Data.Common;
     using Data.Common.Contracts;
     using Data.Models;
+    using Mappings;
     using Services.Data;
     using Services.Data.Common.Contracts;
     using Services.Web;
@@ -65,6 +66,10 @@
 
             builder.RegisterGeneric(typeof(EfDbRepository<>))
                 .As(typeof(IEfDbRepository<>))
+                .InstancePerRequest();
+
+            builder.Register(x => new MapperProvider())
+                .As<IMapperProvider>()
                 .InstancePerRequest();
 
             builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IApplicationDbContextSaveChanges>(), x.Resolve<IEfDbRepository<ApplicationUser>>()))

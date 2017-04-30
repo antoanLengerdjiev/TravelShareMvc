@@ -81,10 +81,16 @@
     <Compile Include="TripServiceTests\GetPagesCount_Should.cs" />
     <Compile Include="TripServiceTests\CanUserJoinTrip_Should.cs" />
     <Compile Include="TripServiceTests\JoinTrip_Should.cs" />
+    <Compile Include="TripServiceTests\MyTripsAsDriver_Should.cs" />
+    <Compile Include="TripServiceTests\MyTripsAsDriverCount_Should.cs" />
+    <Compile Include="TripServiceTests\SearchTripCount_Should.cs" />
     <Compile Include="TripServiceTests\SearchTrips_Should.cs" />
     <Compile Include="UserServiceTests\Constructor.cs" />
-    <Compile Include="UserServiceTests\MyTripsPageCount_Should.cs" />
-    <Compile Include="UserServiceTests\MyTrips_Should.cs" />
+    <Compile Include="UserServiceTests\GetById_Should.cs" />
+    <Compile Include="UserServiceTests\MyTripsAsPassengerPageCount_Should.cs" />
+    <Compile Include="UserServiceTests\MyTripsAsPassenger_Should.cs" />
+    <Compile Include="UserServiceTests\SearchUsersByUsername_Should.cs" />
+    <Compile Include="UserServiceTests\UsersPageCountBySearchPattern_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TravelShare.Data.Common\TravelShare.Data.Common.csproj">

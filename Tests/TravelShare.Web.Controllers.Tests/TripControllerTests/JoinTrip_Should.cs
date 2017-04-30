@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Mappings;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common.Contracts;
@@ -26,7 +27,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -45,7 +48,9 @@
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -67,7 +72,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -89,7 +96,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.JoinTrip(5) as JsonResult;
@@ -114,7 +123,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.JoinTrip(5) as JsonResult;
@@ -141,7 +152,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -168,7 +181,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.JoinTrip(5) as JsonResult;
@@ -196,7 +211,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -223,7 +240,9 @@
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object);
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             var expectedFreeSlots = trip.Slots - trip.Passengers.Count < 0 ? 0 : trip.Slots - trip.Passengers.Count;
 

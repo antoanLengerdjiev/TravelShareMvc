@@ -25,7 +25,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date));
+            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date, 0, 1));
         }
 
         [Test]
@@ -41,7 +41,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date));
+            var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, "Sofia", date, 0, 1));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -59,7 +59,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date));
+            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date, 0, 1));
         }
 
         [Test]
@@ -75,7 +75,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date));
+            var exception = Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips("Sofia", null, date, 0, 1));
 
             StringAssert.Contains(expectedMessage, exception.Message);
         }
@@ -92,7 +92,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, null, date));
+            Assert.Throws<ArgumentNullException>(() => tripService.SearchTrips(null, null, date, 0, 1));
         }
 
         [Test]
@@ -107,7 +107,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
-            tripService.SearchTrips("Sofia", "Burgars", date);
+            tripService.SearchTrips("Sofia", "Burgars", date, 0, 1);
 
             // Assert
             mockTripRepository.Verify(x => x.All());
@@ -126,7 +126,7 @@
             var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
 
             // Act
-            var result = tripService.SearchTrips("Sofia", "Burgars", date);
+            var result = tripService.SearchTrips("Sofia", "Burgars", date, 0, 1);
 
             // Assert
             Assert.IsInstanceOf<IEnumerable<Trip>>(result);

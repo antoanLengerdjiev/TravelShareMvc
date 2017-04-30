@@ -1,62 +1,81 @@
 ﻿@using System.Collections.Generic;
-@model IEnumerable<TravelShare.Web.ViewModels.Trips.TripAllModel>
+@model TravelShare.Web.ViewModels.Search.SearchTripResultModel
 
 
 
 <div class="row container">
-    @foreach (var trip in Model)
+    @foreach (var trip in Model.Trips)
     {
-        <div class="row trip-item container">
-            <a href="@Url.Action("GetById", "Trip",new { id = trip.Id })">
-                <div class="col-md-2">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>@trip.Driver.UserName</span>
-                </div>
-                <div class="col-md-8">
-                    <div class="col-md-12 trip-date">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        <span>@trip.Date.ToString("MMMM dd, yyyy")</span>
-                    </div>
-                    <div class="col-md-12 trip-from-to">
-                        <span>@trip.From</span>
-                        ->
-                        <span>@trip.To</span>
-                    </div>
-                    <div class="col-md-12">
-                        <i class="fa fa-map-marker trip-from" aria-hidden="true"></i>
-                        <span>@trip.From</span>
-                    </div>
-                    <div class="col-md-12">
-                        <i class="fa fa-map-marker trip-to" aria-hidden="true"></i>
-                        <span>@trip.To</span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="trip-price text-right">
-                        @trip.Money
-                        <span>lv</span>
-                    </div>
+        @Html.DisplayFor(x => trip)
+    }
+</div>
+<div class="row">
+    <ul class="pagination">
+        @{
+            var search = Model.SearchModel;
+            var pageCount = Model.PagesCount;
+            var page = Model.CurrentPage;
 
-
-                    <div class="trip-seats text-right">
-                        @{
-                            if (trip.Passengers != null)
-                            {
-                                var seats = trip.Slots - trip.Passengers.Count;
-                                @seats
-                            }
-                            else
-                            {
-                                @trip.Slots;
-                            }
+            if (pageCount > 0)
+            {
+                for (int i = 0; i < pageCount; i++)
+                {
+                    if (i == page)
+                    {
+                        <li class="active">
+                            @Ajax.ActionLink((i + 1).ToString(), "FilteredTrips", new { From = Model.SearchModel.From,To = Model.SearchModel.To, Date = Model.SearchModel.Date, page = i }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           UpdateTargetId = "tripsPanel",
+                           InsertionMode = InsertionMode.Replace
+                       })
+                        </li>
+                    }
+                    else if (page - 3 == i || page + 3 == i)
+                    {
+                        if (i == 0 || i == 1 || i == pageCount - 2 || i == pageCount - 1)
+                        {
+                            <li>
+                                @Ajax.ActionLink((i + 1).ToString(), "FilteredTrips", new { From = Model.SearchModel.From, To = Model.SearchModel.To, Date = Model.SearchModel.Date, page = i  }, new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               UpdateTargetId = "tripsPanel",
+                               InsertionMode = InsertionMode.Replace
+                           })
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                @Ajax.ActionLink("...", "FilteredTrips", new { From = Model.SearchModel.From, To = Model.SearchModel.To, Date = Model.SearchModel.Date, page = i }, new AjaxOptions()
+                           {
+                               HttpMethod = "GET",
+                               UpdateTargetId = "tripsPanel",
+                               InsertionMode = InsertionMode.Replace
+                           })
+                            </li>
                         }
 
+                    }
+                    else if (page - 2 <= i && i <= page + 2 || i == 0 || i == pageCount - 1)
+                    {
+                        <li>
+                            @Ajax.ActionLink((i + 1).ToString(), "FilteredTrips", new { From = Model.SearchModel.From, To = Model.SearchModel.To, Date = Model.SearchModel.Date, page = i }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           UpdateTargetId = "tripsPanel",
+                           InsertionMode = InsertionMode.Replace
+                       })
+                        </li>
 
-                    </div>
-                    <div class="text-right">seats available</div>
-                </div>
-            </a>
-        </div>
-                            }
+                    }
+
+                }
+            }
+
+        }
+    </ul>
 </div>
+
+
 

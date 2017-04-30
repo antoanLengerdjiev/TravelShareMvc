@@ -19,5 +19,6 @@ namespace TravelShare.Web.ViewModels.Search
         [Required(ErrorMessage = "Date is required!")]
         [Display(Name = "Trip Date")]
         public DateTime Date { get; set; }
+
     }
 }

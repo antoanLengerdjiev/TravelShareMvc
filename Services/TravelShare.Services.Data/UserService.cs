@@ -27,14 +27,14 @@
             this.dbSaveChanges = dbSaveChanges;
         }
 
-        public IEnumerable<Trip> MyTrips(string userId, int page, int number)
+        public IEnumerable<Trip> MyTripsAsPassenger(string userId, int page, int number)
         {
             Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
 
             return this.userRepository.GetById(userId).Trips.Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number).ToList();
         }
 
-        public int MyTripsPageCount(string userId, int number)
+        public int MyTripsAsPassengerPageCount(string userId, int number)
         {
             Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
 
@@ -45,6 +45,58 @@
         public ApplicationUser GetById(string id)
         {
             return this.userRepository.GetById(id);
+        }
+
+        public int UsersPageCountBySearchPattern(string searchPattern, int perPage)
+        {
+            int userCount = this.BuildSearchQuery(searchPattern).Count();
+
+            if (perPage >= userCount)
+            {
+                return 0;
+            }
+
+            return (int)Math.Ceiling((double)userCount / perPage);
+        }
+
+        public IEnumerable<ApplicationUser> SearchUsersByUsername(string searchPattern, string sortBy, int page, int perPage)
+        {
+            var skip = (page - 1) * perPage;
+            var users = this.BuildSearchQuery(searchPattern);
+
+            switch (sortBy)
+            {
+                case "name":
+                    users = users.OrderBy(u => u.FirstName);
+                    break;
+                case "email":
+                    users = users.OrderBy(x => x.Email);
+                    break;
+                default:
+                    users = users.OrderBy(x => x.FirstName);
+                    break;
+            }
+
+            var resultUsers = users
+                  .Skip(skip)
+                  .Take(perPage)
+                  .ToList();
+
+            return resultUsers;
+        }
+
+        private IQueryable<ApplicationUser> BuildSearchQuery(string searchWord)
+        {
+            var users = this.userRepository.All();
+
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                users = users.Where(u => u.FirstName.ToLower().Contains(searchWord.ToLower())
+                    || u.LastName.ToLower().Contains(searchWord.ToLower())
+                    || u.Email.ToLower().Contains(searchWord.ToLower()));
+            }
+
+            return users;
         }
     }
 }

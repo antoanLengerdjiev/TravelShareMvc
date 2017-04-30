@@ -1,0 +1,63 @@
+﻿@model IList<TravelShare.Web.ViewModels.Trips.TripAllModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "MyTrips";
+}
+
+
+<div class="row container">
+    @foreach (var trip in Model)
+    {
+        @Html.DisplayFor(x => trip)
+    }
+</div>
+<div class="row">
+    <ul class="pagination">
+      @{
+          var pageCount = (int)this.TempData["pageCount"];
+          var page = (int)this.TempData["page"];
+          if (pageCount > 0)
+          {
+              for (int i = 0; i < pageCount; i++)
+              {
+                  if (i == page)
+                  {
+                    <li class="active">
+                        @Html.ActionLink((i + 1).ToString(), "MyTripsAsDriver", "Profile", new { page = i }, null)
+                    </li>
+                  }
+                  else if (page - 3 == i || page + 3 == i)
+                  {
+                      if (i == 0 || i == 1 || i == pageCount - 2 || i == pageCount - 1)
+                      {
+                        <li>
+                            @Html.ActionLink((i + 1).ToString(), "MyTripsAsDriver", "Profile", new { page = i }, null)
+                        </li>
+                      }
+                      else
+                      {
+                        <li>
+                            @Html.ActionLink("...", "MyTripsAsDriver", "Profile", new { page = i }, null)
+                        </li>
+                      }
+
+                  }
+                  else if (page - 2 <= i && i <= page + 2 || i == 0 || i == pageCount - 1)
+                  {
+                    <li>
+                        @Html.ActionLink((i + 1).ToString(), "MyTripsAsDriver", "Profile", new { page = i }, null)
+                    </li>
+
+                  }
+
+              }
+          }
+
+    }
+    </ul>
+</div>
+
+
+

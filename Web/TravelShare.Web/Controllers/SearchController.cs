@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Mappings;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
     using TravelShare.Services.Data.Common.Contracts;
@@ -15,14 +16,19 @@
     public class SearchController : BaseController
     {
         private readonly ITripService tripService;
+        private readonly IMapperProvider mapper;
 
-        public SearchController(ITripService tripService)
+        public SearchController(ITripService tripService, IMapperProvider mapper)
         {
             Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
                 .IsNull()
                 .Throw();
+            Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+               .IsNull()
+               .Throw();
 
             this.tripService = tripService;
+            this.mapper = mapper;
         }
 
         //TODO: Make model
@@ -32,18 +38,20 @@
             return this.View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult FilteredTrips(SearchTripModel model)
+        public ActionResult FilteredTrips(SearchTripModel searchModel, SearchTripResultModel tripsModel, int? page)
         {
+            int actualPage = page ?? 0;
             if (!this.ModelState.IsValid)
             {
                 return this.PartialView("_FilteredTripsPartial");
             }
 
-             List<TripAllModel> trips = AutoMapperConfig.Configuration.CreateMapper().Map<IEnumerable<Trip>, IEnumerable<TripAllModel>>(this.tripService.SearchTrips(model.From, model.To, model.Date).ToList()).ToList();
-
-            return this.PartialView("_FilteredTripsPartial", trips);
+            int perPage = 1;
+             tripsModel.Trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.SearchTrips(searchModel.From, searchModel.To, searchModel.Date, actualPage, perPage).ToList()).ToList();
+            tripsModel.SearchModel = searchModel;
+            tripsModel.CurrentPage = actualPage;
+            tripsModel.PagesCount = this.tripService.SearchTripCount(searchModel.From, searchModel.To, searchModel.Date,perPage);
+            return this.PartialView("_FilteredTripsPartial", tripsModel);
         }
     }
 }
