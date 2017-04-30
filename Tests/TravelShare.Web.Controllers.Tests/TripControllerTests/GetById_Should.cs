@@ -208,9 +208,6 @@
         public void IsUserInIsFalse_WhenUserIsNotPassenger()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var userId = "IdOfmyChoosing";
 
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };

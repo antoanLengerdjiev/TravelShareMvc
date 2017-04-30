@@ -65,9 +65,6 @@
             var userId = "IdOfmyChoosing";
             var user = new ApplicationUser() { Id = userId, Trips = new List<Trip>() };
 
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();

@@ -73,9 +73,6 @@
         public void ShouldSetTempDataToCorrectPage_WhenInvoked()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
@@ -93,9 +90,6 @@
         public void ShouldRenderDefaultView()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(TripController).Assembly);
-
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
