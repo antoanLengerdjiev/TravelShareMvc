@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using Data.Models;
-    using Infrastructure.Mapping;
     using Mappings;
     using Moq;
     using NUnit.Framework;
@@ -34,8 +33,6 @@
         public void CallTripServiceMethodSeachTrips()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(SearchController).Assembly);
             var mockedTripService = new Mock<ITripService>();
             var searchModel = new SearchTripModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994,1,1) };
             var searchResultModel = new SearchTripResultModel();
@@ -53,8 +50,6 @@
         public void CallTripServiceMethodSeachTripsCount()
         {
             // Arrange
-            var automap = new AutoMapperConfig();
-            automap.Execute(typeof(SearchController).Assembly);
             var searchModel = new SearchTripModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994, 1, 1) };
             var searchResultModel = new SearchTripResultModel();
             var mockedTripService = new Mock<ITripService>();
