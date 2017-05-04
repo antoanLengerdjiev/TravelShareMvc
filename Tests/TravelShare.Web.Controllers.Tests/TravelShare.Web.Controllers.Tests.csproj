@@ -110,6 +110,10 @@
     <Compile Include="AccountControllerTests\RegisterPost_Should.cs" />
     <Compile Include="HomeControllerTests\Constructor.cs" />
     <Compile Include="HomeControllerTests\Index.cs" />
+    <Compile Include="NewsManagementTests\AddNews_Get.cs" />
+    <Compile Include="NewsManagementTests\AddNews_Post.cs" />
+    <Compile Include="NewsManagementTests\Constructor.cs" />
+    <Compile Include="NewsManagementTests\Index.cs" />
     <Compile Include="ProfileControllerTests\Constructor.cs" />
     <Compile Include="ProfileControllerTests\MyTripsAsDriver_Should.cs" />
     <Compile Include="ProfileControllerTests\MyTripsAsPassenger_Should.cs" />

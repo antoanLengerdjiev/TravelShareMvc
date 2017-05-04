@@ -1,4 +1,27 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@model  IEnumerable<TravelShare.Web.ViewModels.Home.NewsViewModel>
+
+@{
     ViewBag.Title = "Home Page";
 }
+
 <h1>Welcome</h1>
+@if (Model.Count() < 1)
+{
+    <h1>No News</h1>
+}
+else
+{
+    <h1>Latest News</h1>
+
+    foreach (var news in Model)
+    {
+        <div>
+            <h2>@news.Title</h2>
+            <h3>@news.Content</h3>
+            <p>@news.CreatedOn.ToString("MMMM dd, yyyy")</p>
+        </div>
+
+    }
+}
+

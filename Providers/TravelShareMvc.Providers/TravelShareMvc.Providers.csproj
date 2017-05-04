@@ -124,7 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationProvider.cs" />
+    <Compile Include="CachingProvider.cs" />
     <Compile Include="Contracts\IAuthenticationProvider.cs" />
+    <Compile Include="Contracts\ICachingProvider.cs" />
     <Compile Include="Contracts\IHttpContextProvider.cs" />
     <Compile Include="HttpContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

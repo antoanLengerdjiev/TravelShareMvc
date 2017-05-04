@@ -80,7 +80,13 @@
                 .As<IUserService>()
                 .InstancePerRequest();
 
+            builder.Register(x => new NewsService(x.Resolve<IEfDbRepository<News>>(), x.Resolve<IApplicationDbContextSaveChanges>()))
+                .As<INewsService>()
+                .InstancePerRequest();
+
             builder.Register(x => new HttpContextProvider()).As<IHttpContextProvider>().InstancePerRequest();
+
+            builder.Register(x => new CachingProvider(x.Resolve<IHttpContextProvider>())).As<ICachingProvider>().InstancePerRequest();
 
             builder.Register(x => new AuthenticationProvider(x.Resolve<IHttpContextProvider>())).As<IAuthenticationProvider>()
                 .InstancePerRequest();

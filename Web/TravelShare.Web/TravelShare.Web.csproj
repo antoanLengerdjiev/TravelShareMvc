@@ -202,7 +202,9 @@
     <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\NewsManagementController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\Administration\Models\NewsManagement\NewCreateViewModel.cs" />
     <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
     <Compile Include="Areas\Administration\Models\SearchModel.cs" />
     <Compile Include="Areas\Administration\Models\SingleUserViewModel.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Home\NewsViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
@@ -274,6 +277,8 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\UserManagement\UsersPartial.cshtml" />
     <Content Include="Areas\Administration\Views\UserManagement\UserProfile.cshtml" />
+    <Content Include="Areas\Administration\Views\NewsManagement\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\NewsManagement\AddNews.cshtml" />
     <None Include="Properties\PublishProfiles\fiesystem.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />

@@ -35,6 +35,30 @@
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
 
+        [Test]
+        public void ShouldThrowArgumentNullException_WhenDbSaveChangesIsNull()
+        {
+            // Arrange
+            var mockedUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() =>
+                new UserService(mockedUserRepository.Object, null));
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
+        {
+            // Arrange
+            var expectedExMessage = "DbContext cannot be null.";
+            var mockedUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
+
+            // Act and Assert
+            var exception = Assert.Throws<ArgumentNullException>(() =>
+                new UserService(mockedUserRepository.Object, null));
+            StringAssert.Contains(expectedExMessage, exception.Message);
+        }
+
 
         [Test]
         public void ShouldNotThrow_WhenValidArgumentsArePassed()

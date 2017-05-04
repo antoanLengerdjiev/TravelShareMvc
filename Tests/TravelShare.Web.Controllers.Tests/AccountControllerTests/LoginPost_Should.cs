@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
+using TravelShare.Services.Data.Common.Contracts;
+using TravelShare.Web.Mappings;
 using TravelShare.Web.ViewModels.Account;
 using TravelShareMvc.Providers.Contracts;
 
@@ -84,6 +86,10 @@ namespace TravelShare.Web.Controllers.Tests.AccountControllerTests
                 Email = email,
                 Password = password
             };
+            var mockedNewsService = new Mock<INewsService>();
+            var mockedCacheProvider = new Mock<ICachingProvider>();
+            var mockedMapperProvider = new Mock<IMapperProvider>();
+
             var returnUrl = string.Empty;
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             mockedAuthenticationProvider.Setup(ap => ap.SignInWithPassword(
@@ -97,7 +103,7 @@ namespace TravelShare.Web.Controllers.Tests.AccountControllerTests
 
             // Act and Assert
             accountController.WithCallTo(ac => ac.Login(loginModel, returnUrl))
-                .ShouldRedirectTo<HomeController>(x => new HomeController().Index());
+                .ShouldRedirectTo<HomeController>(x => new HomeController(mockedNewsService.Object, mockedCacheProvider.Object, mockedMapperProvider.Object).Index());
         }
 
         [TestCase("elon@tesla.com", "password")]
