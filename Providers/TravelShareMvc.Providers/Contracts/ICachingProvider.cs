@@ -13,5 +13,7 @@ namespace TravelShareMvc.Providers.Contracts
         void InsertItem(string key, object value);
 
         object GetItem(string key);
+
+        void RemoveItem(string key);
     }
 }

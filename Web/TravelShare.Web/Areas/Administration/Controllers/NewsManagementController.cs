@@ -1,13 +1,17 @@
 ﻿namespace TravelShare.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Custom.Attributes;
     using Data.Models;
     using Mappings;
     using Models.NewsManagement;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
 
+    [Security(Roles = "Administrator, Moderator", RedirectUrl = "~/error/forbidden")]
     public class NewsManagementController : Controller
     {
         private readonly INewsService newsService;
@@ -51,6 +55,38 @@
             this.cacheProvider.InsertItem(newsKey, news);
 
             return this.RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteNews()
+        {
+            return this.View();
+        }
+
+        public PartialViewResult SearchNews(SearchNewsModel searchModel, NewsViewModel newsModel, int? page)
+        {
+            int actualPage = page ?? 1;
+
+            var result = this.newsService.SearchNews(searchModel.SearchWord, searchModel.SearchBy, actualPage, 5);
+            var count = this.newsService.GetSearchNewsPageCount(searchModel.SearchWord, searchModel.SearchBy, 5);
+
+            newsModel.SearchModel = searchModel;
+
+            newsModel.Pages = count;
+            newsModel.CurrentPage = actualPage;
+            newsModel.News = this.mapperProvider.Map<IEnumerable<SingleNewsModel>>(result);
+            newsModel.NewsCount = result.ToList().Count;
+            return this.PartialView("NewsPartial", newsModel);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public PartialViewResult Delete(int id)
+        {
+            this.cacheProvider.RemoveItem("newsKey");
+            var news = this.newsService.GetById(id);
+            this.newsService.Delete(news);
+            SingleNewsModel model = this.mapperProvider.Map<SingleNewsModel>(news);
+            return this.PartialView("DeleteResult", model);
         }
     }
 }

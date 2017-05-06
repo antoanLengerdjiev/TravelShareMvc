@@ -113,7 +113,10 @@
     <Compile Include="NewsManagementTests\AddNews_Get.cs" />
     <Compile Include="NewsManagementTests\AddNews_Post.cs" />
     <Compile Include="NewsManagementTests\Constructor.cs" />
+    <Compile Include="NewsManagementTests\DeleteNews_Should.cs" />
+    <Compile Include="NewsManagementTests\Delete_Should.cs" />
     <Compile Include="NewsManagementTests\Index.cs" />
+    <Compile Include="NewsManagementTests\SearchNews_Should.cs" />
     <Compile Include="ProfileControllerTests\Constructor.cs" />
     <Compile Include="ProfileControllerTests\MyTripsAsDriver_Should.cs" />
     <Compile Include="ProfileControllerTests\MyTripsAsPassenger_Should.cs" />

@@ -124,7 +124,7 @@
                    mockedMapperProvider.Object,
                    mockedUserService.Object);
 
-            // Act 
+            // Act
             userManagementController.SearchUsers(searchModel, usersViewModel, page);
 
             // Assert
@@ -272,7 +272,7 @@
                    mockedMapperProvider.Object,
                    mockedUserService.Object);
 
-            // Act 
+            // Act
             userManagementController.SearchUsers(searchModel, usersViewModel, page);
 
             // Assert

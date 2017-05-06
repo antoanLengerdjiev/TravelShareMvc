@@ -74,7 +74,11 @@
     <Compile Include="IdentifierProviderTests.cs" />
     <Compile Include="NewsServiceTests\Constructor.cs" />
     <Compile Include="NewsServiceTests\Create_Should.cs" />
+    <Compile Include="NewsServiceTests\Delete_Should.cs" />
+    <Compile Include="NewsServiceTests\GetById.cs" />
     <Compile Include="NewsServiceTests\GetLastestNews_Should.cs" />
+    <Compile Include="NewsServiceTests\GetSearchNewsPageCount_Should.cs" />
+    <Compile Include="NewsServiceTests\SearchNews_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TripServiceTests\Constructor.cs" />
     <Compile Include="TripServiceTests\Create_Should.cs" />

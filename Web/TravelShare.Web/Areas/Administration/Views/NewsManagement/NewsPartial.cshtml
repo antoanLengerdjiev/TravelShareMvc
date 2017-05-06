@@ -1,0 +1,69 @@
+﻿@using TravelShare.Web.Areas.Administration.Models.NewsManagement;
+@model NewsViewModel
+<div class="col-sm-12 users-list-head">
+    <div class="col-sm-5 u-name">
+        Title
+    </div>
+    <div class="col-sm-5 u-email">
+        Content
+    </div>
+</div>
+@if (Model.NewsCount == 0)
+{
+    <h2 class="empty-users-list">NewsNotFound</h2>
+}
+else
+{
+    foreach (var news in Model.News)
+    {
+        using (Ajax.BeginForm("Delete", new { Id = news.Id },
+            new AjaxOptions()
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "newsToBeDeleted" + news.Id,
+                InsertionMode = InsertionMode.Replace
+            },
+            new { id = "newsToBeDeleted" + news.Id }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-sm-12 user-list-item">
+
+                <div class="col-sm-5 u-name">
+                    @news.Title
+                </div>
+
+
+                <div class="col-sm-5 u-email">
+                    @news.Content
+                </div>
+                <div class="col-sm-2 u-details">
+                    <input class="btn btn-lg btn-danger btn-book-plase" type="submit" value="Delete" />
+                </div>
+            </div>
+
+        }
+
+    }
+    <div>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.Pages; i++)
+                {
+                <li class=@(i == Model.CurrentPage ? "active" : "")>
+                    @Ajax.ActionLink(i.ToString(), "SearchNews",
+                new
+                {
+                    SearchWord = Model.SearchModel.SearchWord,
+                    SortBy = Model.SearchModel.SearchBy,
+                    Page = i
+                },
+                new AjaxOptions()
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "search-results",
+                    InsertionMode = InsertionMode.Replace
+                })
+                </li>
+            }
+        </ul>
+    </div>
+}

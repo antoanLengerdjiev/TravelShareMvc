@@ -205,6 +205,9 @@
     <Compile Include="Areas\Administration\Controllers\NewsManagementController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Administration\Models\NewsManagement\NewCreateViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\NewsManagement\NewsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\NewsManagement\SearchNewsModel.cs" />
+    <Compile Include="Areas\Administration\Models\NewsManagement\SingleNewsModel.cs" />
     <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
     <Compile Include="Areas\Administration\Models\SearchModel.cs" />
     <Compile Include="Areas\Administration\Models\SingleUserViewModel.cs" />
@@ -279,6 +282,9 @@
     <Content Include="Areas\Administration\Views\UserManagement\UserProfile.cshtml" />
     <Content Include="Areas\Administration\Views\NewsManagement\Index.cshtml" />
     <Content Include="Areas\Administration\Views\NewsManagement\AddNews.cshtml" />
+    <Content Include="Areas\Administration\Views\NewsManagement\DeleteNews.cshtml" />
+    <Content Include="Areas\Administration\Views\NewsManagement\NewsPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\NewsManagement\DeleteResult.cshtml" />
     <None Include="Properties\PublishProfiles\fiesystem.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />

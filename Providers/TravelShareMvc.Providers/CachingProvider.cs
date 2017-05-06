@@ -30,6 +30,7 @@ namespace TravelShareMvc.Providers
             var cache = this.httpContextProvider.CurrentCache;
 
             cache.Insert(key, value);
+            
         }
 
         public object GetItem(string key)
@@ -37,6 +38,13 @@ namespace TravelShareMvc.Providers
             var cache = this.httpContextProvider.CurrentCache;
 
             return cache.Get(key);
+        }
+
+        public void RemoveItem(string key)
+        {
+            var cache = this.httpContextProvider.CurrentCache;
+
+            cache.Remove(key);
         }
     }
 }
