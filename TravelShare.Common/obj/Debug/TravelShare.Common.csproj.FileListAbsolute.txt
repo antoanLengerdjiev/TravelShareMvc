@@ -7,3 +7,4 @@ C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\bin\Debug\TravelShar
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\bin\Debug\TravelShare.Common.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.dll
 C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\obj\Debug\TravelShare.Common.csprojResolveAssemblyReference.cache

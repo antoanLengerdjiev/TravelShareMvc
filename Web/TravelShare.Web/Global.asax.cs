@@ -6,6 +6,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using App_Start;
+    using Forloop.HtmlHelpers;
 
 #pragma warning disable SA1649 // File name must match first type name
 
@@ -22,7 +23,7 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            ScriptContext.ScriptPathResolver = System.Web.Optimization.Scripts.Render;
             AutoMapperConfig.Config(Assembly.GetExecutingAssembly());
         }
     }

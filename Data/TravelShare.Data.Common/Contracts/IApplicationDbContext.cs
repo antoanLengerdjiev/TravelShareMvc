@@ -10,9 +10,9 @@
 
        IDbSet<Trip> Trips { get; set; }
 
-       IDbSet<Rating> Ratings { get; set; }
+       IDbSet<Message> Messages { get; set; }
 
-       DbContext DbContext { get; }
+        DbContext DbContext { get; }
 
         IDbSet<T> Set<T>()
             where T : class;

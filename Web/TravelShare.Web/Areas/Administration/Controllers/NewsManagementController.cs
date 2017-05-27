@@ -8,6 +8,7 @@
     using Data.Models;
     using Mappings;
     using Models.NewsManagement;
+    using Common;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
 
@@ -49,7 +50,7 @@
                 return this.View();
             }
 
-            string newsKey = "newsKey";
+            string newsKey = GlobalConstants.NewsCacheKey;
             var news = this.mapperProvider.Map<News>(model);
             this.newsService.Create(news);
             this.cacheProvider.InsertItem(newsKey, news);
@@ -66,8 +67,8 @@
         {
             int actualPage = page ?? 1;
 
-            var result = this.newsService.SearchNews(searchModel.SearchWord, searchModel.SearchBy, actualPage, 5);
-            var count = this.newsService.GetSearchNewsPageCount(searchModel.SearchWord, searchModel.SearchBy, 5);
+            var result = this.newsService.SearchNews(searchModel.SearchWord, searchModel.SearchBy, actualPage, GlobalConstants.NewsPerTake);
+            var count = this.newsService.GetSearchNewsPageCount(searchModel.SearchWord, searchModel.SearchBy, GlobalConstants.NewsPerTake);
 
             newsModel.SearchModel = searchModel;
 

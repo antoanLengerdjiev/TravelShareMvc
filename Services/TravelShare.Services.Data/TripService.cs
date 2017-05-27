@@ -84,7 +84,7 @@
             Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
-            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).OrderBy(x => x.CreatedOn).Skip(page *perPage).Take(perPage).ToList();
+            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).OrderBy(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
         }
 
         public Trip GetById(int id)

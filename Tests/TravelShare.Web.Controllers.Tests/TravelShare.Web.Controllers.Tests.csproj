@@ -125,13 +125,17 @@
     <Compile Include="SearchControllerTests\FilteredTrips_Should.cs" />
     <Compile Include="SearchControllerTests\Index_Should.cs" />
     <Compile Include="TripControllerTests\All_Should.cs" />
+    <Compile Include="TripControllerTests\Chat_Should.cs" />
     <Compile Include="TripControllerTests\Constructor.cs" />
     <Compile Include="TripControllerTests\CreateHttpGet_Should.cs" />
     <Compile Include="TripControllerTests\CreateHttpPost_Should.cs" />
     <Compile Include="TripControllerTests\DeleteTrip_Should.cs" />
     <Compile Include="TripControllerTests\GetById_Should.cs" />
+    <Compile Include="TripControllerTests\GetChatHistory_Should.cs" />
+    <Compile Include="TripControllerTests\HideJoinChatButton.cs" />
     <Compile Include="TripControllerTests\JoinTrip_Should.cs" />
     <Compile Include="TripControllerTests\LeaveTrip_Should.cs" />
+    <Compile Include="TripControllerTests\ShowJoinChatButton_Should.cs" />
     <Compile Include="UserManagementControllerTests\Constructor.cs" />
     <Compile Include="UserManagementControllerTests\Index.cs" />
     <Compile Include="UserManagementControllerTests\SearchUsers.cs" />
@@ -161,13 +165,9 @@
       <Project>{90fe4c4d-122a-406d-8a40-79c561fb8184}</Project>
       <Name>TravelShare.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\TravelShare.Services.Web\TravelShare.Services.Web.csproj">
-      <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
-      <Name>TravelShare.Services.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Web\TravelShare.Web.Infrastructure\TravelShare.Web.Infrastructure.csproj">
-      <Project>{6813dc53-5eee-4507-8604-5301ee51a0d3}</Project>
-      <Name>TravelShare.Web.Infrastructure</Name>
+    <ProjectReference Include="..\..\TravelShare.Common\TravelShare.Common.csproj">
+      <Project>{701F322F-AA01-4DDC-90B6-6935981C1E73}</Project>
+      <Name>TravelShare.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Web\TravelShare.Web\TravelShare.Web.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>

@@ -27,6 +27,8 @@
 
         public ICollection<UserViewModel> Passengers { get; set; }
 
+        public ICollection<MessageViewModel> Messages { get; set; }
+
         public bool IsUserIn { get; set; }
     }
 }

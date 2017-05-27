@@ -195,3 +195,11 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.IdentityConfig.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.Providers.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\TravelShareMvc.IdentityConfig.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Autofac.Integration.SignalR.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Autofac.Integration.SignalR.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Autofac.Integration.Owin.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Autofac.Integration.Owin.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Forloop.HtmlHelpers.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Routes.Tests\bin\Debug\Forloop.HtmlHelpers.xml

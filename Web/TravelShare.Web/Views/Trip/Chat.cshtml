@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Forloop.HtmlHelpers;
+@model IEnumerable<TravelShare.Web.ViewModels.Trips.MessageViewModel>
+@{
+    var currentUsername = User.Identity.Name;
+}
+
+@{
+    <div class="row">
+
+
+        <ul id="chat-online-users" class="col-lg-2"></ul>
+
+        <div class="container clearfix  col-lg-8" id="room">
+            @Html.Hidden("currentUsername", currentUsername)
+            <div class="chat">
+                <div class="chat-history" id="chat-history">
+                    <ul class="chat-ul" id="messages">
+                       
+                        @{
+                            if (Model != null)
+                            {
+                                
+                                foreach (var item in Model)
+                                {
+                                    if (currentUsername == item.Sender.UserName)
+                                    {
+                                        <li>
+                                            <div class="message-data">
+                                                <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
+                                            </div>
+                                            <div class="message you-message">
+                                                @item.Content
+
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="clearfix">
+                                            <div class="message-data align-right">
+                                                <span class="message-data-name">@item.Sender.UserName</span> <i class="fa fa-circle me"></i>
+                                            </div>
+                                            <div class="message me-message float-right"> @item.Content </div>
+                                        </li>
+                                    }
+                                }
+                            }
+                        }
+                    </ul>
+
+                </div> <!-- end chat-history -->
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input type="text" id="room-message" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="send-message-to-room" type="button">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div> <!-- end chat -->
+
+        </div>
+    </div>
+}
+
+
+@using (Html.BeginScriptContext())
+{
+    Html.AddScriptFile("~/Scripts/chat.js", false);
+}
+
+
+

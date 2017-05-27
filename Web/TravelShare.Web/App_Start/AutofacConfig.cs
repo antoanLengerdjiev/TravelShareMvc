@@ -6,7 +6,7 @@
 
     using Autofac;
     using Autofac.Integration.Mvc;
-
+    using Autofac.Integration.SignalR;
     using Controllers;
 
     using Data;
@@ -14,14 +14,16 @@
     using Data.Common.Contracts;
     using Data.Models;
     using Mappings;
+    using Microsoft.AspNet.SignalR;
+    using Owin;
     using Services.Data;
     using Services.Data.Common.Contracts;
-    using Services.Web;
     using TravelShareMvc.Providers;
     using TravelShareMvc.Providers.Contracts;
 
     public static class AutofacConfig
     {
+
         public static void RegisterAutofac()
         {
             var builder = new ContainerBuilder();
@@ -47,7 +49,7 @@
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            DependencyResolver.SetResolver(new Autofac.Integration.Mvc.AutofacDependencyResolver(container));
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -55,13 +57,6 @@
             builder.Register(x => new ApplicationDbContext())
                 .As<IApplicationDbContext>()
                 .As<IApplicationDbContextSaveChanges>()
-                .InstancePerRequest();
-
-            builder.Register(x => new HttpCacheService())
-                .As<ICacheService>()
-                .InstancePerRequest();
-            builder.Register(x => new IdentifierProvider())
-                .As<IIdentifierProvider>()
                 .InstancePerRequest();
 
             builder.RegisterGeneric(typeof(EfDbRepository<>))
@@ -84,15 +79,15 @@
                 .As<INewsService>()
                 .InstancePerRequest();
 
+            builder.Register(x => new MessageService(x.Resolve<IEfDbRepository<Message>>(), x.Resolve<IApplicationDbContextSaveChanges>())).As<IMessageService>()
+                .InstancePerRequest();
+
             builder.Register(x => new HttpContextProvider()).As<IHttpContextProvider>().InstancePerRequest();
 
             builder.Register(x => new CachingProvider(x.Resolve<IHttpContextProvider>())).As<ICachingProvider>().InstancePerRequest();
 
             builder.Register(x => new AuthenticationProvider(x.Resolve<IHttpContextProvider>())).As<IAuthenticationProvider>()
                 .InstancePerRequest();
-
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<BaseController>().PropertiesAutowired();
         }
     }
 }

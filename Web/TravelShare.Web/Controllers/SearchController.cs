@@ -1,19 +1,15 @@
 ﻿namespace TravelShare.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
     using Mappings;
-    using TravelShare.Data.Common.Contracts;
-    using TravelShare.Data.Models;
     using TravelShare.Services.Data.Common.Contracts;
-    using TravelShare.Web.Infrastructure.Mapping;
     using TravelShare.Web.ViewModels.Trips;
     using ViewModels.Search;
 
-    public class SearchController : BaseController
+    public class SearchController : Controller
     {
         private readonly ITripService tripService;
         private readonly IMapperProvider mapper;
@@ -50,7 +46,7 @@
              tripsModel.Trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.SearchTrips(searchModel.From, searchModel.To, searchModel.Date, actualPage, perPage).ToList()).ToList();
             tripsModel.SearchModel = searchModel;
             tripsModel.CurrentPage = actualPage;
-            tripsModel.PagesCount = this.tripService.SearchTripCount(searchModel.From, searchModel.To, searchModel.Date,perPage);
+            tripsModel.PagesCount = this.tripService.SearchTripCount(searchModel.From, searchModel.To, searchModel.Date, perPage);
             return this.PartialView("_FilteredTripsPartial", tripsModel);
         }
     }

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Trip Details";
     var currentUserId = User.Identity.GetUserId();
+    var currentUsername = User.Identity.Name;
 }
 
 <div class="row container trip-item">
@@ -69,13 +70,45 @@
                         @Html.AntiForgeryToken()
                         if (!Model.IsUserIn && Model.Slots - Model.Passengers.Count > 0 && Model.DriverId != currentUserId)
                         {
+                            using (Ajax.BeginForm("ShowJoinChatButton", new { id = Model.Id }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "chatRoom",
+                                InsertionMode = InsertionMode.Replace,
+                            }, new { id = "ajaxFormShowJoinChatButton" }))
+                            {
                             <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now" />
+                            }
+                            using (Ajax.BeginForm("HideJoinChatButton", new { }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "chatRoom",
+                                InsertionMode = InsertionMode.Replace,
+                            }, new { id = "ajaxFormHideJoinChatButton" }))
+                            {
                             <input class="btn btn-lg btn-warning btn-book-plase" id="leaveTrip" type="submit" value="Leave trip" style="display:none" />
+                            }
                         }
                         if (Model.IsUserIn)
                         {
-                            <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now"  style="display:none" />
-                            <input class="btn btn-lg btn-warning btn-book-plase" id="leaveTrip" type="submit" value="Leave trip" />
+                            using (Ajax.BeginForm("ShowJoinChatButton", new { id = Model.Id }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "chatRoom",
+                                InsertionMode = InsertionMode.Replace,
+                            }, new { id = "ajaxFormShowJoinChatButton" }))
+                            {
+                                <input class="btn btn-lg btn-primary btn-book-plase" id="joinTrip" type="submit" value="Book a place now" style="display:none" />
+                            }
+                            using (Ajax.BeginForm("HideJoinChatButton", new { }, new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "chatRoom",
+                                InsertionMode = InsertionMode.Replace,
+                            }, new { id = "ajaxFormHideJoinChatButton" }))
+                            {
+                                <input class="btn btn-lg btn-warning btn-book-plase" id="leaveTrip" type="submit" value="Leave trip" />
+                            }
                         }
 
 
@@ -92,18 +125,33 @@
                         }
                 }
             </div>
+            
+
         </div> 
     </div>
 </div>
+<div id="chatRoom">
+    @{
+        if (User.Identity.IsAuthenticated && (Model.IsUserIn || currentUsername == Model.Driver.UserName))
+        {
+            @Html.Action("Chat",new { tripId = Model.Id })
+        }
+
+    }
+</div>
+
 @section scripts{
+<script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+<script src="~/signalr/hubs" type="text/javascript"></script>
     <script>
+        
         function gettoken() {
             var token = '@Html.AntiForgeryToken()';
             token = $(token).val();
             return token;
         }
         $("#joinTrip").click(function () {
-           
+            $('#ajaxFormShowJoinChatButton').submit();
             $.ajax({
                 url: "/Trip/JoinTrip",
                 data: { tripId: $("#tripId").val(),  __RequestVerificationToken:gettoken() },
@@ -133,6 +181,7 @@
         });
 
         $("#leaveTrip").click(function () {
+            $('#ajaxFormHideJoinChatButton').submit();
             $.ajax({
                 url: "/Trip/LeaveTrip",
                 data: { tripId: $("#tripId").val(), __RequestVerificationToken: gettoken() },
@@ -163,8 +212,12 @@
                 method: "POST"
             });
         });
+
         
     </script>
 
-}
 
+}
+@section jqueryui{
+    @Styles.Render("~/Content/chat")
+}

@@ -1,29 +1,25 @@
 ﻿namespace TravelShare.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using Bytes2you.Validation;
-    using Data.Common.Contracts;
     using Data.Models;
-    using Infrastructure.Mapping;
     using Mappings;
-    using Microsoft.AspNet.Identity;
     using Services.Data.Common.Contracts;
+    using TravelShare.Common;
     using TravelShareMvc.Providers.Contracts;
-    using ViewModels;
     using ViewModels.Trips;
 
-    public class TripController : BaseController
+    public class TripController : Controller
     {
             private readonly ITripService tripService;
             private readonly IUserService userService;
+            private readonly IMessageService messageService;
             private readonly IAuthenticationProvider authenticationProvider;
             private readonly IMapperProvider mapper;
 
-            public TripController(ITripService tripService, IUserService userService, IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
+            public TripController(ITripService tripService, IUserService userService,IMessageService messageService ,IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
             {
                 Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
                     .IsNull()
@@ -33,7 +29,11 @@
                     .IsNull()
                     .Throw();
 
-                Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+            Guard.WhenArgument<IMessageService>(messageService, "Message Service cannot ben null.")
+                    .IsNull()
+                    .Throw();
+
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
                     .IsNull()
                     .Throw();
 
@@ -43,8 +43,10 @@
 
                 this.tripService = tripService;
                 this.userService = userService;
+                this.messageService = messageService;
                 this.authenticationProvider = authenticationProvider;
                 this.mapper = mapper;
+
             }
 
         [Authorize]
@@ -75,8 +77,8 @@
         public ActionResult All(int page)
         {
             this.TempData["page"] = page;
-            this.TempData["pageCount"] = this.tripService.GetPagesCount(5);
-            List<TripAllModel> trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.GetPagedTrips(page, 5)).ToList();
+            this.TempData["pageCount"] = this.tripService.GetPagesCount(GlobalConstants.TripsPerTake);
+            List<TripAllModel> trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.GetPagedTrips(page, GlobalConstants.TripsPerTake)).ToList();
 
             return this.View(trips);
         }
@@ -156,6 +158,32 @@
             this.tripService.DeleteTrip(userId, trip);
 
             return this.RedirectToAction("Create");
+        }
+
+        [Authorize]
+        public ActionResult Chat(int tripId)
+        {
+            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.messageService.GetOlderMessages(tripId, GlobalConstants.Zero, GlobalConstants.MessagePerTake));
+            return this.PartialView("Chat", oldMessages);
+        }
+
+        [Authorize]
+        public ActionResult ShowJoinChatButton(int id)
+        {
+            return this.PartialView("ButtonChatPartial", id);
+        }
+
+        [Authorize]
+        public ActionResult HideJoinChatButton()
+        {
+            return this.PartialView("NoChatButton");
+        }
+
+        [Authorize]
+        public ActionResult GetChatHistory(int id, int skip)
+        {
+            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.messageService.GetOlderMessages(id, skip, GlobalConstants.MessagePerTake));
+            return this.PartialView("ChatHistoryPartial", oldMessages);
         }
     }
 }

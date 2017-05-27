@@ -60,9 +60,11 @@
     <Compile Include="Common\BaseDataWithCreatorService{T}.cs" />
     <Compile Include="Common\Contracts\IBaseDataService{T}.cs" />
     <Compile Include="Common\Contracts\IBaseDataWithCreatorService{T}.cs" />
+    <Compile Include="Common\Contracts\IMessageService.cs" />
     <Compile Include="Common\Contracts\INewsService.cs" />
     <Compile Include="Common\Contracts\ITripService.cs" />
     <Compile Include="Common\Contracts\IUserService.cs" />
+    <Compile Include="MessageService.cs" />
     <Compile Include="NewsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TripService.cs" />
@@ -80,10 +82,6 @@
     <ProjectReference Include="..\..\TravelShare.Common\TravelShare.Common.csproj">
       <Project>{701f322f-aa01-4ddc-90b6-6935981c1e73}</Project>
       <Name>TravelShare.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TravelShare.Services.Web\TravelShare.Services.Web.csproj">
-      <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
-      <Name>TravelShare.Services.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

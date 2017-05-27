@@ -1,0 +1,34 @@
+﻿@model IEnumerable<TravelShare.Web.ViewModels.Trips.MessageViewModel>
+@{
+    var currentUsername = User.Identity.Name;
+}
+
+@{
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            if (currentUsername == item.Sender.UserName)
+            {
+                <li>
+                    <div class="message-data">
+                        <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
+                    </div>
+                    <div class="message you-message">
+                        @item.Content
+
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="clearfix">
+                    <div class="message-data align-right">
+                        <span class="message-data-name">@item.Sender.UserName</span> <i class="fa fa-circle me"></i>
+                    </div>
+                    <div class="message me-message float-right"> @item.Content </div>
+                </li>
+            }
+        }
+    }
+}

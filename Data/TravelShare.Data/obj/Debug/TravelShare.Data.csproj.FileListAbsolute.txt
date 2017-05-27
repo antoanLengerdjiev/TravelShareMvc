@@ -47,3 +47,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\bin\Debug\Bytes2y
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.passengers.resources
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.connectingTripToPassengers.resources
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.newPropsforUser.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chat.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chat2.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chat21.resources

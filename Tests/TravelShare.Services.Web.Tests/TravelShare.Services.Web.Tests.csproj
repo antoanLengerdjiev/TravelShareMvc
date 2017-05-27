@@ -71,7 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentifierProviderTests.cs" />
+    <Compile Include="MessageServiceTests\Constructor.cs" />
+    <Compile Include="MessageServiceTests\Create_Should.cs" />
+    <Compile Include="MessageServiceTests\GetOlderMessages_Should.cs" />
     <Compile Include="NewsServiceTests\Constructor.cs" />
     <Compile Include="NewsServiceTests\Create_Should.cs" />
     <Compile Include="NewsServiceTests\Delete_Should.cs" />
@@ -111,10 +113,6 @@
     <ProjectReference Include="..\..\Services\TravelShare.Services.Data\TravelShare.Services.Data.csproj">
       <Project>{90FE4C4D-122A-406D-8A40-79C561FB8184}</Project>
       <Name>TravelShare.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\TravelShare.Services.Web\TravelShare.Services.Web.csproj">
-      <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
-      <Name>TravelShare.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TravelShar.Data.Tests\TravelShar.Data.Tests.csproj">
       <Project>{949929f2-dc1f-4631-9cda-6437ae02fe93}</Project>

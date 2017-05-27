@@ -10,8 +10,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\ASP.NET-MVC-Template-master\TemplateRen
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Web.Tests.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Web.Tests.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\nunit.framework.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Web.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Services.Web.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\nunit.framework.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\obj\Debug\TravelShare.Services.Web.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\obj\Debug\TravelShare.Services.Web.Tests.dll

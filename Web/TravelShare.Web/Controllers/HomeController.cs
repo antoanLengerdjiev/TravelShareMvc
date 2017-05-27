@@ -5,16 +5,15 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using TravelShare.Common;
     using Bytes2you.Validation;
-    using Data.Common.Contracts;
     using Data.Models;
     using Mappings;
-    using Microsoft.AspNet.Identity;
     using Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
     using ViewModels.Home;
 
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly INewsService newsService;
         private readonly ICachingProvider cacheProvider;
@@ -33,11 +32,11 @@
 
         public ActionResult Index()
         {
-            string newsKey = "newsKey";
+            string newsKey = GlobalConstants.NewsCacheKey;
             var cachedNewsData = this.cacheProvider.GetItem(newsKey) as IEnumerable<News>;
             if (cachedNewsData == null || cachedNewsData.Count() == 0)
             {
-                cachedNewsData = this.newsService.GetLastestNews(5);
+                cachedNewsData = this.newsService.GetLastestNews(GlobalConstants.NewsPerTake);
                 this.cacheProvider.AddItem(newsKey, cachedNewsData, DateTime.UtcNow.AddSeconds(10 * 60));
             }
 

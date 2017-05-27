@@ -131,9 +131,7 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Data.Common.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Data.Models.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Services.Data.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Services.Web.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Web.dll
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Web.Infrastructure.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
@@ -149,8 +147,6 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Data.Common.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Data.Models.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Services.Data.pdb
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Services.Web.pdb
-C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Web.Infrastructure.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Web.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Moq.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\nunit.framework.xml
@@ -183,3 +179,15 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.IdentityConfig.dll
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.Providers.pdb
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShareMvc.IdentityConfig.pdb
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.Integration.SignalR.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.Integration.SignalR.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.Integration.Owin.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Autofac.Integration.Owin.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Forloop.HtmlHelpers.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Forloop.HtmlHelpers.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Web.Controllers.Tests\bin\Debug\TravelShare.Common.pdb

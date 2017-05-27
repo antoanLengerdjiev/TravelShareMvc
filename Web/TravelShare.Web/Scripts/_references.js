@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="bootstrap.js" />
+/// <reference path="chat.js" />
+/// <reference path="jquery.signalr-2.2.2.min.js" />
 /// <reference path="jquery.unobtrusive-ajax.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />

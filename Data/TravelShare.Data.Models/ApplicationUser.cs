@@ -17,7 +17,6 @@
         {
             // TODO: maybe UtcNow, but left it like this for consistency with other code
             this.CreatedOn = DateTime.Now;
-            this.Ratings = new HashSet<Rating>();
             this.Trips = new HashSet<Trip>();
         }
 
@@ -38,7 +37,6 @@
         [InverseProperty("Passengers")]
         public virtual ICollection<Trip> Trips { get; set; }
 
-        public virtual ICollection<Rating> Ratings { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

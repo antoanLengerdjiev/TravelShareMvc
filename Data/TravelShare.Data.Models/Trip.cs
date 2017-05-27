@@ -11,6 +11,7 @@
         public Trip()
         {
             this.Passengers = new HashSet<ApplicationUser>();
+            this.Messages = new HashSet<Message>();
         }
 
         [Required]
@@ -37,5 +38,7 @@
 
         //[InverseProperty("Trips")]
         public virtual ICollection<ApplicationUser> Passengers { get; set; }
+
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

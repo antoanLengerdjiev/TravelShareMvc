@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using Data.Models;
-    using Infrastructure.Mapping;
     using Mappings;
     using Moq;
     using NUnit.Framework;
@@ -30,14 +29,15 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             mockMapperProvider.Setup(x => x.Map<Trip>(model)).Returns(trip);
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
-            controller.WithCallTo(x => x.Create(model)).ShouldRedirectTo<TripController>(x => new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object).GetById(tripToBeAdded.Id));
+            controller.WithCallTo(x => x.Create(model)).ShouldRedirectTo<TripController>(x => new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object).GetById(tripToBeAdded.Id));
         }
 
         [Test]
@@ -46,9 +46,11 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
+
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object,mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.ModelState.AddModelError("test", "test");
@@ -67,11 +69,13 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
+
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
             var mockMapperProvider = new Mock<IMapperProvider>();
             mockMapperProvider.Setup(x => x.Map<Trip>(model)).Returns(trip);
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object,mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.Create(model);
@@ -93,11 +97,13 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
+
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
             var mockMapperProvider = new Mock<IMapperProvider>();
             mockMapperProvider.Setup(x => x.Map<Trip>(model)).Returns(trip);
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.Create(model);
@@ -119,10 +125,11 @@
 
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             mockMapperProvider.Setup(x => x.Map<Trip>(model)).Returns(trip);
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.Create(model);

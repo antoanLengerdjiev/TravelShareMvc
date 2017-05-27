@@ -4,6 +4,7 @@
     using Moq;
     using NUnit.Framework;
     using TestStack.FluentMVCTesting;
+    using Common;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShare.Web.Areas.Administration.Controllers;
     using TravelShare.Web.Areas.Administration.Models.NewsManagement;
@@ -67,7 +68,8 @@
         public void ShouldInsertItemFromCacheProvider_WhenModelStateIsValid()
         {
             // Arrange
-            string newsKey = "newsKey";
+
+            string newsKey = GlobalConstants.NewsCacheKey;
             var model = new NewCreateViewModel() { Title = "title", Content = "content" };
             var news = new News() { Title = "title", Content = "content" };
             var mockedNewsService = new Mock<INewsService>();

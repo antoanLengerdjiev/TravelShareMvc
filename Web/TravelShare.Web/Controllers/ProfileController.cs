@@ -4,13 +4,14 @@
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Common;
     using Mappings;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
     using ViewModels.Trips;
 
     [Authorize]
-    public class ProfileController : BaseController
+    public class ProfileController : Controller
     {
         private readonly IUserService userService;
         private readonly IAuthenticationProvider authenticationProvider;
@@ -45,8 +46,8 @@
         public ActionResult MyTripsAsPassenger(int page)
         {
             var userId = this.authenticationProvider.CurrentUserId;
-            var trips =this.mapper.Map<IEnumerable<TripAllModel>>(this.userService.MyTripsAsPassenger(userId, page, 5)).ToList();
-            var pageCount = this.userService.MyTripsAsPassengerPageCount(userId, 5);
+            var trips =this.mapper.Map<IEnumerable<TripAllModel>>(this.userService.MyTripsAsPassenger(userId, page, GlobalConstants.TripsPerTake)).ToList();
+            var pageCount = this.userService.MyTripsAsPassengerPageCount(userId, GlobalConstants.TripsPerTake);
             this.TempData["page"] = page;
             this.TempData["pageCount"] = pageCount;
 
@@ -57,8 +58,8 @@
         public ActionResult MyTripsAsDriver(int page)
         {
             var userId = this.authenticationProvider.CurrentUserId;
-            var trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.MyTripsAsDriver(userId, page, 5)).ToList();
-            var pageCount = this.tripService.MyTripsAsDriverPageCount(userId, 5);
+            var trips = this.mapper.Map<IEnumerable<TripAllModel>>(this.tripService.MyTripsAsDriver(userId, page, GlobalConstants.TripsPerTake)).ToList();
+            var pageCount = this.tripService.MyTripsAsDriverPageCount(userId, GlobalConstants.TripsPerTake);
             this.TempData["page"] = page;
             this.TempData["pageCount"] = pageCount;
 

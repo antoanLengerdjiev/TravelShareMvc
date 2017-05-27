@@ -14,7 +14,7 @@
     using TravelShareMvc.Providers.Contracts;
 
     [Authorize]
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

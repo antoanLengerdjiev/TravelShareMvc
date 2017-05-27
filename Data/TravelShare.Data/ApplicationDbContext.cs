@@ -21,7 +21,8 @@
 
         public IDbSet<Trip> Trips { get; set; }
 
-        public IDbSet<Rating> Ratings { get; set; }
+
+        public IDbSet<Message> Messages { get; set; }
 
         public DbContext DbContext
         {

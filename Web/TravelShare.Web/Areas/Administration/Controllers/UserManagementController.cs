@@ -4,9 +4,10 @@
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Common;
     using Mappings;
     using Models;
-    using TravelShare.Services.Data.Common.Contracts;
+    using Services.Data.Common.Contracts;
     using TravelShare.Web.Custom.Attributes;
     using TravelShareMvc.Providers.Contracts;
 
@@ -47,8 +48,8 @@
         {
             int actualPage = page ?? 1;
 
-            var result = this.userService.SearchUsersByUsername(searchModel.SearchWord,searchModel.SortBy, actualPage, 5);
-            var count = this.userService.UsersPageCountBySearchPattern(searchModel.SearchWord, 5);
+            var result = this.userService.SearchUsersByUsername(searchModel.SearchWord,searchModel.SortBy, actualPage, GlobalConstants.UsersPerTake);
+            var count = this.userService.UsersPageCountBySearchPattern(searchModel.SearchWord, GlobalConstants.UsersPerTake);
 
             usersModel.SearchModel = searchModel;
 

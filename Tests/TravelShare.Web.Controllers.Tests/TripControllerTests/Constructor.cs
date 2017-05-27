@@ -16,13 +16,14 @@
         {
             // Arrange
             var mockedTripService = new Mock<ITripService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-               mockedTripService.Object, null, mockAuthProvider.Object, mockMapperProvider.Object));
+               mockedTripService.Object, null, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
         }
 
         [Test]
@@ -31,13 +32,47 @@
             // Arrange
             var expectedExMessage = "User Service cannot ben null.";
             var mockedTripService = new Mock<ITripService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
                new TripController(
-              mockedTripService.Object, null, mockAuthProvider.Object, mockMapperProvider.Object));
+              mockedTripService.Object, null, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
+            StringAssert.Contains(expectedExMessage, exception.Message);
+        }
+
+
+        [Test]
+        public void ShouldThrowArgumentNullException_WhenNullMessageServicerIsPassed()
+        {
+            // Arrange
+            var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            // Act and Assert
+            Assert.Throws<ArgumentNullException>(() =>
+                new TripController(
+               mockedTripService.Object, mockedUserService.Object, null, mockAuthProvider.Object, mockMapperProvider.Object));
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullMessageServiceIsPassed()
+        {
+            // Arrange
+            var expectedExMessage = "Message Service cannot ben null.";
+            var mockedTripService = new Mock<ITripService>();
+            var mockedUserService = new Mock<IUserService>();
+            var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            var mockMapperProvider = new Mock<IMapperProvider>();
+
+            // Act and Assert
+            var exception = Assert.Throws<ArgumentNullException>(() =>
+               new TripController(
+              mockedTripService.Object, mockedUserService.Object, null, mockAuthProvider.Object, mockMapperProvider.Object));
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
 
@@ -46,13 +81,14 @@
         {
             // Arrange
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    null, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
+                    null, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
         }
 
         [Test]
@@ -61,13 +97,14 @@
             // Arrange
             var expectedExMessage = "Trip Service cannot ben null.";
             var mockedUserService = new Mock<IUserService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    null, mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
+                    null, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
 
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
@@ -78,25 +115,27 @@
             // Arrange
             var mockedUserService = new Mock<IUserService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    null, null, mockAuthProvider.Object, mockMapperProvider.Object));
+                    null, null, mockedMessageService.Object ,mockAuthProvider.Object, mockMapperProvider.Object));
         }
 
         [Test]
         public void ShouldThrowArgumentNullException_WhenNullUserServicerAndAuthProviderArePassed()
         {
             // Arrange
+            var mockedMessageService = new Mock<IMessageService>();
             var mockedTripService = new Mock<ITripService>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-               mockedTripService.Object, null, null, mockMapperProvider.Object));
+               mockedTripService.Object, null, mockedMessageService.Object, null, mockMapperProvider.Object));
         }
 
         [Test]
@@ -105,11 +144,12 @@
             // Arrange
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
-                new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, null));
+                new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, null));
         }
 
         [Test]
@@ -119,11 +159,12 @@
             var expectedExMessage = "Mapper provider cannot be null.";
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
             // Act and Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
-               new TripController(mockedTripService.Object, mockedUserService.Object, mockAuthProvider.Object, null));
+               new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, null));
             StringAssert.Contains(expectedExMessage, exception.Message);
         }
 
@@ -137,6 +178,7 @@
                     null,
                     null,
                     null,
+                    null,
                     null));
         }
 
@@ -145,11 +187,11 @@
         {
             // Arrange
             var mockedUserService = new Mock<IUserService>();
-
+            var mockedMessageService = new Mock<IMessageService>();
             // Act and Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new TripController(
-                    null, mockedUserService.Object, null, null));
+                    null, mockedUserService.Object, mockedMessageService.Object, null, null));
         }
 
         [Test]
@@ -158,12 +200,13 @@
             // Arrange
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
+            var mockedMessageService = new Mock<IMessageService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             // Act and Assert
             Assert.DoesNotThrow(() =>
                 new TripController(
-                    mockedTripService.Object,mockedUserService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
+                    mockedTripService.Object,mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object));
         }
     }
 }

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Common;
     using Mappings;
     using Moq;
     using NUnit.Framework;
@@ -32,7 +33,7 @@
             homeController.Index();
 
             // Assert
-            mockedCacheProvider.Verify(x => x.GetItem("newsKey"), Times.Once);
+            mockedCacheProvider.Verify(x => x.GetItem(GlobalConstants.NewsCacheKey), Times.Once);
         }
 
         [Test]
@@ -41,7 +42,7 @@
             // Arrange
             var mockedNewsService = new Mock<INewsService>();
             var mockedCacheProvider = new Mock<ICachingProvider>();
-            mockedCacheProvider.Setup(x => x.GetItem("newsKey")).Returns(null);
+            mockedCacheProvider.Setup(x => x.GetItem(GlobalConstants.NewsCacheKey)).Returns(null);
             var mockedMapperProvider = new Mock<IMapperProvider>();
             var homeController = new HomeController(mockedNewsService.Object, mockedCacheProvider.Object, mockedMapperProvider.Object);
 
@@ -58,7 +59,7 @@
             // Arrange
             var mockedNewsService = new Mock<INewsService>();
             var mockedCacheProvider = new Mock<ICachingProvider>();
-            mockedCacheProvider.Setup(x => x.GetItem("newsKey")).Returns(new List<News>());
+            mockedCacheProvider.Setup(x => x.GetItem(GlobalConstants.NewsCacheKey)).Returns(new List<News>());
             var mockedMapperProvider = new Mock<IMapperProvider>();
             var homeController = new HomeController(mockedNewsService.Object, mockedCacheProvider.Object, mockedMapperProvider.Object);
 
@@ -73,7 +74,7 @@
         public void ShouldAddItemFromCacheProvider_WhenCachedDataIsExpired()
         {
             // Arrange
-            var newsKey = "newsKey"; 
+            var newsKey = GlobalConstants.NewsCacheKey; 
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var mockedNewsService = new Mock<INewsService>();
@@ -94,7 +95,7 @@
         public void ShouldCallAddItemFromCacheProvider_WhenCachedDataIsEmpty()
         {
             // Arrange
-            var newsKey = "newsKey";
+            var newsKey = GlobalConstants.NewsCacheKey;
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var mockedNewsService = new Mock<INewsService>();
@@ -115,7 +116,7 @@
         public void ShouldNotCallLastestNewsFromNewsService_WhenThereIsCachedData()
         {
             // Arrange
-            var newsKey = "newsKey";
+            var newsKey = GlobalConstants.NewsCacheKey;
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var mockedNewsService = new Mock<INewsService>();
@@ -135,7 +136,7 @@
         public void ShouldNotCallAddItemFromCacheProvider_WhenThereIsCachedData()
         {
             // Arrange
-            var newsKey = "newsKey";
+            var newsKey = GlobalConstants.NewsCacheKey;
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var mockedNewsService = new Mock<INewsService>();
@@ -155,7 +156,7 @@
         public void ShouldCallMapMethodFromMapperProvider_WhenInvoked()
         {
             // Arrange
-            var newsKey = "newsKey";
+            var newsKey = GlobalConstants.NewsCacheKey;
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var mockedNewsService = new Mock<INewsService>();
@@ -188,7 +189,7 @@
         public void RenderDefaultViewWithCorrectModel()
         {
             // Arrange
-            var newsKey = "newsKey";
+            var newsKey = GlobalConstants.NewsCacheKey;
             var news = new News { Title = "title", Content = "Content" };
             var newsCollection = new List<News> { news, news, news };
             var newsViewModel = new NewsViewModel { Title = "title", Content = "Content" };

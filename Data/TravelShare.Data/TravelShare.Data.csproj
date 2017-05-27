@@ -80,6 +80,18 @@
     <Compile Include="Migrations\201704281523107_newPropsforUser.Designer.cs">
       <DependentUpon>201704281523107_newPropsforUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705191432318_chat.cs" />
+    <Compile Include="Migrations\201705191432318_chat.Designer.cs">
+      <DependentUpon>201705191432318_chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191617287_chat2.cs" />
+    <Compile Include="Migrations\201705191617287_chat2.Designer.cs">
+      <DependentUpon>201705191617287_chat2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705201322459_chat21.cs" />
+    <Compile Include="Migrations\201705201322459_chat21.Designer.cs">
+      <DependentUpon>201705201322459_chat21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +138,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704281523107_newPropsforUser.resx">
       <DependentUpon>201704281523107_newPropsforUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191432318_chat.resx">
+      <DependentUpon>201705191432318_chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191617287_chat2.resx">
+      <DependentUpon>201705191617287_chat2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705201322459_chat21.resx">
+      <DependentUpon>201705201322459_chat21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
