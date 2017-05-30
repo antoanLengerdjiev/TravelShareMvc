@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using TravelShare.Data.Common;
-using TravelShare.Data.Common.Contracts;
-using TravelShare.Data.Models;
-using TravelShare.Services.Data;
-
-namespace TravelShare.Services.Web.Tests.TripServiceTests
+﻿namespace TravelShare.Services.Web.Tests.TripServiceTests
 {
+    using Data;
+    using Data.Common.Contracts;
+    using Moq;
+    using NUnit.Framework;
+    using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
+    using TravelShare.Data.Models;
+
     [TestFixture]
     public class GetById_Should
     {
@@ -22,8 +18,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.GetById(It.IsAny<int>());
@@ -40,8 +37,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             mockedTripRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(trip);
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.GetById(It.IsAny<int>());
@@ -58,8 +56,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             mockedTripRepository.Setup(x => x.GetById(5)).Returns(trip);
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.GetById(5);

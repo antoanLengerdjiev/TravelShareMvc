@@ -15,10 +15,16 @@
         }
 
         [Required]
-        public string From { get; set; }
+        [ForeignKey("FromCity")]
+        public int FromCityId { get; set; }
+
+        public virtual City FromCity { get; set; }
 
         [Required]
-        public string To { get; set; }
+        [ForeignKey("ToCity")]
+        public int ToCityId { get; set; }
+
+        public virtual City ToCity { get; set; }
 
         [Required]
         public string DriverId { get; set; }

@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Bytes2you.Validation;
+    using Common.Models;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
@@ -16,8 +17,9 @@
         private readonly IEfDbRepository<Trip> tripRepository;
         private readonly IEfDbRepository<ApplicationUser> userRepository;
         private readonly IApplicationDbContextSaveChanges dbSaveChanges;
+        private readonly ICityService cityService;
 
-        public TripService(IEfDbRepository<Trip> tripRepository, IApplicationDbContextSaveChanges dbSaveChanges, IEfDbRepository<ApplicationUser> userRepository)
+        public TripService(IEfDbRepository<Trip> tripRepository, IApplicationDbContextSaveChanges dbSaveChanges, IEfDbRepository<ApplicationUser> userRepository, ICityService cityService)
         {
             Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
                 .IsNull()
@@ -30,10 +32,14 @@
             Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
                 .IsNull()
                 .Throw();
+            Guard.WhenArgument<ICityService>(cityService, "City Service cannot be null.")
+                .IsNull()
+                .Throw();
 
             this.tripRepository = tripRepository;
             this.userRepository = userRepository;
             this.dbSaveChanges = dbSaveChanges;
+            this.cityService = cityService;
         }
 
         public int GetPagesCount(int number)
@@ -84,7 +90,7 @@
             Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
-            return this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).OrderBy(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
+            return this.tripRepository.All().Where(x => x.Date == date && x.FromCity.Name == from && x.ToCity.Name == to).OrderBy(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
         }
 
         public Trip GetById(int id)
@@ -101,10 +107,38 @@
             this.dbSaveChanges.SaveChanges();
         }
 
-        public void Create(Trip trip)
+        public Trip Create(TripCreationInfo tripInfo)
         {
+            var origin = this.cityService.GetCityByName(tripInfo.From);
+
+            if (origin == null)
+            {
+                origin = this.cityService.Create(tripInfo.From);
+            }
+
+            var destination = this.cityService.GetCityByName(tripInfo.To);
+
+            if (destination == null)
+            {
+                destination = this.cityService.Create(tripInfo.To);
+            }
+
+            // TODO : TripFactory
+            var trip = new Trip()
+            {
+                DriverId = tripInfo.DriverId,
+                FromCityId = origin.Id,
+                ToCityId = destination.Id,
+                Description = tripInfo.Description,
+                Money = tripInfo.Money,
+                Slots = tripInfo.Slots,
+                Date = tripInfo.Date
+
+            };
             this.tripRepository.Add(trip);
             this.dbSaveChanges.SaveChanges();
+
+            return trip;
         }
 
         public void JoinTrip(ApplicationUser user, Trip trip)
@@ -126,7 +160,7 @@
             Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
             Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
 
-            var tripsCount = this.tripRepository.All().Where(x => x.Date == date && x.From == from && x.To == to).Count();
+            var tripsCount = this.tripRepository.All().Where(x => x.Date == date && x.FromCity.Name == from && x.ToCity.Name == to).Count();
 
             if (perPage >= tripsCount)
             {

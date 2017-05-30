@@ -71,6 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityServiceTests\Constructor_Should.cs" />
+    <Compile Include="CityServiceTests\Create_Should.cs" />
+    <Compile Include="CityServiceTests\GetCityByName.cs" />
     <Compile Include="MessageServiceTests\Constructor.cs" />
     <Compile Include="MessageServiceTests\Create_Should.cs" />
     <Compile Include="MessageServiceTests\GetOlderMessages_Should.cs" />
@@ -118,6 +121,10 @@
       <Project>{949929f2-dc1f-4631-9cda-6437ae02fe93}</Project>
       <Name>TravelShar.Data.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Web\TravelShare.Web\TravelShare.Web.csproj">
+      <Project>{67CC40FF-4933-4F83-810E-357E6BC8B973}</Project>
+      <Name>TravelShare.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -136,6 +143,7 @@
       <Link>stylecop.json</Link>
     </AdditionalFiles>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

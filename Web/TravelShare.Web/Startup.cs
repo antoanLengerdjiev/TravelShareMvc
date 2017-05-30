@@ -47,7 +47,8 @@ namespace TravelShare.Web
             builder.RegisterGeneric(typeof(EfDbRepository<>))
                .As(typeof(IEfDbRepository<>))
                .InstancePerLifetimeScope();
-            builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IApplicationDbContextSaveChanges>(), x.Resolve<IEfDbRepository<ApplicationUser>>()))
+            builder.Register(x => new CityService(x.Resolve<IEfDbRepository<City>>(), x.Resolve<IApplicationDbContextSaveChanges>())).As<ICityService>().InstancePerLifetimeScope();
+            builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IApplicationDbContextSaveChanges>(), x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<ICityService>()))
                 .As<ITripService>()
                 .InstancePerLifetimeScope();
 

@@ -13,8 +13,10 @@ $buttonSendMsg.click(function () {
 
     var msg = $msgInput.val();
     $msgInput.val("").focus();;
-
-    chat.server.sendMessageToRoom(msg, room);
+    if (!!msg) {
+        chat.server.sendMessageToRoom(msg, room);
+    }
+    
 });
 
 var $buttonLeaveTrip = $("#leaveTrip")
@@ -70,6 +72,7 @@ function addMessage(message, sender) {
     li.append(divMessage);
 
     $('#messages').append(li);
+    chatBox.scrollTop(chatBox[0].scrollHeight);
 }
 
 $('#chat-history').scroll(function () {

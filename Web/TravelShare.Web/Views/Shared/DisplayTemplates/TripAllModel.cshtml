@@ -12,17 +12,17 @@
                 <span>@Model.Date.ToString("MMMM dd, yyyy")</span>
             </div>
             <div class="col-md-12 trip-from-to">
-                <span>@Model.From</span>
+                <span>@Model.FromCity.Name</span>
                 ->
-                <span>@Model.To</span>
+                <span>@Model.ToCity.Name</span>
             </div>
             <div class="col-md-12">
                 <i class="fa fa-map-marker trip-from" aria-hidden="true"></i>
-                <span>@Model.From</span>
+                <span>@Model.FromCity.Name</span>
             </div>
             <div class="col-md-12">
                 <i class="fa fa-map-marker trip-to" aria-hidden="true"></i>
-                <span>@Model.To</span>
+                <span>@Model.ToCity.Name</span>
             </div>
         </div>
         <div class="col-md-2">

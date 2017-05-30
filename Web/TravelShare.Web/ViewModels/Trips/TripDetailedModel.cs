@@ -11,9 +11,9 @@
 
         public string DriverId { get; set; }
 
-        public string From { get; set; }
+        public CityViewModel FromCity { get; set; }
 
-        public string To { get; set; }
+        public CityViewModel ToCity { get; set; }
 
         public string Description { get; set; }
 

@@ -56,14 +56,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityService.cs" />
     <Compile Include="Common\BaseDataService{T}.cs" />
     <Compile Include="Common\BaseDataWithCreatorService{T}.cs" />
     <Compile Include="Common\Contracts\IBaseDataService{T}.cs" />
     <Compile Include="Common\Contracts\IBaseDataWithCreatorService{T}.cs" />
+    <Compile Include="Common\Contracts\ICityService.cs" />
     <Compile Include="Common\Contracts\IMessageService.cs" />
     <Compile Include="Common\Contracts\INewsService.cs" />
     <Compile Include="Common\Contracts\ITripService.cs" />
     <Compile Include="Common\Contracts\IUserService.cs" />
+    <Compile Include="Common\Models\TripCreationInfo.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="NewsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

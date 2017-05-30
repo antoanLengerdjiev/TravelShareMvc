@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using TravelShare.Data.Common;
-using TravelShare.Data.Common.Contracts;
-using TravelShare.Data.Models;
-using TravelShare.Services.Data;
-
-namespace TravelShare.Services.Web.Tests.TripServiceTests
+﻿namespace TravelShare.Services.Web.Tests.TripServiceTests
 {
+    using System.Collections.Generic;
+    using Moq;
+    using NUnit.Framework;
+    using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
+    using TravelShare.Data.Models;
+    using TravelShare.Services.Data;
+    using TravelShare.Services.Data.Common.Contracts;
+
     [TestFixture]
     public class DeleteTrip_Should
     {
@@ -27,8 +24,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.DeleteTrip(userId, trip);
@@ -48,8 +46,8 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
-
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var mockedCityService = new Mock<ICityService>();
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.DeleteTrip(userId, trip);
@@ -69,8 +67,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.DeleteTrip(userId, trip);
@@ -91,8 +90,9 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.DeleteTrip(userId, trip);
@@ -112,8 +112,8 @@ namespace TravelShare.Services.Web.Tests.TripServiceTests
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             mockUserRepository.Setup(x => x.GetById(userId)).Returns(user);
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
-
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var mockedCityService = new Mock<ICityService>();
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.DeleteTrip(userId, trip);

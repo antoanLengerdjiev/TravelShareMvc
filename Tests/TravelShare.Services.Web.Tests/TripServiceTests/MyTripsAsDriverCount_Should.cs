@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
@@ -20,8 +21,9 @@
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => tripService.MyTripsAsDriverPageCount(null, 1));
@@ -35,8 +37,9 @@
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => tripService.MyTripsAsDriverPageCount(null, 1));
@@ -51,8 +54,9 @@
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.MyTripsAsDriverPageCount("UserId", 3);
@@ -69,8 +73,9 @@
             mockedTripRepository.Setup(x => x.All()).Returns(new List<Trip>().AsQueryable());
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.MyTripsAsDriverPageCount("UserId", 3);
@@ -92,8 +97,9 @@
             mockedTripRepository.Setup(x => x.All()).Returns(list.AsQueryable());
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.MyTripsAsDriverPageCount(driverId, 3);
@@ -116,8 +122,9 @@
             mockedTripRepository.Setup(x => x.All()).Returns(list.AsQueryable());
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.MyTripsAsDriverPageCount(driverId, perPage);

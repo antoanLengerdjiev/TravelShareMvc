@@ -2,10 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Data;
+    using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
@@ -28,9 +26,10 @@
 
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
+            var mockedCityService = new Mock<ICityService>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object,mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object,mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = service.CanUserJoinTrip(userId, driverId, 4, passengers);
@@ -53,8 +52,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = service.CanUserJoinTrip(userId, driverId, 3, passengers);
@@ -74,8 +74,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = service.CanUserJoinTrip(userId, driverId, 1,passengers);
@@ -98,8 +99,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = service.CanUserJoinTrip(userId, driverId,5,passengers);
@@ -121,8 +123,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId,5, passengers));
@@ -142,8 +145,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             var exception =Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 6,passengers));
@@ -164,8 +168,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null,5 ,passengers));
@@ -185,8 +190,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null, 5,passengers));
@@ -204,8 +210,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object); ;
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, driverId,9, null));
@@ -222,8 +229,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, driverId,7, null));
@@ -240,8 +248,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(userId, null, 5,null));
@@ -259,8 +268,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, null, 5,passengers));
@@ -275,8 +285,9 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 5,null));
@@ -289,11 +300,12 @@
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockRepository = new Mock<IEfDbRepository<Trip>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object);
+            var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, null, 5,null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, null, 5, null));
         }
     }
 }

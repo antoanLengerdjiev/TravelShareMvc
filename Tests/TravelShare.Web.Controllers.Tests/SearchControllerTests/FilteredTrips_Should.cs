@@ -34,7 +34,7 @@
         {
             // Arrange
             var mockedTripService = new Mock<ITripService>();
-            var searchModel = new SearchTripModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994,1,1) };
+            var searchModel = new SearchTripModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994, 1,1) };
             var searchResultModel = new SearchTripResultModel();
             var mockMapperProvider = new Mock<IMapperProvider>();
             var controller = new SearchController(mockedTripService.Object, mockMapperProvider.Object);
@@ -82,8 +82,14 @@
         public void RenderPartilViewWithCorrectModel_FilteredTripsWhenModelStateIsValid()
         {
             // Arrange
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994, 1, 1) };
-            var tripView = new TripAllModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994, 1, 1) };
+            var fromCity = new City { Name = "Sofia" };
+            var toCity = new City { Name = "Plovdiv" };
+
+            var fromCityViewModel = new CityViewModel { Name = "Sofia" };
+            var toCityViewModel = new CityViewModel { Name = "Plovdiv" };
+
+            var trip = new Trip() { FromCity = fromCity, ToCity = toCity, Date = new DateTime(1994, 1, 1) };
+            var tripView = new TripAllModel() { FromCity = fromCityViewModel, ToCity = toCityViewModel, Date = new DateTime(1994, 1, 1) };
             var mockedTripService = new Mock<ITripService>();
             var searchModel = new SearchTripModel() { From = "Sofia", To = "Plovdiv", Date = new DateTime(1994, 1, 1) };
             var searchResultModel = new SearchTripResultModel();

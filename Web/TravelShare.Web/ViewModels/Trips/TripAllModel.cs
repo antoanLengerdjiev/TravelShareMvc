@@ -11,29 +11,12 @@
 
     public class TripAllModel : IMapFrom<Trip>
     {
-        public static Expression<Func<Trip, TripAllModel>> FromTrip
-        {
-            get
-            {
-                return trip => new TripAllModel
-                {
-                    Id = trip.Id,
-                    From = trip.From,
-                    To = trip.To,
-                    Money = trip.Money,
-                    Slots = trip.Slots,
-                    Date = trip.Date,
-                    Driver = new UserViewModel { UserName = trip.Driver.UserName },
-                    Passengers = trip.Passengers.Select(x => new UserViewModel { UserName = x.UserName }).ToList()
-                };
-            }
-        }
 
         public int Id { get; set; }
 
-        public string From { get; set; }
+        public CityViewModel FromCity { get; set; }
 
-        public string To { get; set; }
+        public CityViewModel ToCity { get; set; }
 
         public decimal Money { get; set; }
 

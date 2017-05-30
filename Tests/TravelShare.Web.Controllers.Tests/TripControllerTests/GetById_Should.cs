@@ -111,10 +111,16 @@
         public void ReturnViewWithModelWithCorrectProperties_WhenThereIsAModelWithThePassedId()
         {
             // Arrange
-            var tripModel = new TripDetailedModel {Driver = new UserViewModel {UserName ="Pesho" }, Passengers = new List<UserViewModel>() { new UserViewModel { UserName = "Gosho" } }, From = "Sofia", To = "Plovdiv", Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Description = "Kef be" };
+            var fromCity = new City { Name = "Sofia" };
+            var toCity = new City { Name = "Plovdiv" };
+
+            var fromCityViewModel = new CityViewModel { Name = "Sofia" };
+            var toCityViewModel = new CityViewModel { Name = "Plovdiv" };
+
+            var tripModel = new TripDetailedModel { Driver = new UserViewModel {UserName = "Pesho" }, Passengers = new List<UserViewModel>() { new UserViewModel { UserName = "Gosho" } }, FromCity = fromCityViewModel, ToCity = toCityViewModel, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Description = "Kef be" };
             var driver = new ApplicationUser { UserName = "Pesho" };
             var passenger = new ApplicationUser { UserName = "Gosho" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", Driver = driver,Date = new System.DateTime (1994, 1, 1),Money = 4, Slots = 5,Passengers = new List<ApplicationUser> { passenger },Description = "Kef be" };
+            var trip = new Trip() { FromCity = fromCity, ToCity = toCity, Driver = driver,Date = new System.DateTime (1994, 1, 1),Money = 4, Slots = 5,Passengers = new List<ApplicationUser> { passenger },Description = "Kef be" };
             var mockedUserService = new Mock<IUserService>();
             var mockedMessageService = new Mock<IMessageService>();
             var mockedTripService = new Mock<ITripService>();
@@ -132,8 +138,8 @@
                 .ShouldRenderDefaultView()
                 .WithModel<TripDetailedModel>(viewModel =>
                 {
-                    Assert.AreEqual(trip.From, viewModel.From);
-                    Assert.AreEqual(trip.To, viewModel.To);
+                    Assert.AreEqual(trip.FromCity.Name, viewModel.FromCity.Name);
+                    Assert.AreEqual(trip.ToCity.Name, viewModel.ToCity.Name);
                     Assert.AreEqual(trip.Driver.UserName, viewModel.Driver.UserName);
                     Assert.AreEqual(trip.Date, viewModel.Date);
                     Assert.AreEqual(trip.Description, viewModel.Description);
@@ -169,15 +175,22 @@
         {
             // Arrange
             var userId = "IdOfmyChoosing";
+
+            var fromCity = new City { Name = "Sofia" };
+            var toCity = new City { Name = "Plovdiv" };
+
+            var fromCityViewModel = new CityViewModel { Name = "Sofia" };
+            var toCityViewModel = new CityViewModel { Name = "Plovdiv" };
+
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
             var driverView = new UserViewModel { UserName = "Pesho", Id = "DriverId" };
 
             var passenger = new ApplicationUser { UserName = "Gosho", Id = userId };
             var passengerView = new UserViewModel() { UserName = "Gosho", Id = userId };
 
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
+            var trip = new Trip() { FromCity = fromCity, ToCity = toCity, DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
 
-            var tripModel = new TripDetailedModel() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
+            var tripModel = new TripDetailedModel() { FromCity = fromCityViewModel, ToCity = toCityViewModel, DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
 
             var passengers = new List<ApplicationUser>();
             var mockedTripService = new Mock<ITripService>();
@@ -208,14 +221,19 @@
         {
             // Arrange
             var userId = "IdOfmyChoosing";
+            var fromCity = new City { Name = "Sofia" };
+            var toCity = new City { Name = "Plovdiv" };
+
+            var fromCityViewModel = new CityViewModel { Name = "Sofia" };
+            var toCityViewModel = new CityViewModel { Name = "Plovdiv" };
 
             var driver = new ApplicationUser { UserName = "Pesho", Id = "DriverId" };
             var driverView = new UserViewModel { UserName = "Pesho", Id = "DriverId" };
 
             var passenger = new ApplicationUser { UserName = "Gosho", Id = "AnotherUser" };
             var passengerView = new UserViewModel() { UserName = "Gosho", Id = "AnotherUser" };
-            var trip = new Trip() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
-            var tripModel = new TripDetailedModel() { From = "Sofia", To = "Plovdiv", DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
+            var trip = new Trip() { FromCity = fromCity, ToCity = toCity, DriverId = driver.Id, Driver = driver, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<ApplicationUser> { passenger }, Description = "Kef be" };
+            var tripModel = new TripDetailedModel() { FromCity = fromCityViewModel, ToCity = toCityViewModel, DriverId = driver.Id, Driver = driverView, Date = new System.DateTime(1994, 1, 1), Money = 4, Slots = 5, Passengers = new List<UserViewModel> { passengerView }, Description = "Kef be" };
 
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetById(5)).Returns(trip).Verifiable();

@@ -88,6 +88,7 @@
         {
             if (this.ModelState.IsValid)
             {
+                // TODO : ApplicationUser Factory
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = this.authenticationProvider.CreateUser(user, model.Password);
                 if (result.Succeeded)

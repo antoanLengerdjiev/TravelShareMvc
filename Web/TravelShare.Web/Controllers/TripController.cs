@@ -7,6 +7,7 @@
     using Data.Models;
     using Mappings;
     using Services.Data.Common.Contracts;
+    using Services.Data.Common.Models;
     using TravelShare.Common;
     using TravelShareMvc.Providers.Contracts;
     using ViewModels.Trips;
@@ -68,8 +69,8 @@
 
             var userId = this.authenticationProvider.CurrentUserId;
             model.DriverId = userId;
-            var trip = this.mapper.Map<Trip>(model);
-            this.tripService.Create(trip);
+            var tripToBeAdded = this.mapper.Map<TripCreationInfo>(model);
+            var trip = this.tripService.Create(tripToBeAdded);
             return this.RedirectToAction("GetById", new { id = trip.Id });
         }
 

@@ -1,11 +1,12 @@
 ﻿namespace TravelShare.Services.Web.Tests.TripServiceTests
 {
+    using Data;
+    using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
-    using TravelShare.Services.Data;
 
     [TestFixture]
     public class JoinTrip_Should
@@ -19,8 +20,9 @@
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.JoinTrip(user, trip);
@@ -38,8 +40,9 @@
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.JoinTrip(user, trip);
@@ -57,8 +60,9 @@
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockedTripRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             tripService.JoinTrip(user, trip);

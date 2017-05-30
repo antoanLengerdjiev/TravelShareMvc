@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelShare.Data.Models;
+using TravelShare.Services.Data.Common.Models;
 
 namespace TravelShare.Services.Data.Common.Contracts
 {
@@ -11,7 +12,7 @@ namespace TravelShare.Services.Data.Common.Contracts
     {
         Trip GetById(int id);
 
-        void Create(Trip trip);
+        Trip Create(TripCreationInfo trip);
 
         void JoinTrip(ApplicationUser user, Trip trip);
 

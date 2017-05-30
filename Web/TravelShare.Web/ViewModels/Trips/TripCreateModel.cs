@@ -2,11 +2,10 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using System.Globalization;
-    using Data.Models;
     using Mappings;
+    using Services.Data.Common.Models;
 
-    public class TripCreateModel : IMapFrom<Trip>
+    public class TripCreateModel : IMapFrom<TripCreationInfo>
     {
 
         [Required]

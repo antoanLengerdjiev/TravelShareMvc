@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Data;
+    using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
     using TravelShar.Data.Tests.Helper;
@@ -37,8 +38,9 @@
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockRepository.Object,mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockRepository.Object,mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.GetPagedTrips(0, 2).ToList();
@@ -70,8 +72,9 @@
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.GetPagedTrips(0, 2).ToList();
@@ -102,8 +105,9 @@
             mockRepository.Setup(x => x.All()).Returns(mockedDbSet.Where(c => c.IsDeleted == false)).Verifiable();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
+            var mockedCityService = new Mock<ICityService>();
 
-            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object);
+            var tripService = new TripService(mockRepository.Object, mockSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act
             var result = tripService.GetPagedTrips(1, 1).ToList();
