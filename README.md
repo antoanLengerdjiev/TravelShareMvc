@@ -3,14 +3,11 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/kchvi6vb2qjcosi8?svg=true)](https://ci.appveyor.com/project/antoanLengerdjiev/travelsharemvc)
 
 ## Idea
-- Any registered user can create trips
-- Any registered user can join trips
-- Designer proposes logo 
-- Site admin approves or rejects the logo
-- Domain is posted and buyers can browse and buy
+- Making trips
+- Finding good company and travel with them
 
 ## Anonymous user
-- Can browse for trip
+- Can browse  trips
 - Can use the search page
 
 ## Registered User
@@ -28,9 +25,9 @@
 
 
 ## Adminstrator
-- Can Add News to Index page
-- Can Search and Delete news
-- Can update user status
+- Can add News to Index page
+- Can search and delete news
+- Can search and update user status
 
 
 # Technologies
