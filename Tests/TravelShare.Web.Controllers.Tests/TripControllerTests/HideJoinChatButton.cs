@@ -23,13 +23,13 @@ namespace TravelShare.Web.Controllers.Tests.TripControllerTests
 
             var mockedUserService = new Mock<IUserService>();
 
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
             var mockImapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockImapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.HideJoinChatButton()).ShouldRenderPartialView("NoChatButton");

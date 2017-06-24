@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Bytes2you.Validation;
+    using TravelShare.Common;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
@@ -17,8 +18,8 @@
 
         public MessageService(IEfDbRepository<Message> messageRepository, IApplicationDbContextSaveChanges dbSaveChanges)
         {
-            Guard.WhenArgument(messageRepository, "Message repository cannot be null").IsNull().Throw();
-            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
+            Guard.WhenArgument(messageRepository, GlobalConstants.MessageRepositoryNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, GlobalConstants.DbContextSaveChangesNullExceptionMessage)
                .IsNull()
                .Throw();
 
@@ -35,7 +36,7 @@
 
         public IEnumerable<Message> GetOlderMessages(int tripId, int skip, int take)
         {
-           return this.messageRepository.All().Where(x => x.TripId == tripId)
+           return this.messageRepository.All().Where(x => x.ChatId == tripId)
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip(skip)
                 .Take(take)

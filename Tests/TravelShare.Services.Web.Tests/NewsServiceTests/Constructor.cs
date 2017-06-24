@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using TravelShare.Common;
 using TravelShare.Data.Common;
 using TravelShare.Data.Common.Contracts;
 using TravelShare.Data.Models;
@@ -30,7 +31,7 @@ namespace TravelShare.Services.Web.Tests.NewsServiceTests
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullNewsRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "News repostirory cannot be null.";
+            var expectedExMessage = GlobalConstants.NewsRepositoryNullExceptionMessage;
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
             // Act and Assert
@@ -54,7 +55,7 @@ namespace TravelShare.Services.Web.Tests.NewsServiceTests
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
         {
             // Arrange
-            var expectedExMessage = "DbContext cannot be null.";
+            var expectedExMessage = GlobalConstants.DbContextSaveChangesNullExceptionMessage;
             var mockedNewsRepository = new Mock<IEfDbRepository<News>>();
 
             // Act and Assert

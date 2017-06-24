@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Common;
     using Mappings;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShare.Web.ViewModels.Trips;
@@ -16,10 +17,10 @@
 
         public SearchController(ITripService tripService, IMapperProvider mapper)
         {
-            Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
+            Guard.WhenArgument<ITripService>(tripService, GlobalConstants.TripServiceNullExceptionMessage)
                 .IsNull()
                 .Throw();
-            Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+            Guard.WhenArgument<IMapperProvider>(mapper, GlobalConstants.MapperProviderNullExceptionMessage)
                .IsNull()
                .Throw();
 

@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
@@ -27,7 +28,7 @@
 
         public AccountController(IAuthenticationProvider authenticationProvider)
         {
-            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, GlobalConstants.AuthenticationProviderNullExceptionMessage)
                 .IsNull()
                 .Throw();
 

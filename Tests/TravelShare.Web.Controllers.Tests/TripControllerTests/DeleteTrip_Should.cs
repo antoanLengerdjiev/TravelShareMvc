@@ -28,14 +28,14 @@
             var trip = new Trip() { Id = tripId, DriverId = userId, Driver = user };
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip);
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -55,13 +55,13 @@
             var mockedTripService = new Mock<ITripService>();
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<ErrorController>(x => new ErrorController().Forbidden());
@@ -79,13 +79,13 @@
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
 
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);
@@ -107,14 +107,14 @@
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
             mockedTripService.Setup(x => x.DeleteTrip(userId, trip)).Verifiable();
 
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
             var mockedUserService = new Mock<IUserService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             mockAuthProvider.Setup(x => x.CurrentUserId).Returns(userId);
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act && Assert
             controller.WithCallTo(x => x.DeleteTrip(tripId)).ShouldRedirectTo<TripController>(x => x.Create());
@@ -132,13 +132,13 @@
             mockedTripService.Setup(x => x.GetById(tripId)).Returns(trip).Verifiable();
 
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.DeleteTrip(tripId);

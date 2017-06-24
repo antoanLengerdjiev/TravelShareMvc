@@ -63,9 +63,9 @@
 
         public void SendMessageToRoom(string message, string room)
         {
-            var tripId = int.Parse(room);
+            var chatId = int.Parse(room);
             var senderId = this.Context.User.Identity.GetUserId();
-            var messageToBeAdded = new Data.Models.Message() { SenderId = senderId,  Content = message, TripId = tripId };
+            var messageToBeAdded = new Data.Models.Message() { SenderId = senderId,  Content = message, ChatId = chatId };
             this.messageService.Create(messageToBeAdded);
             var msg = message;
             var sender = this.Context.User.Identity.Name;

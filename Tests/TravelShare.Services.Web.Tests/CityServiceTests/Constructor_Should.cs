@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Services.Web.Tests.CityServiceTests
 {
     using System;
+    using Common;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
@@ -26,7 +27,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullCityRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "City repository cannot be null.";
+            var expectedExMessage = GlobalConstants.CityRepositoryNullExceptionMessage;
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
             // Act and Assert
@@ -50,7 +51,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
         {
             // Arrange
-            var expectedExMessage = "DbContext cannot be null.";
+            var expectedExMessage = GlobalConstants.DbContextSaveChangesNullExceptionMessage;
             var mockedCityRepository = new Mock<IEfDbRepository<City>>();
 
             // Act and Assert

@@ -11,7 +11,6 @@
         public Trip()
         {
             this.Passengers = new HashSet<ApplicationUser>();
-            this.Messages = new HashSet<Message>();
         }
 
         [Required]
@@ -42,9 +41,11 @@
         [Range(0, int.MaxValue)]
         public decimal Money { get; set; }
 
+        public int ChatId { get; set; }
+
+        public virtual Chat Chat { get; set; }
+
         //[InverseProperty("Trips")]
         public virtual ICollection<ApplicationUser> Passengers { get; set; }
-
-        public virtual ICollection<Message> Messages { get; set; }
     }
 }

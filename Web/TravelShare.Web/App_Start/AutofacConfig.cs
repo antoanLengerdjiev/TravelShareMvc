@@ -67,6 +67,8 @@
                 .As<IMapperProvider>()
                 .InstancePerRequest();
 
+            builder.Register(x => new ChatService(x.Resolve<IEfDbRepository<Chat>>(), x.Resolve<IApplicationDbContextSaveChanges>())).As<IChatService>().InstancePerRequest();
+
             builder.Register(x => new CityService(x.Resolve<IEfDbRepository<City>>(), x.Resolve<IApplicationDbContextSaveChanges>())).As<ICityService>().InstancePerRequest();
 
             builder.Register(x => new TripService(x.Resolve<IEfDbRepository<Trip>>(), x.Resolve<IApplicationDbContextSaveChanges>(), x.Resolve<IEfDbRepository<ApplicationUser>>(), x.Resolve<ICityService>()))

@@ -25,6 +25,8 @@
 
         public IDbSet<Message> Messages { get; set; }
 
+        public IDbSet<Chat> Chats { get; set; }
+
         public DbContext DbContext
         {
             get

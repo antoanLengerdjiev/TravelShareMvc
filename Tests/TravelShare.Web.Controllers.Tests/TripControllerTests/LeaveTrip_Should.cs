@@ -20,13 +20,13 @@
             var mockedTripService = new Mock<ITripService>();
 
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.LeaveTrip(5);
@@ -41,7 +41,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             mockedUserService.Setup(x => x.GetById(userId)).Verifiable();
@@ -52,7 +52,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.LeaveTrip(5);
@@ -67,7 +67,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             mockedUserService.Setup(x => x.GetById(userId)).Verifiable();
@@ -78,7 +78,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.LeaveTrip(5);
@@ -93,7 +93,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>(); ;
 
             var userId = "UserId";
             mockedUserService.Setup(x => x.GetById(userId)).Returns((ApplicationUser)null).Verifiable();
@@ -104,7 +104,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.LeaveTrip(5) as JsonResult;
@@ -120,7 +120,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
             var userId = "UserId";
             var user = new ApplicationUser() { Id = userId };
 
@@ -132,7 +132,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.LeaveTrip(5) as JsonResult;
@@ -148,7 +148,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             var user = new ApplicationUser() { Id = userId };
@@ -162,7 +162,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object ,mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object ,mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.JoinTrip(5);
@@ -177,7 +177,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             var user = new ApplicationUser() { Id = userId };
@@ -191,7 +191,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             var result = controller.LeaveTrip(5) as JsonResult;
@@ -207,7 +207,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             var user = new ApplicationUser() { Id = userId };
@@ -222,7 +222,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object ,mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object ,mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act
             controller.LeaveTrip(5);
@@ -237,7 +237,7 @@
             // Arrange
             var mockedTripService = new Mock<ITripService>();
             var mockedUserService = new Mock<IUserService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
 
             var userId = "UserId";
             var user = new ApplicationUser() { Id = userId, UserName = "Gosho" };
@@ -252,7 +252,7 @@
 
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             var expectedFreeSlots = trip.Slots - trip.Passengers.Count < 0 ? 0 : trip.Slots - trip.Passengers.Count;
 

@@ -22,11 +22,11 @@
             // Arrange
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();
-            var mockedMessageService = new Mock<IMessageService>();
+            var mockedChatService = new Mock<IChatService>();
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
 
-            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedMessageService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
+            var controller = new TripController(mockedTripService.Object, mockedUserService.Object, mockedChatService.Object, mockAuthProvider.Object, mockMapperProvider.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Create()).ShouldRenderDefaultView();

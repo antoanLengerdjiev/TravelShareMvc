@@ -52,3 +52,5 @@ C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelS
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chat21.resources
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.indexedTripId.resources
 C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.cities2.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chatmodel.resources
+C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\obj\Debug\TravelShare.Data.Migrations.chatModel2.resources

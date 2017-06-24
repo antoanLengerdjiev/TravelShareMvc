@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.SearchControllerTests
 {
     using System;
+    using Common;
     using Mappings;
     using Moq;
     using NUnit.Framework;
@@ -24,7 +25,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullTripServiceIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Trip Service cannot ben null.";
+            var expectedExMessage = GlobalConstants.TripServiceNullExceptionMessage;
             var mockMapperProvider = new Mock<IMapperProvider>();
 
             // Act and Assert
@@ -48,7 +49,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullMapperProviderIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Mapper provider cannot be null.";
+            var expectedExMessage = GlobalConstants.MapperProviderNullExceptionMessage;
             var mockTripService = new Mock<ITripService>();
 
             // Act and Assert

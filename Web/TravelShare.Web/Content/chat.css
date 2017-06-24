@@ -6,6 +6,9 @@ http://nicolasgallagher.com/pure-css-speech-bubbles/demo/*/
 *, *:before, *:after {
   box-sizing: border-box;
 }
+.chat{
+    background:white;
+}
 .chat .chat-history {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
@@ -109,11 +112,16 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 20px;
     height: 200px;
     color: #003366;
+    background: white;
 }
 
 .online-user-icon {
     height:20px;
     
+}
+
+.message-data-name{
+    color:black;
 }
 
 

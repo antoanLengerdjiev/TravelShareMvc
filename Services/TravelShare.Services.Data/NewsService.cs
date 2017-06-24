@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Bytes2you.Validation;
+    using TravelShare.Common;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
@@ -16,11 +17,11 @@
 
         public NewsService(IEfDbRepository<News> newsRepository, IApplicationDbContextSaveChanges dbSaveChanges)
         {
-            Guard.WhenArgument<IEfDbRepository<News>>(newsRepository, "News repostirory cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<News>>(newsRepository, GlobalConstants.NewsRepositoryNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
+            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, GlobalConstants.DbContextSaveChangesNullExceptionMessage)
                 .IsNull()
                 .Throw();
 

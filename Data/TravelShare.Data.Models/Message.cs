@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TravelShare.Data.Models.Base;
-
-namespace TravelShare.Data.Models
+﻿namespace TravelShare.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TravelShare.Data.Models.Base;
+
     public class Message : BaseModel<int>
     {
         [Required]
@@ -18,9 +13,9 @@ namespace TravelShare.Data.Models
 
         [Index]
         [Required]
-        public int TripId { get; set; }
+        public int ChatId { get; set; }
 
-        public virtual Trip Trip { get; set; }
+        public virtual Chat Chat { get; set; }
 
         [Required]
         [StringLength(255, MinimumLength = 1)]

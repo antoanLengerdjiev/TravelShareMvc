@@ -35,7 +35,7 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void ReturnInstanceOfIEnumerableOfMessages()
         {
             // Arrange
-            var msg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
+            var msg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
 
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             mockedMsgRepository.Setup(x => x.All()).Returns(new List<Message>() { msg }.AsQueryable());
@@ -54,10 +54,10 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void ReturnMessagesWithTheSameTripId()
         {
             // Arrange
-            var firstMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var secondMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var thirdMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
-            var fourthMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
+            var firstMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var secondMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var thirdMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
+            var fourthMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
 
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             mockedMsgRepository.Setup(x => x.All()).Returns(new List<Message>() { firstMsg, secondMsg, thirdMsg, fourthMsg }.AsQueryable());
@@ -77,10 +77,10 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void SkipCorrectNumberOfMessages()
         {
             // Arrange
-            var firstMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var secondMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var thirdMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
-            var fourthMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
+            var firstMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var secondMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var thirdMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
+            var fourthMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
 
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             mockedMsgRepository.Setup(x => x.All()).Returns(new List<Message>() { firstMsg, secondMsg, thirdMsg, fourthMsg }.AsQueryable());
@@ -100,10 +100,10 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void TakeCorrectNumberOfMessages()
         {
             // Arrange
-            var firstMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var secondMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
-            var thirdMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
-            var fourthMsg = new Message { SenderId = "gg", TripId = 2, Content = "Info" };
+            var firstMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var secondMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
+            var thirdMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
+            var fourthMsg = new Message { SenderId = "gg", ChatId = 2, Content = "Info" };
 
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             mockedMsgRepository.Setup(x => x.All()).Returns(new List<Message>() { firstMsg, secondMsg, thirdMsg, fourthMsg }.AsQueryable());
@@ -123,10 +123,10 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void SkipNewerMessagesTakeOlderMessages()
         {
             // Arrange
-            var firstMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 3) };
-            var secondMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 4) };
-            var thirdMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 5) };
-            var fourthMsg = new Message { SenderId = "gg", TripId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 6) };
+            var firstMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 3) };
+            var secondMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 4) };
+            var thirdMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 5) };
+            var fourthMsg = new Message { SenderId = "gg", ChatId = 3, Content = "Info", CreatedOn = new DateTime(1994, 2, 6) };
 
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             mockedMsgRepository.Setup(x => x.All()).Returns(new List<Message>() { firstMsg, secondMsg, thirdMsg, fourthMsg }.AsQueryable());

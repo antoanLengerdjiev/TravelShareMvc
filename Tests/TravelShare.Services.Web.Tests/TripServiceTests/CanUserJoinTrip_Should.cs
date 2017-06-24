@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Common;
     using Data;
     using Data.Common.Contracts;
     using Moq;
@@ -135,7 +136,7 @@
         public void ThorwArgumentNullExceptionWithCorrectMessage_WhenUserIsNull()
         {
             // Arrange
-            var expectedMessage = "UserId cannot be null";
+            var expectedMessage = GlobalConstants.UserIdNullExceptionMessage;
             var driverId = "DriverId";
             var passenger1 = new ApplicationUser() { Id = "randonId" };
             var passenger2 = new ApplicationUser() { Id = "random" };
@@ -290,7 +291,7 @@
             var service = new TripService(mockRepository.Object, dbSaveChanges.Object, mockUserRepository.Object, mockedCityService.Object);
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 5,null));
+            Assert.Throws<ArgumentNullException>(() => service.CanUserJoinTrip(null, driverId, 5, null));
         }
 
         [Test]

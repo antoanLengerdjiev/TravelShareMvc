@@ -23,15 +23,15 @@
             IMapperProvider mapper,
             IUserService userService)
         {
-            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, GlobalConstants.AuthenticationProviderNullExceptionMessage)
                .IsNull()
                .Throw();
 
-            Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+            Guard.WhenArgument<IMapperProvider>(mapper, GlobalConstants.MapperProviderNullExceptionMessage)
                .IsNull()
                .Throw();
 
-            Guard.WhenArgument<IUserService>(userService, "User service cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<IUserService>(userService, GlobalConstants.UserServiceNullExceptionMessage).IsNull().Throw();
 
             this.authenticationProvider = authenticationProvider;
             this.mapper = mapper;

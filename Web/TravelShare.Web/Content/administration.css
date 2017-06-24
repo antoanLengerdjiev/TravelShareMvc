@@ -1,0 +1,44 @@
+﻿.search-header input,
+.search-header button,
+.search-header select {
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
+.users-list-head  {
+    background-color: #003588;
+    color: #FFFFFF;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.user-list-item {
+    display: block;
+    line-height: 40px;
+    color:black;    
+}
+
+.user-list-item:nth-of-type(n) {
+    background-color: #FFFFFF;
+}
+
+.user-list-item:nth-of-type(2n) {
+    background-color: #FAFAFA;
+}
+
+.empty-users-list {
+    padding-top: 60px;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .u-name,
+    .u-email,
+    .u-details {
+        text-align: center;
+    }
+}
+
+.change-role-container{
+    margin-top: 50px;
+}

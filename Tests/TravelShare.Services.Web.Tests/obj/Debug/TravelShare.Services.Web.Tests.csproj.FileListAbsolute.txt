@@ -109,3 +109,5 @@ C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bi
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\System.Web.WebPages.xml
 C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Common.dll
+C:\Users\Antoan\Documents\TravelShareMvc\Tests\TravelShare.Services.Web.Tests\bin\Debug\TravelShare.Common.pdb

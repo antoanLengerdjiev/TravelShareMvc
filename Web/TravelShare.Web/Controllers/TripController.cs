@@ -16,35 +16,35 @@
     {
             private readonly ITripService tripService;
             private readonly IUserService userService;
-            private readonly IMessageService messageService;
+            private readonly IChatService chatService;
             private readonly IAuthenticationProvider authenticationProvider;
             private readonly IMapperProvider mapper;
 
-            public TripController(ITripService tripService, IUserService userService,IMessageService messageService ,IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
+            public TripController(ITripService tripService, IUserService userService,IChatService chatService ,IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
             {
-                Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
+                Guard.WhenArgument<ITripService>(tripService, GlobalConstants.TripServiceNullExceptionMessage)
                     .IsNull()
                     .Throw();
 
-                Guard.WhenArgument<IUserService>(userService, "User Service cannot ben null.")
+                Guard.WhenArgument<IUserService>(userService, GlobalConstants.UserServiceNullExceptionMessage)
                     .IsNull()
                     .Throw();
 
-            Guard.WhenArgument<IMessageService>(messageService, "Message Service cannot ben null.")
+            Guard.WhenArgument<IChatService>(chatService, GlobalConstants.ChatServiceNullExceptionMessage)
                     .IsNull()
                     .Throw();
 
-            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, GlobalConstants.AuthenticationProviderNullExceptionMessage)
                     .IsNull()
                     .Throw();
 
-                Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+                Guard.WhenArgument<IMapperProvider>(mapper, GlobalConstants.MapperProviderNullExceptionMessage)
                     .IsNull()
                     .Throw();
 
                 this.tripService = tripService;
                 this.userService = userService;
-                this.messageService = messageService;
+                this.chatService = chatService;
                 this.authenticationProvider = authenticationProvider;
                 this.mapper = mapper;
 
@@ -71,6 +71,8 @@
             model.DriverId = userId;
             var tripToBeAdded = this.mapper.Map<TripCreationInfo>(model);
             var trip = this.tripService.Create(tripToBeAdded);
+            var chat = this.chatService.Create(trip);
+            this.tripService.AddChat(trip.Id, chat.Id);
             return this.RedirectToAction("GetById", new { id = trip.Id });
         }
 
@@ -162,9 +164,9 @@
         }
 
         [Authorize]
-        public ActionResult Chat(int tripId)
+        public ActionResult Chat(int chatId)
         {
-            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.messageService.GetOlderMessages(tripId, GlobalConstants.Zero, GlobalConstants.MessagePerTake));
+            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.chatService.GetOlderMessages(chatId, GlobalConstants.Zero, GlobalConstants.MessagePerTake));
             return this.PartialView("Chat", oldMessages);
         }
 
@@ -183,7 +185,7 @@
         [Authorize]
         public ActionResult GetChatHistory(int id, int skip)
         {
-            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.messageService.GetOlderMessages(id, skip, GlobalConstants.MessagePerTake));
+            var oldMessages = this.mapper.Map<IEnumerable<MessageViewModel>>(this.chatService.GetOlderMessages(id, skip, GlobalConstants.MessagePerTake));
             return this.PartialView("ChatHistoryPartial", oldMessages);
         }
     }

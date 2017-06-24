@@ -21,13 +21,13 @@
 
         public int Slots { get; set; }
 
+        public int ChatId { get; set; }
+
         public DateTime Date { get; set; }
 
         public UserViewModel Driver { get; set; }
 
         public ICollection<UserViewModel> Passengers { get; set; }
-
-        public ICollection<MessageViewModel> Messages { get; set; }
 
         public bool IsUserIn { get; set; }
     }

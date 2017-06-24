@@ -33,5 +33,7 @@ namespace TravelShare.Services.Data.Common.Contracts
         IEnumerable<Trip> MyTripsAsDriver(string userId, int page, int perPage);
 
         int MyTripsAsDriverPageCount(string userId, int perPage);
+
+        void AddChat(int tripId, int chatId);
     }
 }

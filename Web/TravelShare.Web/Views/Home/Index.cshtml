@@ -4,24 +4,78 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<div class="container">
+        @if (Model.Count() < 1)
+        {
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-3">
+                    <h1>No News</h1>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-3">
+                    <h1>Latest News</h1>
+                </div>
+            </div>
+                
+            
+           
 
-<h1>Welcome</h1>
-@if (Model.Count() < 1)
-{
-    <h1>No News</h1>
+            foreach (var news in Model)
+            {
+                <div class="row" >
+                    <div class="col-lg-offset-1 col-lg-6 news">
+                        <div class="bubble">
+
+                            <!-- Ribbon header -->
+                            <div class="rectangle">
+                                <h2>@news.Title</h2>
+                            </div>
+
+                            <!-- Ribbon side-fold (left and right) -->
+                            <div class="triangle-l"></div>
+                            <div class="triangle-r"></div>
+
+                            <!-- Content -->
+                            <div class="info">
+                                <table id="tbl-about">
+
+                                    <!--First row -->
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <p>
+                                                       @news.Content
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <p>
+                                                        @news.CreatedOn.ToString("MMMM dd, yyyy")
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- End of first row -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End info class -->
+                        </div>                     
+                    </div>
+                </div>
+
+            }
+        }
+    
+</div>
+@section jqueryui{
+    @Styles.Render("~/Content/news")
 }
-else
-{
-    <h1>Latest News</h1>
-
-    foreach (var news in Model)
-    {
-        <div>
-            <h2>@news.Title</h2>
-            <h3>@news.Content</h3>
-            <p>@news.CreatedOn.ToString("MMMM dd, yyyy")</p>
-        </div>
-
-    }
-}
-

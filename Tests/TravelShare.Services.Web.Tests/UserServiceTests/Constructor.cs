@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Services.Web.Tests.UserServiceTests
 {
     using System;
+    using Common;
     using Moq;
     using NUnit.Framework;
     using TravelShare.Data.Common;
@@ -26,7 +27,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullUserRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "User repository cannot be null.";
+            var expectedExMessage = GlobalConstants.UserRepositoryNullExceptionMessage;
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
             // Act and Assert
@@ -50,7 +51,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
         {
             // Arrange
-            var expectedExMessage = "DbContext cannot be null.";
+            var expectedExMessage = GlobalConstants.DbContextSaveChangesNullExceptionMessage;
             var mockedUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
 
             // Act and Assert

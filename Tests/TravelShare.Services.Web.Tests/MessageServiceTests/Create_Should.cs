@@ -14,7 +14,7 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void CallCreateMethodFromMsgRepository_WhenInvoked()
         {
             // Arrange
-            var msg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
+            var msg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
@@ -31,7 +31,7 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void CallSaveChangesMethodFromDbSaveChanges_WhenInvoked()
         {
             // Arrange
-            var msg = new Message { SenderId = "gg", TripId = 3, Content = "Info" };
+            var msg = new Message { SenderId = "gg", ChatId = 3, Content = "Info" };
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 

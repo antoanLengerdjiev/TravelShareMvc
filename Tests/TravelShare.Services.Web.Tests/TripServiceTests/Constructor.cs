@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Services.Web.Tests.TripServiceTests
 {
     using System;
+    using Common;
     using Data;
     using Data.Common.Contracts;
     using Moq;
@@ -29,7 +30,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullTripRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Trip repository cannot be null.";
+            var expectedExMessage = GlobalConstants.TripRepositoryNullExceptionMessage;
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
             var mockedCityService = new Mock<ICityService>();
@@ -57,7 +58,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
         {
             // Arrange
-            var expectedExMessage = "DbContext cannot be null.";
+            var expectedExMessage = GlobalConstants.DbContextSaveChangesNullExceptionMessage;
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockedCityService = new Mock<ICityService>();
@@ -85,7 +86,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullUserRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "User repository cannot be null.";
+            var expectedExMessage = GlobalConstants.UserRepositoryNullExceptionMessage;
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
             var mockedCityService = new Mock<ICityService>();
@@ -113,7 +114,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullNullCityServiceIsPassed()
         {
             // Arrange
-            var expectedExMessage = "City Service cannot be null.";
+            var expectedExMessage = GlobalConstants.CityServiceNullExceptionMessage;
             var mockedTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();

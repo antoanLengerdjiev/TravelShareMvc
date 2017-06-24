@@ -20,19 +20,19 @@
 
         public ProfileController(IUserService userService, ITripService tripService, IAuthenticationProvider authenticationProvider, IMapperProvider mapper)
         {
-            Guard.WhenArgument<IUserService>(userService, "User Service cannot ben null.")
+            Guard.WhenArgument<IUserService>(userService, GlobalConstants.UserServiceNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<ITripService>(tripService, "Trip Service cannot ben null.")
+            Guard.WhenArgument<ITripService>(tripService, GlobalConstants.TripServiceNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, "Authentication provider cannot be null.")
+            Guard.WhenArgument<IAuthenticationProvider>(authenticationProvider, GlobalConstants.AuthenticationProviderNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IMapperProvider>(mapper, "Mapper provider cannot be null.")
+            Guard.WhenArgument<IMapperProvider>(mapper, GlobalConstants.MapperProviderNullExceptionMessage)
                .IsNull()
                .Throw();
 

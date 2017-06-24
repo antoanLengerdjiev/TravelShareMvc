@@ -1,0 +1,86 @@
+﻿.news {
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* About Us - content space */
+.bubble {
+	clear: both;
+	margin: 0px auto;
+	width: 900px;
+	background: #fff;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+	-khtml-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+	position: relative;
+	z-index: 90; /* the stack order: displayed under ribbon rectangle */
+}
+
+/* Ribbon header */
+.rectangle {
+	background: #003588;
+	height: 50px;
+	width: 930px;
+	position: relative;
+	left: -15px;
+	top: 30px;
+	float: left;
+	-moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+	-khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+	-webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+	z-index: 100; /* the stack order: foreground */
+}
+
+/* Ribbon text */
+.rectangle h2 {
+	font-family: 'Shadows Into Light Two', cursive;
+	font-size: 42px;
+	color: #fff;
+	margin-top: 5px;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+	text-align: center;
+}
+
+/* Left side-fold ribbon */
+.triangle-l {
+	border-color: transparent #003588 transparent transparent;
+	border-style: solid;
+	border-width: 15px;
+	height: 0px;
+	width: 0px;
+	position: relative;
+	left: -30px;
+	top: 65px;
+	z-index: -1; /* displayed under bubble */
+}
+
+/* Right side-fold ribbon */
+.triangle-r {
+	border-color: transparent transparent transparent #003588;
+	border-style: solid;
+	border-width: 15px;
+	height: 0px;
+	width: 0px;
+	position: relative;
+	left: 900px;
+	top: 35px;
+	z-index: -1; /* displayed under bubble */
+}
+
+/* About Us - content padding */
+.info {
+	padding: 60px 25px 35px 25px;
+}
+
+.info h2 {
+	font-size: 20px;
+}
+
+.info p {
+	padding-top: 10px;
+	font-size: 14px;
+	line-height: 22px;
+}

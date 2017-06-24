@@ -21,9 +21,9 @@
 
         public HomeController(INewsService newsService, ICachingProvider cacheProvider, IMapperProvider mapperProvider)
         {
-            Guard.WhenArgument<INewsService>(newsService, "News service cannot be null.").IsNull().Throw();
-            Guard.WhenArgument<ICachingProvider>(cacheProvider, "Cache Provider cannot be null.").IsNull().Throw();
-            Guard.WhenArgument<IMapperProvider>(mapperProvider, "Mapper Provider cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<INewsService>(newsService, GlobalConstants.NewsServiceNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<ICachingProvider>(cacheProvider, GlobalConstants.CacheProviderNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<IMapperProvider>(mapperProvider, GlobalConstants.MapperProviderNullExceptionMessage).IsNull().Throw();
 
             this.newsService = newsService;
             this.cacheProvider = cacheProvider;

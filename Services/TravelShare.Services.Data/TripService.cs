@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using Bytes2you.Validation;
     using Common.Models;
+    using TravelShare.Common;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
@@ -14,6 +15,11 @@
 
     public class TripService : ITripService
     {
+        private const string FromNullExceptionMessage = "From cannot be null";
+        private const string ToNullExceptionMessage = "To cannot be null";
+        private const string DriverIdNullExceptionMessage = "DriverId cannot be null";
+        private const string PassengerIdNullExceptionMessage = "Passenger cannot be null";
+
         private readonly IEfDbRepository<Trip> tripRepository;
         private readonly IEfDbRepository<ApplicationUser> userRepository;
         private readonly IApplicationDbContextSaveChanges dbSaveChanges;
@@ -21,18 +27,18 @@
 
         public TripService(IEfDbRepository<Trip> tripRepository, IApplicationDbContextSaveChanges dbSaveChanges, IEfDbRepository<ApplicationUser> userRepository, ICityService cityService)
         {
-            Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, "Trip repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<Trip>>(tripRepository, GlobalConstants.TripRepositoryNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.")
+            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, GlobalConstants.UserRepositoryNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
-            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
+            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, GlobalConstants.DbContextSaveChangesNullExceptionMessage)
                 .IsNull()
                 .Throw();
-            Guard.WhenArgument<ICityService>(cityService, "City Service cannot be null.")
+            Guard.WhenArgument<ICityService>(cityService, GlobalConstants.CityServiceNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
@@ -60,9 +66,9 @@
 
         public bool CanUserJoinTrip(string userId, string driverId, int slots, IEnumerable<ApplicationUser> passengers)
         {
-            Guard.WhenArgument<string>(userId, "UserId cannot be null").IsNull().Throw();
-            Guard.WhenArgument<string>(driverId, "DriverId cannot be null").IsNull().Throw();
-            Guard.WhenArgument<IEnumerable<ApplicationUser>>(passengers, "Passenger cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(userId, GlobalConstants.UserIdNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<string>(driverId, DriverIdNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<IEnumerable<ApplicationUser>>(passengers, PassengerIdNullExceptionMessage).IsNull().Throw();
 
             if (driverId == userId)
             {
@@ -87,8 +93,8 @@
 
         public IEnumerable<Trip> SearchTrips(string from, string to, DateTime date, int page, int perPage)
         {
-            Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
-            Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(from, FromNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<string>(to, ToNullExceptionMessage).IsNull().Throw();
 
             return this.tripRepository.All().Where(x => x.Date == date && x.FromCity.Name == from && x.ToCity.Name == to).OrderBy(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
         }
@@ -157,8 +163,8 @@
 
         public int SearchTripCount(string from, string to, DateTime date, int perPage)
         {
-            Guard.WhenArgument<string>(from, "From cannot be null").IsNull().Throw();
-            Guard.WhenArgument<string>(to, "To cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(from, FromNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<string>(to, ToNullExceptionMessage).IsNull().Throw();
 
             var tripsCount = this.tripRepository.All().Where(x => x.Date == date && x.FromCity.Name == from && x.ToCity.Name == to).Count();
 
@@ -172,14 +178,14 @@
 
         public IEnumerable<Trip> MyTripsAsDriver(string userId, int page, int perPage)
         {
-            Guard.WhenArgument<string>(userId, "User ID cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<string>(userId, GlobalConstants.UserIdNullExceptionMessage).IsNull().Throw();
 
             return this.tripRepository.All().Where(x => x.DriverId == userId).OrderByDescending(x => x.CreatedOn).Skip(page * perPage).Take(perPage).ToList();
         }
 
         public int MyTripsAsDriverPageCount(string userId, int perPage)
         {
-            Guard.WhenArgument<string>(userId, "User ID cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<string>(userId, GlobalConstants.UserIdNullExceptionMessage).IsNull().Throw();
 
             var tripsCount = this.tripRepository.All().Where(x => x.DriverId == userId).Count();
 
@@ -189,6 +195,13 @@
             }
 
             return (int)Math.Ceiling((double)tripsCount / perPage);
+        }
+
+        public void AddChat(int tripId, int chatId)
+        {
+            var trip = this.tripRepository.GetById(tripId);
+            trip.ChatId = chatId;
+            this.dbSaveChanges.SaveChanges();
         }
     }
 }

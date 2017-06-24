@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Bytes2you.Validation;
+    using TravelShare.Common;
     using TravelShare.Data.Common;
     using TravelShare.Data.Common.Contracts;
     using TravelShare.Data.Models;
@@ -16,9 +17,9 @@
 
         public UserService(IEfDbRepository<ApplicationUser> userRepository, IApplicationDbContextSaveChanges dbSaveChanges)
         {
-            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, "User repository cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<IEfDbRepository<ApplicationUser>>(userRepository, GlobalConstants.UserRepositoryNullExceptionMessage).IsNull().Throw();
 
-            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, "DbContext cannot be null.")
+            Guard.WhenArgument<IApplicationDbContextSaveChanges>(dbSaveChanges, GlobalConstants.DbContextSaveChangesNullExceptionMessage)
                 .IsNull()
                 .Throw();
 
@@ -29,14 +30,14 @@
 
         public IEnumerable<Trip> MyTripsAsPassenger(string userId, int page, int number)
         {
-            Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(userId, GlobalConstants.UserIdNullExceptionMessage).IsNull().Throw();
 
             return this.userRepository.GetById(userId).Trips.Where(x => !x.IsDeleted).OrderByDescending(x => x.Date).Skip(page * number).Take(number).ToList();
         }
 
         public int MyTripsAsPassengerPageCount(string userId, int number)
         {
-            Guard.WhenArgument<string>(userId, "User Id cannot be null").IsNull().Throw();
+            Guard.WhenArgument<string>(userId, GlobalConstants.UserIdNullExceptionMessage).IsNull().Throw();
 
             var tripsCount = this.userRepository.GetById(userId).Trips.Count();
             return tripsCount % number == 0 ? tripsCount / number : (tripsCount / number) + 1;

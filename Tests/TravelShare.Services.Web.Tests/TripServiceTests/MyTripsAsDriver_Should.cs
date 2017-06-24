@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Common;
     using Data.Common.Contracts;
     using Moq;
     using NUnit.Framework;
@@ -33,7 +34,7 @@
         public void ThorwArgumentNullExceptionWithCorrectMessage_WhenParameterUserIdIsNull()
         {
             // Arrange
-            var expectedMessage = "User ID cannot be null.";
+            var expectedMessage = GlobalConstants.UserIdNullExceptionMessage;
             var mockTripRepository = new Mock<IEfDbRepository<Trip>>();
             var mockUserRepository = new Mock<IEfDbRepository<ApplicationUser>>();
             var mockSaveChanges = new Mock<IApplicationDbContextSaveChanges>();

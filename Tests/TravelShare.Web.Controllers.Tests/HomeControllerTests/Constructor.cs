@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.HomeControllerTests
 {
     using System;
+    using Common;
     using Data.Common.Contracts;
     using Mappings;
     using Moq;
@@ -26,7 +27,7 @@
         public void ThrowsNullArgumentExceptionWithCorrectMessage_WhenNewsServiceIsNull()
         {
             // Arrange
-            var expectedMessage = "News service cannot be null.";
+            var expectedMessage = GlobalConstants.NewsServiceNullExceptionMessage;
             var mockedCacheProvider = new Mock<ICachingProvider>();
             var mockedMapperProvider = new Mock<IMapperProvider>();
 
@@ -52,7 +53,7 @@
         public void ThrowsNullArgumentExceptionWithCorrectMessage_WhenCacheProviderIsNull()
         {
             // Arrange
-            var expectedMessage = "Cache Provider cannot be null.";
+            var expectedMessage = GlobalConstants.CacheProviderNullExceptionMessage;
             var mockedNewsService = new Mock<INewsService>();
             var mockedMapperProvider = new Mock<IMapperProvider>();
 
@@ -77,7 +78,7 @@
         public void ThrowsNullArgumentExceptionWithCorrectMessage_WhenMapperProviderIsNull()
         {
             // Arrange
-            var expectedMessage = "Mapper Provider cannot be null.";
+            var expectedMessage = GlobalConstants.MapperProviderNullExceptionMessage;
             var mockedNewsService = new Mock<INewsService>();
             var mockedCacheProvider = new Mock<ICachingProvider>();
 

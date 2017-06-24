@@ -27,17 +27,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" id="From" name="From" class="form-control" />
+                                <input type="text" id="From" name="From" class="form-control" placeholder="From" />
                             </div>
                             <div class="col-md-12">
-                                <input type="text" id="To" name="To" class="form-control" />
+                                <input type="text" id="To" name="To" class="form-control"  placeholder="To" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text"  name="Date" class="form-control" id = "datepicker" />
+                                <input type="text"  name="Date" class="form-control" id = "datepicker"  placeholder="Date" />
                             </div>
                         </div>
                     </div>
@@ -84,5 +84,7 @@
 
 @section jqueryui{
     @Styles.Render("~/Content/jqueryui")
+    @Styles.Render("~/Content/trip")
+    
 }
 

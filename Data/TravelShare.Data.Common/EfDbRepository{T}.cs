@@ -6,14 +6,20 @@
     using Bytes2you.Validation;
     using Contracts;
     using Data.Models.Base;
+    using TravelShare.Common;
     using TravelShare.Data.Common.Models;
 
     public class EfDbRepository<T> : IEfDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
+
+        private const string EntityToAddNullExceptionMessage = "Cannot Add null object.";
+        private const string EntityToDeleteNullExceptionMessage = "Cannot Delete null object.";
+        private const string EntityToHardDeleteNullExceptionMessage = "Cannot Hard Delete null object.";
+
         public EfDbRepository(IApplicationDbContext context)
         {
-            Guard.WhenArgument<IApplicationDbContext>(context, "Database context cannot be null.")
+            Guard.WhenArgument<IApplicationDbContext>(context, GlobalConstants.DbContextNullExceptionMessage)
                  .IsNull()
                  .Throw();
 
@@ -53,21 +59,21 @@
 
         public void Add(T entity)
         {
-            Guard.WhenArgument<T>(entity, "Cannot Add null object.").IsNull().Throw();
+            Guard.WhenArgument<T>(entity, EntityToAddNullExceptionMessage).IsNull().Throw();
 
             this.DbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            Guard.WhenArgument<T>(entity, "Cannot Delete null object.").IsNull().Throw();
+            Guard.WhenArgument<T>(entity, EntityToDeleteNullExceptionMessage).IsNull().Throw();
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.UtcNow;
         }
 
         public void HardDelete(T entity)
         {
-            Guard.WhenArgument<T>(entity, "Cannot Hard Delete null object.").IsNull().Throw();
+            Guard.WhenArgument<T>(entity, EntityToHardDeleteNullExceptionMessage).IsNull().Throw();
             this.DbSet.Remove(entity);
         }
     }

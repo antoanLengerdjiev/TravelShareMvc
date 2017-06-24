@@ -67,6 +67,7 @@
                     if (User.Identity.IsAuthenticated)
                     {
                         @Html.HiddenFor(x => x.Id, new { id = "tripId" })
+                        @Html.HiddenFor(x => x.ChatId, new { id = "chatId" })
                         @Html.AntiForgeryToken()
                         if (!Model.IsUserIn && Model.Slots - Model.Passengers.Count > 0 && Model.DriverId != currentUserId)
                         {
@@ -134,7 +135,7 @@
     @{
         if (User.Identity.IsAuthenticated && (Model.IsUserIn || currentUsername == Model.Driver.UserName))
         {
-            @Html.Action("Chat",new { tripId = Model.Id })
+            @Html.Action("Chat",new { chatId = Model.ChatId })
         }
 
     }
@@ -220,4 +221,5 @@
 }
 @section jqueryui{
     @Styles.Render("~/Content/chat")
+    @Styles.Render("~/Content/trip")
 }

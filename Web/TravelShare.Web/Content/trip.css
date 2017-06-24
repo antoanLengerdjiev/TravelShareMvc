@@ -1,0 +1,48 @@
+﻿.trip-item {
+    background: white;
+    color:black;
+    text-decoration: none;
+    border: 1px solid #999;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    font-size: 18px;
+}
+
+.trip-item:hover {
+    background: lightgray;
+}
+
+.trip-date {
+    font-size: 25px;
+}
+
+.trip-from-to {
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.trip-from {
+    color: #006ac3;
+}
+
+.trip-to {
+    color: #5cad29;
+}
+
+.trip-price {
+    font-size: 30px;
+    color: #5cad29;
+    font-weight: bold;
+}
+
+.trip-seats {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.trip-passengers>ul>li {
+    list-style-type: none;
+    padding-left: none;
+}
+

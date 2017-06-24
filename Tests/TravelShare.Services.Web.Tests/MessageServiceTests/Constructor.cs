@@ -1,13 +1,14 @@
-﻿using System;
-using Moq;
-using NUnit.Framework;
-using TravelShare.Data.Common;
-using TravelShare.Data.Common.Contracts;
-using TravelShare.Data.Models;
-using TravelShare.Services.Data;
-
-namespace TravelShare.Services.Web.Tests.MessageServiceTests
+﻿namespace TravelShare.Services.Web.Tests.MessageServiceTests
 {
+    using System;
+    using Common;
+    using Moq;
+    using NUnit.Framework;
+    using TravelShare.Data.Common;
+    using TravelShare.Data.Common.Contracts;
+    using TravelShare.Data.Models;
+    using TravelShare.Services.Data;
+
     [TestFixture]
     public class Constructor
     {
@@ -26,7 +27,7 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullMessageRepositoryIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Message repository cannot be null";
+            var expectedExMessage = GlobalConstants.MessageRepositoryNullExceptionMessage;
             var dbSaveChanges = new Mock<IApplicationDbContextSaveChanges>();
 
             // Act and Assert
@@ -50,7 +51,7 @@ namespace TravelShare.Services.Web.Tests.MessageServiceTests
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullDbSaveChangesIsPassed()
         {
             // Arrange
-            var expectedExMessage = "DbContext cannot be null.";
+            var expectedExMessage = GlobalConstants.DbContextSaveChangesNullExceptionMessage;
             var mockedMsgRepository = new Mock<IEfDbRepository<Message>>();
 
             // Act and Assert

@@ -279,12 +279,19 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\administration.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chat.css" />
+    <Content Include="Content\googlemap.css" />
     <Content Include="Content\Images\online_user_icon.png" />
+    <Content Include="Content\Images\Travel-Share-Background.jpg" />
+    <Content Include="Content\Images\ts-background.jpg" />
+    <Content Include="Content\inputs.css" />
+    <Content Include="Content\news.css" />
+    <Content Include="Content\trip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

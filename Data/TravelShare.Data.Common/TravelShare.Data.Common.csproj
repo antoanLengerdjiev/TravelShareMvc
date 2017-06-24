@@ -79,6 +79,10 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TravelShare.Common\TravelShare.Common.csproj">
+      <Project>{701F322F-AA01-4DDC-90B6-6935981C1E73}</Project>
+      <Name>TravelShare.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TravelShare.Data.Models\TravelShare.Data.Models.csproj">
       <Project>{048df115-fad9-4bd4-9ba0-d99dfd32a2b2}</Project>
       <Name>TravelShare.Data.Models</Name>

@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.ProfileControllerTests
 {
     using System;
+    using Common;
     using Mappings;
     using Moq;
     using NUnit.Framework;
@@ -27,7 +28,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullUserServiceIsPassed()
         {
             // Arrange
-            var expectedExMessage = "User Service cannot ben null.";
+            var expectedExMessage = GlobalConstants.UserServiceNullExceptionMessage;
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             var mockedTripService = new Mock<ITripService>();
@@ -55,7 +56,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullTripServiceIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Trip Service cannot ben null.";
+            var expectedExMessage = GlobalConstants.TripServiceNullExceptionMessage;
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             var mockedUserService = new Mock<IUserService>();
@@ -83,7 +84,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullAuthenticationProviderIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Authentication provider cannot be null.";
+            var expectedExMessage = GlobalConstants.AuthenticationProviderNullExceptionMessage;
             var mockedUserService = new Mock<IUserService>();
             var mockMapperProvider = new Mock<IMapperProvider>();
             var mockedTripService = new Mock<ITripService>();
@@ -111,7 +112,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage__WhenNullMapperProviderIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Mapper provider cannot be null.";
+            var expectedExMessage = GlobalConstants.MapperProviderNullExceptionMessage;
             var mockAuthProvider = new Mock<IAuthenticationProvider>();
             var mockedUserService = new Mock<IUserService>();
             var mockedTripService = new Mock<ITripService>();

@@ -1,12 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url("./Images/ts-background.jpg")
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -19,7 +21,7 @@
 /* Set width on the form input elements since they're 100% wide by default */
 
 body {
-    color: #555;
+    color: white;
 }
 
 a {
@@ -91,56 +93,9 @@ label {
     font-size: 18px;
 }
 
-.trip-item {
-    text-decoration: none;
-    border: 1px solid #999;
-    margin-bottom: 10px;
-    padding: 20px 10px;
-    font-size: 18px;
-}
 
-.trip-item:hover {
-    background: lightgray;
-}
 
-.trip-date {
-    font-size: 25px;
-}
 
-.trip-from-to {
-    font-weight: bold;
-    padding-left: 15px;
-}
-
-.trip-from {
-    color: #006ac3;
-}
-
-.trip-to {
-    color: #5cad29;
-}
-
-.trip-price {
-    font-size: 30px;
-    color: #5cad29;
-    font-weight: bold;
-}
-
-.trip-seats {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.trip-passengers>ul>li {
-    list-style-type: none;
-    padding-left: none;
-}
-
-#map {
-    height: 200px;
-    width: 100%;
-    margin-bottom: 10px;
-}
 
 .btn-login,
 .btn-create,
@@ -148,41 +103,5 @@ label {
     margin: 15px 0;
 }
 
-.search-header input,
-.search-header button,
-.search-header select {
-    margin-bottom: 20px;
-}
 
-.users-list-head  {
-    background-color: #52658F;
-    color: #FFFFFF;
-    line-height: 40px;
-    font-size: 16px;
-}
 
-.user-list-item {
-    display: block;
-    line-height: 40px;
-}
-
-.user-list-item:nth-of-type(n) {
-    background-color: #FFFFFF;
-}
-
-.user-list-item:nth-of-type(2n) {
-    background-color: #FAFAFA;
-}
-
-.empty-users-list {
-    padding-top: 60px;
-    text-align: center;
-}
-
-@media (max-width: 767px) {
-    .u-name,
-    .u-email,
-    .u-details {
-        text-align: center;
-    }
-}

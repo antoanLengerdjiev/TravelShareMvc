@@ -1,7 +1,7 @@
 ﻿$.connection.hub.start();
 
 var chat = $.connection.chat;
-var room = $("#tripId").val()
+var room = $("#chatId").val()
 var chatBox = $('#chat-history');
 chatBox.scrollTop(chatBox[0].scrollHeight);
 setTimeout(function () { chat.server.joinRoom(room) }, 1000);

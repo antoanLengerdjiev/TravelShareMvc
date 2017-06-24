@@ -1,0 +1,13 @@
+﻿------ Discover test started ------
+NUnit Adapter 3.7.0.0: Test discovery starting
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\CoverDependency\bin\Debug\CoverDependency.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Common\bin\Debug\TravelShare.Data.Common.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data.Models\bin\Debug\TravelShare.Data.Models.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Data\TravelShare.Data\bin\Debug\TravelShare.Data.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\IdentityConfig\TravelShareMvc.IdentityConfig\bin\Debug\TravelShareMvc.IdentityConfig.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Providers\TravelShareMvc.Providers\bin\Debug\TravelShareMvc.Providers.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Services\TravelShare.Services.Data\bin\Debug\TravelShare.Services.Data.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\TravelShare.Common\bin\Debug\TravelShare.Common.dll
+Assembly contains no NUnit 3.0 tests: C:\Users\Antoan\Documents\TravelShareMvc\Web\TravelShare.Web\bin\TravelShare.Web.dll
+NUnit Adapter 3.7.0.0: Test discovery complete
+========== Discover test finished: 403 found (0:00:02.1521231) ==========

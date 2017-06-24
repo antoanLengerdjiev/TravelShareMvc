@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.AccountControllerTests
 {
     using System;
+    using Common;
     using Moq;
     using NUnit.Framework;
     using TravelShareMvc.Providers.Contracts;
@@ -20,7 +21,7 @@
         public void ShouldThrowArgumentNullExceptionWithCorrectMessage_WhenNullAuthProviderIsPassed()
         {
             // Arrange
-            var expectedExMessage = "Authentication provider cannot be null.";
+            var expectedExMessage = GlobalConstants.AuthenticationProviderNullExceptionMessage;
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>

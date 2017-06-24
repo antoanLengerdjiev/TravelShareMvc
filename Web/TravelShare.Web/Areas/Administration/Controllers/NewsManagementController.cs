@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Web.Mvc;
     using Bytes2you.Validation;
+    using Common;
     using Custom.Attributes;
     using Data.Models;
     using Mappings;
     using Models.NewsManagement;
-    using Common;
     using TravelShare.Services.Data.Common.Contracts;
     using TravelShareMvc.Providers.Contracts;
 
@@ -21,9 +21,9 @@
 
         public NewsManagementController(INewsService newsService, ICachingProvider cacheProvider, IMapperProvider mapperProvider)
         {
-            Guard.WhenArgument<INewsService>(newsService, "News service cannot be null.").IsNull().Throw();
-            Guard.WhenArgument<ICachingProvider>(cacheProvider, "Cache Provider cannot be null.").IsNull().Throw();
-            Guard.WhenArgument<IMapperProvider>(mapperProvider, "Mapper Provider cannot be null.").IsNull().Throw();
+            Guard.WhenArgument<INewsService>(newsService, GlobalConstants.NewsServiceNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<ICachingProvider>(cacheProvider, GlobalConstants.CacheProviderNullExceptionMessage).IsNull().Throw();
+            Guard.WhenArgument<IMapperProvider>(mapperProvider, GlobalConstants.MapperProviderNullExceptionMessage).IsNull().Throw();
 
             this.newsService = newsService;
             this.cacheProvider = cacheProvider;
@@ -83,7 +83,7 @@
         [HttpPost]
         public PartialViewResult Delete(int id)
         {
-            this.cacheProvider.RemoveItem("newsKey");
+            this.cacheProvider.RemoveItem(GlobalConstants.NewsCacheKey);
             var news = this.newsService.GetById(id);
             this.newsService.Delete(news);
             SingleNewsModel model = this.mapperProvider.Map<SingleNewsModel>(news);

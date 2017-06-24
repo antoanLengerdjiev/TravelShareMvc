@@ -1,6 +1,7 @@
 ﻿namespace TravelShare.Web.Controllers.Tests.NewsManagementTests
 {
     using Areas.Administration.Models.NewsManagement;
+    using Common;
     using Data.Models;
     using Moq;
     using NUnit.Framework;
@@ -27,7 +28,7 @@
             newsManagementController.Delete(newsId);
 
             // Assert
-            mockedCacheProvider.Verify(x => x.RemoveItem("newsKey"), Times.Once);
+            mockedCacheProvider.Verify(x => x.RemoveItem(GlobalConstants.NewsCacheKey), Times.Once);
         }
 
         [Test]
